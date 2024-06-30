@@ -43,6 +43,34 @@
                   "constraint": {},
                   "thumbnails": []
                 }
+              },
+              "color": {
+                "type": "Color",
+                "config": {
+                  "label": "Color",
+                  "placeholder": ""
+                }
+              },
+              "font_color": {
+                "type": "Color",
+                "config": {
+                  "label": "Font Color",
+                  "placeholder": ""
+                }
+              },
+              "cta_link": {
+                "type": "Link",
+                "config": {
+                  "label": "CTA Link",
+                  "select": "document"
+                }
+              },
+              "cta_label": {
+                "type": "Text",
+                "config": {
+                  "label": "CTA Label",
+                  "placeholder": ""
+                }
               }
             }
           }

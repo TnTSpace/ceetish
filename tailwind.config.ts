@@ -16,6 +16,7 @@ const config: Config = {
 		extend: {
 			colors: {
 				pri: '#e773c8',
+				font: '#282828',
 				border: "hsl(var(--border) / <alpha-value>)",
 				input: "hsl(var(--input) / <alpha-value>)",
 				ring: "hsl(var(--ring) / <alpha-value>)",
@@ -57,7 +58,22 @@ const config: Config = {
 			},
 			fontFamily: {
 				sans: [...fontFamily.sans]
-			}
+			},
+			fontSize: {
+				"xxs": "10px"
+			},
+			boxShadow: {
+				"custom": "0 2px 5px rgba(0,0,0,0.2)",
+			},
+			padding: {
+				'amazonchip': '0 10px 0 11px !important'
+			},
+			borderWidth: {
+				'amazonchip': '1px !important'
+			},
+			borderColor: {
+				'amazonchip': '#d5d9d9'
+			},
 		}
 	},
 	plugins: [
@@ -77,6 +93,9 @@ const config: Config = {
 					fontSize: '13px',
 					border: '1px solid #d5d9d9',
 					boxShadow: '0 2px 5px rgba(0,0,0,0.1)'
+				},
+				'.clip': {
+					clipPath: 'polygon(30% 0, 100% 0%, 100% 100%, 0% 100%)'
 				}
 			}
 			addUtilities(newUtilities, ['responsive', 'hover'])

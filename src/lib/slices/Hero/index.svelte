@@ -1,9 +1,13 @@
 <script lang="ts">
-	import type { Content } from '@prismicio/client';
+	import Embla from '$lib/components/widgets/slider/Embla.svelte';
+	import EmblaCarousel from '$lib/components/widgets/slider/EmblaCarousel.svelte';
+import type { Content } from '@prismicio/client';
 
 	export let slice: Content.HeroSlice;
 </script>
 
 <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
-	Placeholder component for {slice.slice_type} (variation: {slice.variation}) Slices
+	<div class="center">
+		<Embla { slice } />
+	</div>
 </section>

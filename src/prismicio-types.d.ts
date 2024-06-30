@@ -330,6 +330,46 @@ export interface HeroSliceDefaultPrimarySlidersItem {
 	 * - **Documentation**: https://prismic.io/docs/field#image
 	 */
 	image: prismic.ImageField<never>;
+
+	/**
+	 * Color field in *Hero → Default → Primary → Sliders*
+	 *
+	 * - **Field Type**: Color
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero.default.primary.sliders[].color
+	 * - **Documentation**: https://prismic.io/docs/field#color
+	 */
+	color: prismic.ColorField;
+
+	/**
+	 * Font Color field in *Hero → Default → Primary → Sliders*
+	 *
+	 * - **Field Type**: Color
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero.default.primary.sliders[].font_color
+	 * - **Documentation**: https://prismic.io/docs/field#color
+	 */
+	font_color: prismic.ColorField;
+
+	/**
+	 * CTA Link field in *Hero → Default → Primary → Sliders*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero.default.primary.sliders[].cta_link
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	cta_link: prismic.ContentRelationshipField;
+
+	/**
+	 * CTA Label field in *Hero → Default → Primary → Sliders*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero.default.primary.sliders[].cta_label
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	cta_label: prismic.KeyTextField;
 }
 
 /**
