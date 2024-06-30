@@ -1,0 +1,91 @@
+<script lang="ts">
+	import type{ SettingsDocument } from '../../../prismicio-types';
+	import { PrismicLink } from '@prismicio/svelte';
+	import Logo from '../icons/Logo.svelte';
+	import { asLink, type LinkField } from '@prismicio/client';
+	import { page } from '$app/stores';
+	import { Input } from '../ui/input';
+
+	import { User } from 'lucide-svelte'
+	import { ShoppingBag } from 'lucide-svelte'
+	import { SearchIcon } from 'lucide-svelte'
+	import { Button } from '../ui/button';
+	import UserButton from 'clerk-sveltekit/client/UserButton.svelte';
+	import SignedIn from 'clerk-sveltekit/client/SignedIn.svelte';
+	import SignedOut from 'clerk-sveltekit/client/SignedOut.svelte';
+	import ModeToggle from '../widgets/ModeToggle.svelte';
+	import { userstore, cartstore } from '$lib/stores';
+	import { Badge } from '../ui/badge';
+
+	export let settings: SettingsDocument<string>;
+
+	const srTitle = `${settings.data.site_title} homepage`;
+
+	let isOpen = false;
+
+	const getUser = (user: any) => {
+		$userstore = user;
+		return '';
+	};
+
+	const toggleOpen = () => (isOpen = !isOpen);
+	const close = () => (isOpen = false);
+
+	const isActive = (link: LinkField) => {
+		const path = asLink(link);
+		return path && $page.url.pathname.includes(path);
+	};
+</script>
+
+<header class="sticky left-0 top-0 z-[3] bg-white dark:bg-secondary">
+	<nav
+		aria-label="Main"
+		class="mx-auto flex items-center justify-between px-2 py-2 font-medium center"
+	>
+		<Logo {srTitle} on:click={close} class="z-50" />
+		<ul class="hidden gap-6 md:flex">
+			{#each settings.data.navigation as item (item.label)}
+				<li>
+					<PrismicLink
+						field={item.link}
+						class="inline-flex min-h-11 items-center"
+						aria-current={isActive(item.link) ? 'page' : undefined}
+					>
+						{item.label}
+					</PrismicLink>
+				</li>
+			{/each}
+		</ul>
+
+		<div class="relative hidden w-2/5 md:block">
+			<Button size="icon" variant="ghost" class="absolute right-0 top-1/2 -translate-y-1/2">
+				<SearchIcon class="w-4 h-4" />
+			</Button>
+			<Input placeholder="Your search begins here" name="search" class="w-full pr-12" />
+		</div>
+
+		<div class="flex items-center gap-2">
+			<Button size="icon" variant="outline" class="relative">
+				{#if $cartstore}
+					<span
+						class="absolute right-0 top-0 flex w-4 h-4 -translate-y-1/4 translate-x-1/4 items-center justify-center rounded-full text-xs font-black"
+						>{Object.keys($cartstore).length}</span
+					>
+				{/if}
+				<ShoppingBag class="w-4 h-4" />
+			</Button>
+			<div>
+				<SignedIn let:user>
+					<pre>{getUser(user)}</pre>
+					<UserButton afterSignOutUrl="/" />
+				</SignedIn>
+				<SignedOut>
+					<Button size="icon" variant="outline" href="/sign-in">
+						<User class="w-4 h-4" />
+					</Button>
+				</SignedOut>
+			</div>
+			<ModeToggle class="hidden items-center justify-center md:flex" />
+		</div>
+	</nav>
+</header>

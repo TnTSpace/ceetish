@@ -1,5 +1,6 @@
 source: https://www.ceetish.com/
 clerk: https://github.com/markjaquith/clerk-sveltekit/tree/main
+lucide-svelte icons: https://lucide.dev/icons/
 
 
 Sliders

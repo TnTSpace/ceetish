@@ -1,7 +1,11 @@
 <script>
+	import Header from '$lib/components/sections/Header.svelte';
+	// import Footer from '$lib/components/Footer.svelte';
 	import { PrismicPreview } from '@prismicio/svelte/kit';
 	import { page } from '$app/stores';
 	import { repositoryName } from '$lib/prismicio';
+	// import FloatingBottomBar from '$lib/components/FloatingBottomBar.svelte';
+
 </script>
 
 <svelte:head>
@@ -20,7 +24,11 @@
 		<meta property="twitter:image" content={$page.data.meta_image} />
 	{/if}
 </svelte:head>
+
+<Header settings={$page.data.settings} />
 <main>
-	<slot />
+	<slot/>
 </main>
-<PrismicPreview {repositoryName} />
+
+<!-- <FloatingBottomBar /> -->
+<PrismicPreview {repositoryName}></PrismicPreview>
