@@ -1,0 +1,8 @@
+source: https://www.ceetish.com/
+clerk: https://github.com/markjaquith/clerk-sveltekit/tree/main
+
+
+Sliders
+- High quality affordable extensions: https://www.ceetish.com/category/hair-extensions
+- Your favorite premium hairline: https://www.ceetish.com/category/hair-extensions
+- Bring out the best in you: https://www.ceetish.com/category/hair-extensions
