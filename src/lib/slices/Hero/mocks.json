@@ -80,21 +80,21 @@
 								}
 							],
 							[
-								"cta_link",
-								{
-									"__TYPE__": "LinkContent",
-									"value": {
-										"__TYPE__": "DocumentLink",
-										"id": "mock_document_id"
-									}
-								}
-							],
-							[
 								"cta_label",
 								{
 									"__TYPE__": "FieldContent",
 									"value": "fully",
 									"type": "Text"
+								}
+							],
+							[
+								"cta_link",
+								{
+									"__TYPE__": "LinkContent",
+									"value": {
+										"__TYPE__": "ExternalLink",
+										"url": "https://slicemachine.dev"
+									}
 								}
 							]
 						]

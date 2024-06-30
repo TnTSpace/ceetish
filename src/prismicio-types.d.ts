@@ -69,7 +69,7 @@ export type CategoryListingPageDocument<Lang extends string = string> =
 		Lang
 	>;
 
-type PageDocumentDataSlicesSlice = HeroSlice | RichTextSlice;
+type PageDocumentDataSlicesSlice = AboutSlice | HeroSlice | RichTextSlice;
 
 /**
  * Content for Page documents
@@ -236,6 +236,78 @@ export type SettingsDocument<Lang extends string = string> = prismic.PrismicDocu
 export type AllDocumentTypes = CategoryListingPageDocument | PageDocument | SettingsDocument;
 
 /**
+ * Primary content in *About → Default → Primary*
+ */
+export interface AboutSliceDefaultPrimary {
+	/**
+	 * Title field in *About → Default → Primary*
+	 *
+	 * - **Field Type**: Title
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: about.default.primary.title
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	title: prismic.TitleField;
+
+	/**
+	 * body field in *About → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: about.default.primary.body
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	body: prismic.RichTextField;
+
+	/**
+	 * CTA Link field in *About → Default → Primary*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: about.default.primary.cta_link
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	cta_link: prismic.LinkField;
+
+	/**
+	 * CTA Label field in *About → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: about.default.primary.cta_label
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	cta_label: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for About Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AboutSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<AboutSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *About*
+ */
+type AboutSliceVariation = AboutSliceDefault;
+
+/**
+ * About Shared Slice
+ *
+ * - **API ID**: `about`
+ * - **Description**: About
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AboutSlice = prismic.SharedSlice<'about', AboutSliceVariation>;
+
+/**
  * Primary content in *Banner → Default → Primary*
  */
 export interface BannerSliceDefaultPrimary {
@@ -352,16 +424,6 @@ export interface HeroSliceDefaultPrimarySlidersItem {
 	font_color: prismic.ColorField;
 
 	/**
-	 * CTA Link field in *Hero → Default → Primary → Sliders*
-	 *
-	 * - **Field Type**: Content Relationship
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: hero.default.primary.sliders[].cta_link
-	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-	 */
-	cta_link: prismic.ContentRelationshipField;
-
-	/**
 	 * CTA Label field in *Hero → Default → Primary → Sliders*
 	 *
 	 * - **Field Type**: Text
@@ -370,6 +432,16 @@ export interface HeroSliceDefaultPrimarySlidersItem {
 	 * - **Documentation**: https://prismic.io/docs/field#key-text
 	 */
 	cta_label: prismic.KeyTextField;
+
+	/**
+	 * CTA Link field in *Hero → Default → Primary → Sliders*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero.default.primary.sliders[].cta_link
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	cta_link: prismic.LinkField;
 }
 
 /**
@@ -476,6 +548,10 @@ declare module '@prismicio/client' {
 			SettingsDocumentData,
 			SettingsDocumentDataNavigationItem,
 			AllDocumentTypes,
+			AboutSlice,
+			AboutSliceDefaultPrimary,
+			AboutSliceVariation,
+			AboutSliceDefault,
 			BannerSlice,
 			BannerSliceDefaultPrimary,
 			BannerSliceVariation,

@@ -58,18 +58,19 @@
                   "placeholder": ""
                 }
               },
-              "cta_link": {
-                "type": "Link",
-                "config": {
-                  "label": "CTA Link",
-                  "select": "document"
-                }
-              },
               "cta_label": {
                 "type": "Text",
                 "config": {
                   "label": "CTA Label",
                   "placeholder": ""
+                }
+              },
+              "cta_link": {
+                "type": "Link",
+                "config": {
+                  "label": "CTA Link",
+                  "placeholder": "",
+                  "select": null
                 }
               }
             }
