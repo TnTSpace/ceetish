@@ -5,36 +5,33 @@
 	import { cn } from '$lib/utils';
 	import { onMount } from 'svelte';
 	import { initEmbla } from './scripts';
-  import "./css/base.css"
-  import "./css/embla.css" 
+	import './css/base.css';
+	import './css/embla.css';
 
 	export let slice: Content.HeroSlice;
 
 	$: sliders = slice.primary.sliders;
 
-  let className: string = ""
+	let className: string = '';
 
-  export { className as class }
+	export { className as class };
 
-  onMount(() => initEmbla("mobile"))
+	onMount(() => initEmbla('mobile'));
 </script>
 
-<div class={cn("embla", className)}>
+<div class={cn('embla', className)}>
 	<div class="embla__viewport">
 		<div class="embla__container">
 			{#each sliders as slider, i}
 				<div
 					aria-label="mobile"
-					class="embla__slide relative w-full overflow-hidden rounded-lg bg-secondary"
+					class="embla__slide relative flex w-full flex-col gap-4 overflow-hidden rounded-lg bg-secondary"
 				>
-					<div class="aspect-video w-full relative overflow-hidden">
-						<PrismicImage
-							field={slider.image}
-							class="absolute w-full aspect-auto"
-						/>
+					<div class="relative aspect-video w-full overflow-hidden">
+						<PrismicImage field={slider.image} class="absolute aspect-auto w-full" />
 					</div>
-					<div class="flex w-full flex-col items-center justify-center gap-8 mt-4">
-						<div class="flex flex-col w-full">
+					<div class="flex w-full flex-col items-center justify-center gap-8">
+						<div class="flex w-full flex-col p-4 pt-0">
 							<PrismicRichText field={slider.title} components={{ heading1: Heading1 }} />
 							<p>
 								<PrismicText field={slider.subline} />

@@ -4,7 +4,7 @@
 	import { PrismicPreview } from '@prismicio/svelte/kit';
 	import { page } from '$app/stores';
 	import { repositoryName } from '$lib/prismicio';
-	// import FloatingBottomBar from '$lib/components/FloatingBottomBar.svelte';
+	import FloatingBottomBar from '$lib/components/sections/FloatingBottomBar.svelte';
 
 </script>
 
@@ -30,5 +30,5 @@
 	<slot/>
 </main>
 
-<!-- <FloatingBottomBar /> -->
+<FloatingBottomBar />
 <PrismicPreview {repositoryName}></PrismicPreview>

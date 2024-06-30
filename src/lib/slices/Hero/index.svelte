@@ -7,7 +7,7 @@ import type { Content } from '@prismicio/client';
 </script>
 
 <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
-	<div class="center">
+	<div class="center py-4">
 		<Embla { slice } />
 	</div>
 </section>
