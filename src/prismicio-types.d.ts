@@ -4,6 +4,81 @@ import type * as prismic from '@prismicio/client';
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+type CatalogDocumentDataSlicesSlice = FilterAndSortSlice;
+
+/**
+ * Content for Catalog documents
+ */
+interface CatalogDocumentData {
+	/**
+	 * Title field in *Catalog*
+	 *
+	 * - **Field Type**: Title
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: catalog.title
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	title: prismic.TitleField;
+
+	/**
+	 * Slice Zone field in *Catalog*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: catalog.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#slices
+	 */
+	slices: prismic.SliceZone<CatalogDocumentDataSlicesSlice> /**
+	 * Meta Title field in *Catalog*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **API ID Path**: catalog.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */;
+	meta_title: prismic.KeyTextField;
+
+	/**
+	 * Meta Description field in *Catalog*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A brief summary of the page
+	 * - **API ID Path**: catalog.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	meta_description: prismic.KeyTextField;
+
+	/**
+	 * Meta Image field in *Catalog*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: catalog.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Catalog document from Prismic
+ *
+ * - **API ID**: `catalog`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type CatalogDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+	Simplify<CatalogDocumentData>,
+	'catalog',
+	Lang
+>;
+
 type CategoryListingPageDocumentDataSlicesSlice = BannerSlice;
 
 /**
@@ -145,6 +220,225 @@ export type PageDocument<Lang extends string = string> = prismic.PrismicDocument
 >;
 
 /**
+ * Item in *Product → Colors*
+ */
+export interface ProductDocumentDataColorsItem {
+	/**
+	 * Color field in *Product → Colors*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: product.colors[].color
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	color: prismic.SelectField<'gold' | 'silver' | 'pink'>;
+}
+
+/**
+ * Item in *Product → Sizes*
+ */
+export interface ProductDocumentDataSizesItem {
+	/**
+	 * Size field in *Product → Sizes*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: product.sizes[].size
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	size: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Product → Images*
+ */
+export interface ProductDocumentDataImagesItem {
+	/**
+	 * Image field in *Product → Images*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: product.images[].image
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	image: prismic.ImageField<never>;
+}
+
+type ProductDocumentDataSlicesSlice = DetailSlice;
+
+/**
+ * Content for Product documents
+ */
+interface ProductDocumentData {
+	/**
+	 * Name field in *Product*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: product.name
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	name: prismic.KeyTextField;
+
+	/**
+	 * Description field in *Product*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: product.description
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	description: prismic.RichTextField;
+
+	/**
+	 * Category field in *Product*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: product.category
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	category: prismic.SelectField<'human hair' | 'synthetic hair' | 'hair bundles' | 'accessories'>;
+
+	/**
+	 * Price field in *Product*
+	 *
+	 * - **Field Type**: Number
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: product.price
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#number
+	 */
+	price: prismic.NumberField;
+
+	/**
+	 * Discount field in *Product*
+	 *
+	 * - **Field Type**: Number
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: product.discount
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#number
+	 */
+	discount: prismic.NumberField;
+
+	/**
+	 * Colors field in *Product*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: product.colors[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	colors: prismic.GroupField<Simplify<ProductDocumentDataColorsItem>>;
+
+	/**
+	 * Sizes field in *Product*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: product.sizes[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	sizes: prismic.GroupField<Simplify<ProductDocumentDataSizesItem>>;
+
+	/**
+	 * Details field in *Product*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: product.details
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	details: prismic.RichTextField;
+
+	/**
+	 * Images field in *Product*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: product.images[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	images: prismic.GroupField<Simplify<ProductDocumentDataImagesItem>>;
+
+	/**
+	 * Video field in *Product*
+	 *
+	 * - **Field Type**: Embed
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: product.video
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#embed
+	 */
+	video: prismic.EmbedField;
+
+	/**
+	 * Slice Zone field in *Product*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: product.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#slices
+	 */
+	slices: prismic.SliceZone<ProductDocumentDataSlicesSlice> /**
+	 * Meta Title field in *Product*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **API ID Path**: product.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */;
+	meta_title: prismic.KeyTextField;
+
+	/**
+	 * Meta Description field in *Product*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A brief summary of the page
+	 * - **API ID Path**: product.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	meta_description: prismic.KeyTextField;
+
+	/**
+	 * Meta Image field in *Product*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: product.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Product document from Prismic
+ *
+ * - **API ID**: `product`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ProductDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+	Simplify<ProductDocumentData>,
+	'product',
+	Lang
+>;
+
+/**
  * Item in *Settings → Navigation*
  */
 export interface SettingsDocumentDataNavigationItem {
@@ -168,6 +462,8 @@ export interface SettingsDocumentDataNavigationItem {
 	 */
 	label: prismic.KeyTextField;
 }
+
+type SettingsDocumentDataSlicesSlice = PoliciesSlice;
 
 /**
  * Content for Settings documents
@@ -216,6 +512,17 @@ interface SettingsDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/field#group
 	 */
 	navigation: prismic.GroupField<Simplify<SettingsDocumentDataNavigationItem>>;
+
+	/**
+	 * Slice Zone field in *Settings*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: settings.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#slices
+	 */
+	slices: prismic.SliceZone<SettingsDocumentDataSlicesSlice>;
 }
 
 /**
@@ -233,7 +540,12 @@ export type SettingsDocument<Lang extends string = string> = prismic.PrismicDocu
 	Lang
 >;
 
-export type AllDocumentTypes = CategoryListingPageDocument | PageDocument | SettingsDocument;
+export type AllDocumentTypes =
+	| CatalogDocument
+	| CategoryListingPageDocument
+	| PageDocument
+	| ProductDocument
+	| SettingsDocument;
 
 /**
  * Primary content in *About → Default → Primary*
@@ -370,6 +682,268 @@ type BannerSliceVariation = BannerSliceDefault;
 export type BannerSlice = prismic.SharedSlice<'banner', BannerSliceVariation>;
 
 /**
+ * Item in *Detail → Default → Primary → Lengths*
+ */
+export interface DetailSliceDefaultPrimaryLengthsItem {
+	/**
+	 * length field in *Detail → Default → Primary → Lengths*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: detail.default.primary.lengths[].length
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	length: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Detail → Default → Primary → Images*
+ */
+export interface DetailSliceDefaultPrimaryImagesItem {
+	/**
+	 * Image field in *Detail → Default → Primary → Images*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: detail.default.primary.images[].image
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	image: prismic.ImageField<never>;
+}
+
+/**
+ * Item in *Detail → Default → Primary → Colors*
+ */
+export interface DetailSliceDefaultPrimaryColorsItem {
+	/**
+	 * Color field in *Detail → Default → Primary → Colors*
+	 *
+	 * - **Field Type**: Color
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: detail.default.primary.colors[].color
+	 * - **Documentation**: https://prismic.io/docs/field#color
+	 */
+	color: prismic.ColorField;
+}
+
+/**
+ * Primary content in *Detail → Default → Primary*
+ */
+export interface DetailSliceDefaultPrimary {
+	/**
+	 * Name field in *Detail → Default → Primary*
+	 *
+	 * - **Field Type**: Title
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: detail.default.primary.name
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	name: prismic.TitleField;
+
+	/**
+	 * Description field in *Detail → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: detail.default.primary.description
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	description: prismic.RichTextField;
+
+	/**
+	 * Price field in *Detail → Default → Primary*
+	 *
+	 * - **Field Type**: Number
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: detail.default.primary.price
+	 * - **Documentation**: https://prismic.io/docs/field#number
+	 */
+	price: prismic.NumberField;
+
+	/**
+	 * Discount field in *Detail → Default → Primary*
+	 *
+	 * - **Field Type**: Number
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: detail.default.primary.discount
+	 * - **Documentation**: https://prismic.io/docs/field#number
+	 */
+	discount: prismic.NumberField;
+
+	/**
+	 * Lengths field in *Detail → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: detail.default.primary.lengths[]
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	lengths: prismic.GroupField<Simplify<DetailSliceDefaultPrimaryLengthsItem>>;
+
+	/**
+	 * Images field in *Detail → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: detail.default.primary.images[]
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	images: prismic.GroupField<Simplify<DetailSliceDefaultPrimaryImagesItem>>;
+
+	/**
+	 * Quantity field in *Detail → Default → Primary*
+	 *
+	 * - **Field Type**: Number
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: detail.default.primary.quantity
+	 * - **Documentation**: https://prismic.io/docs/field#number
+	 */
+	quantity: prismic.NumberField;
+
+	/**
+	 * Colors field in *Detail → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: detail.default.primary.colors[]
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	colors: prismic.GroupField<Simplify<DetailSliceDefaultPrimaryColorsItem>>;
+
+	/**
+	 * Category field in *Detail → Default → Primary*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: detail.default.primary.category
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	category: prismic.SelectField<'Human Hair' | 'Synthetic Hair' | 'Hair Bundles' | 'Accessories'>;
+
+	/**
+	 * Details field in *Detail → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: detail.default.primary.details
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	details: prismic.RichTextField;
+}
+
+/**
+ * Default variation for Detail Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type DetailSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<DetailSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *Detail*
+ */
+type DetailSliceVariation = DetailSliceDefault;
+
+/**
+ * Detail Shared Slice
+ *
+ * - **API ID**: `detail`
+ * - **Description**: Detail
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type DetailSlice = prismic.SharedSlice<'detail', DetailSliceVariation>;
+
+/**
+ * Item in *FilterAndSort → Default → Primary → Sort By*
+ */
+export interface FilterAndSortSliceDefaultPrimarySortByItem {
+	/**
+	 * Field field in *FilterAndSort → Default → Primary → Sort By*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: filter_and_sort.default.primary.sort_by[].field
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	field: prismic.SelectField<'Category' | 'Price' | 'Color' | 'Size'>;
+}
+
+/**
+ * Item in *FilterAndSort → Default → Primary → Filters*
+ */
+export interface FilterAndSortSliceDefaultPrimaryFiltersItem {
+	/**
+	 * Field field in *FilterAndSort → Default → Primary → Filters*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: filter_and_sort.default.primary.filters[].field
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	field: prismic.SelectField<'Category' | 'Price' | 'Color' | 'Size'>;
+}
+
+/**
+ * Primary content in *FilterAndSort → Default → Primary*
+ */
+export interface FilterAndSortSliceDefaultPrimary {
+	/**
+	 * Sort By field in *FilterAndSort → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: filter_and_sort.default.primary.sort_by[]
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	sort_by: prismic.GroupField<Simplify<FilterAndSortSliceDefaultPrimarySortByItem>>;
+
+	/**
+	 * Filters field in *FilterAndSort → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: filter_and_sort.default.primary.filters[]
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	filters: prismic.GroupField<Simplify<FilterAndSortSliceDefaultPrimaryFiltersItem>>;
+}
+
+/**
+ * Default variation for FilterAndSort Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FilterAndSortSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<FilterAndSortSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *FilterAndSort*
+ */
+type FilterAndSortSliceVariation = FilterAndSortSliceDefault;
+
+/**
+ * FilterAndSort Shared Slice
+ *
+ * - **API ID**: `filter_and_sort`
+ * - **Description**: FilterAndSort
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FilterAndSortSlice = prismic.SharedSlice<
+	'filter_and_sort',
+	FilterAndSortSliceVariation
+>;
+
+/**
  * Item in *Hero → Default → Primary → Sliders*
  */
 export interface HeroSliceDefaultPrimarySlidersItem {
@@ -487,6 +1061,58 @@ type HeroSliceVariation = HeroSliceDefault;
 export type HeroSlice = prismic.SharedSlice<'hero', HeroSliceVariation>;
 
 /**
+ * Primary content in *Policies → Default → Primary*
+ */
+export interface PoliciesSliceDefaultPrimary {
+	/**
+	 * Return Policy field in *Policies → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: policies.default.primary.return_policy
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	return_policy: prismic.RichTextField;
+
+	/**
+	 * Shipping Policy field in *Policies → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: policies.default.primary.shipping_policy
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	shipping_policy: prismic.RichTextField;
+}
+
+/**
+ * Default variation for Policies Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PoliciesSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<PoliciesSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *Policies*
+ */
+type PoliciesSliceVariation = PoliciesSliceDefault;
+
+/**
+ * Policies Shared Slice
+ *
+ * - **API ID**: `policies`
+ * - **Description**: Policies
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PoliciesSlice = prismic.SharedSlice<'policies', PoliciesSliceVariation>;
+
+/**
  * Primary content in *RichText → Default → Primary*
  */
 export interface RichTextSliceDefaultPrimary {
@@ -538,15 +1164,25 @@ declare module '@prismicio/client' {
 
 	namespace Content {
 		export type {
+			CatalogDocument,
+			CatalogDocumentData,
+			CatalogDocumentDataSlicesSlice,
 			CategoryListingPageDocument,
 			CategoryListingPageDocumentData,
 			CategoryListingPageDocumentDataSlicesSlice,
 			PageDocument,
 			PageDocumentData,
 			PageDocumentDataSlicesSlice,
+			ProductDocument,
+			ProductDocumentData,
+			ProductDocumentDataColorsItem,
+			ProductDocumentDataSizesItem,
+			ProductDocumentDataImagesItem,
+			ProductDocumentDataSlicesSlice,
 			SettingsDocument,
 			SettingsDocumentData,
 			SettingsDocumentDataNavigationItem,
+			SettingsDocumentDataSlicesSlice,
 			AllDocumentTypes,
 			AboutSlice,
 			AboutSliceDefaultPrimary,
@@ -556,11 +1192,28 @@ declare module '@prismicio/client' {
 			BannerSliceDefaultPrimary,
 			BannerSliceVariation,
 			BannerSliceDefault,
+			DetailSlice,
+			DetailSliceDefaultPrimaryLengthsItem,
+			DetailSliceDefaultPrimaryImagesItem,
+			DetailSliceDefaultPrimaryColorsItem,
+			DetailSliceDefaultPrimary,
+			DetailSliceVariation,
+			DetailSliceDefault,
+			FilterAndSortSlice,
+			FilterAndSortSliceDefaultPrimarySortByItem,
+			FilterAndSortSliceDefaultPrimaryFiltersItem,
+			FilterAndSortSliceDefaultPrimary,
+			FilterAndSortSliceVariation,
+			FilterAndSortSliceDefault,
 			HeroSlice,
 			HeroSliceDefaultPrimarySlidersItem,
 			HeroSliceDefaultPrimary,
 			HeroSliceVariation,
 			HeroSliceDefault,
+			PoliciesSlice,
+			PoliciesSliceDefaultPrimary,
+			PoliciesSliceVariation,
+			PoliciesSliceDefault,
 			RichTextSlice,
 			RichTextSliceDefaultPrimary,
 			RichTextSliceVariation,

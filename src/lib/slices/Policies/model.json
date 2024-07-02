@@ -1,0 +1,37 @@
+{
+  "id": "policies",
+  "type": "SharedSlice",
+  "name": "Policies",
+  "description": "Policies",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "return_policy": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Return Policy",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "shipping_policy": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Shipping Policy",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

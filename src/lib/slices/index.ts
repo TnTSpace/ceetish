@@ -2,12 +2,18 @@
 
 import About from './About/index.svelte';
 import Banner from './Banner/index.svelte';
+import Detail from './Detail/index.svelte';
+import FilterAndSort from './FilterAndSort/index.svelte';
 import Hero from './Hero/index.svelte';
+import Policies from './Policies/index.svelte';
 import RichText from './RichText/index.svelte';
 
 export const components = {
 	about: About,
 	banner: Banner,
+	detail: Detail,
+	filter_and_sort: FilterAndSort,
 	hero: Hero,
+	policies: Policies,
 	rich_text: RichText
 };

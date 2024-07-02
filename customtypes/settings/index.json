@@ -55,6 +55,17 @@
 						}
 					}
 				}
+			},
+			"slices": {
+				"type": "Slices",
+				"fieldset": "Slice Zone",
+				"config": {
+					"choices": {
+						"policies": {
+							"type": "SharedSlice"
+						}
+					}
+				}
 			}
 		}
 	}

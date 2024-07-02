@@ -1,0 +1,63 @@
+{
+  "id": "filter_and_sort",
+  "type": "SharedSlice",
+  "name": "FilterAndSort",
+  "description": "FilterAndSort",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "sort_by": {
+          "type": "Group",
+          "config": {
+            "label": "Sort By",
+            "repeat": true,
+            "fields": {
+              "field": {
+                "type": "Select",
+                "config": {
+                  "label": "Field",
+                  "placeholder": "",
+                  "options": [
+                    "Category",
+                    "Price",
+                    "Color",
+                    "Size"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "filters": {
+          "type": "Group",
+          "config": {
+            "label": "Filters",
+            "repeat": true,
+            "fields": {
+              "field": {
+                "type": "Select",
+                "config": {
+                  "label": "Field",
+                  "placeholder": "",
+                  "options": [
+                    "Category",
+                    "Price",
+                    "Color",
+                    "Size"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

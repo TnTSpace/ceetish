@@ -1,0 +1,134 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"name": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Regular"
+						}
+					}
+				]
+			},
+			"price": {
+				"__TYPE__": "FieldContent",
+				"value": "69",
+				"type": "Number"
+			},
+			"discount": {
+				"__TYPE__": "FieldContent",
+				"value": "36",
+				"type": "Number"
+			},
+			"lengths": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"length",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "wood",
+									"type": "Text"
+								}
+							]
+						]
+					}
+				]
+			},
+			"images": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"image",
+								{
+									"origin": {
+										"id": "main",
+										"url": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2",
+										"width": 5616,
+										"height": 3744
+									},
+									"url": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2",
+									"width": 5616,
+									"height": 3744,
+									"edit": {
+										"zoom": 1,
+										"crop": {
+											"x": 0,
+											"y": 0
+										},
+										"background": "transparent"
+									},
+									"credits": null,
+									"alt": null,
+									"__TYPE__": "ImageContent",
+									"thumbnails": {}
+								}
+							]
+						]
+					}
+				]
+			},
+			"quantity": {
+				"__TYPE__": "FieldContent",
+				"value": "49",
+				"type": "Number"
+			},
+			"colors": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"color",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "#4f63b8",
+									"type": "Color"
+								}
+							]
+						]
+					}
+				]
+			},
+			"category": {
+				"__TYPE__": "FieldContent",
+				"value": "Human Hair",
+				"type": "Select"
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Et sit ea commodo cupidatat elit aute cupidatat incididunt deserunt ea exercitation amet voluptate occaecat excepteur."
+						}
+					}
+				]
+			},
+			"details": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Fugiat amet sit in mollit irure amet et. Excepteur cillum consequat cupidatat qui."
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

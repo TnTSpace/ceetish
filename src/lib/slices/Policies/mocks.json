@@ -1,0 +1,31 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"return_policy": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Reprehenderit excepteur nulla consectetur Lorem in aliqua dolor est quis sint nostrud tempor elit amet."
+						}
+					}
+				]
+			},
+			"shipping_policy": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Commodo laborum laboris officia quis nisi incididunt aliquip fugiat proident quis. Reprehenderit excepteur in magna ex. Non elit cupidatat aute reprehenderit deserunt velit elit aliqua."
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

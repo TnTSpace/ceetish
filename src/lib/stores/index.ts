@@ -28,16 +28,16 @@ const setLocalStorage = (key: string, value: any) => {
   }
 }
 
-// const filterslice = writable<Content.FiltersSlice | undefined>()
-// const filterstore = writable<iFilter>(getLocalStorage(Constants.FILTERS, initialFilters))
+const filterslice = writable<Content.FilterAndSortSlice | undefined>()
+const filterstore = writable<iFilter>(getLocalStorage(Constants.FILTERS, initialFilters))
 const cartstore = writable<iCart>(getLocalStorage(Constants.CART, {}))
-// const categorystore = writable<iCategoryLink[]>(getLocalStorage(Constants.CATEGORIES, []))
+const categorystore = writable<iCategoryLink[]>(getLocalStorage(Constants.CATEGORIES, []))
 
-// filterstore.subscribe(value => setLocalStorage(Constants.FILTERS, value))
+filterstore.subscribe(value => setLocalStorage(Constants.FILTERS, value))
 cartstore.subscribe(value => setLocalStorage(Constants.CART, value))
-// categorystore.subscribe(value => setLocalStorage(Constants.CATEGORIES, value))
+categorystore.subscribe(value => setLocalStorage(Constants.CATEGORIES, value))
 
 const userstore = writable<User | null>(null);
 
-export { userstore, cartstore }
+export { userstore, cartstore, filterstore, categorystore, filterslice }
 
