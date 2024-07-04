@@ -58,7 +58,8 @@ export type TFilter = "category" | "ages" | "price"
 export interface iFilter {
   category: string;
   price: string;
-  colors: string[]
+  colors: string[];
+  sizes: string[]
 }
 
 export interface iFilters {

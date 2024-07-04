@@ -7,8 +7,9 @@ import type { User } from "@clerk/backend";
 
 export const initialFilters = {
   category: "",
-  ages: [],
-  price: ""
+  price: "",
+  colors: [],
+  sizes: []
 }
 
 export interface iCart {
@@ -28,7 +29,6 @@ const setLocalStorage = (key: string, value: any) => {
   }
 }
 
-const filterslice = writable<Content.FilterAndSortSlice | undefined>()
 const filterstore = writable<iFilter>(getLocalStorage(Constants.FILTERS, initialFilters))
 const cartstore = writable<iCart>(getLocalStorage(Constants.CART, {}))
 const categorystore = writable<iCategoryLink[]>(getLocalStorage(Constants.CATEGORIES, []))
@@ -39,5 +39,5 @@ categorystore.subscribe(value => setLocalStorage(Constants.CATEGORIES, value))
 
 const userstore = writable<User | null>(null);
 
-export { userstore, cartstore, filterstore, categorystore, filterslice }
+export { userstore, cartstore, filterstore, categorystore }
 

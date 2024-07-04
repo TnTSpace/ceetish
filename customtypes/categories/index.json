@@ -1,0 +1,28 @@
+{
+	"format": "custom",
+	"id": "categories",
+	"label": "Categories",
+	"repeatable": false,
+	"status": true,
+	"json": {
+		"Main": {
+			"categories": {
+				"type": "Group",
+				"config": {
+					"label": "Categories",
+					"repeat": true,
+					"fields": {
+						"category": {
+							"type": "Select",
+							"config": {
+								"label": "Category",
+								"placeholder": "",
+								"options": ["human hair", "synthetic hair", "hair bundles", "accessories"]
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

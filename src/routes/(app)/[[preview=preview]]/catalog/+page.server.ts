@@ -3,13 +3,16 @@ import { filter } from '@prismicio/client';
 import { createClient } from '$lib/prismicio';
 import type { iFilters } from '$lib';
 
+const checkFilters = ['sizes', 'colors']
+
 const getFilters = (key: string, entries: Record<string, any>) => {
 	const value = entries[key].toLowerCase()
-	if (key === "ages") {
-		const ages = value.split("--")
+	
+	if (checkFilters.includes(key)) {
+		const values = value.split("--")
 		
-		const filterKey = `my.product.age`
-		return filter.any(filterKey, ages)
+		const filterKey = `my.product.${key.toLowerCase()}`
+		return filter.any(filterKey, values)
 	} else {
 		const filterKey = `my.product.${key.toLowerCase()}`
 		return filter.at(filterKey, value)
@@ -20,6 +23,9 @@ export async function load({ url, fetch, cookies }) {
 	const client = createClient({ fetch, cookies });
 
 	const page = await client.getSingle('catalog')
+	let categoryPage = await client.getSingle('categories')
+
+	const categories = categoryPage.data.categories.map(field => field.category as string)
 
 	const entries = Object.fromEntries(url.searchParams.entries())
 
@@ -39,14 +45,12 @@ export async function load({ url, fetch, cookies }) {
 		product.data.sizes.map(field => sizesMap.push(field.size as string))
 	})
 
-	const categories = Array.from(new Set(categoryMap)).filter(Boolean)
+	// const categories = Array.from(new Set(categoryMap)).filter(Boolean)
 	const maxPrice = Math.max(...Array.from(new Set(priceMap)))
 	const colors = Array.from(new Set(colorMap)).filter(Boolean)
 	const sizes = Array.from(new Set(sizesMap)).filter(Boolean)
 
 	const filtersObject: iFilters = { categories, maxPrice, colors, sizes }
-
-	console.log({ filtersObject, from: "page.server.ts" })
 
 	return {
 		products,

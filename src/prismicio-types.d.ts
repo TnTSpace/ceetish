@@ -4,7 +4,7 @@ import type * as prismic from '@prismicio/client';
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type CatalogDocumentDataSlicesSlice = FilterAndSortSlice;
+type CatalogDocumentDataSlicesSlice = never;
 
 /**
  * Content for Catalog documents
@@ -76,6 +76,52 @@ interface CatalogDocumentData {
 export type CatalogDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
 	Simplify<CatalogDocumentData>,
 	'catalog',
+	Lang
+>;
+
+/**
+ * Item in *Categories → Categories*
+ */
+export interface CategoriesDocumentDataCategoriesItem {
+	/**
+	 * Category field in *Categories → Categories*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: categories.categories[].category
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	category: prismic.SelectField<'human hair' | 'synthetic hair' | 'hair bundles' | 'accessories'>;
+}
+
+/**
+ * Content for Categories documents
+ */
+interface CategoriesDocumentData {
+	/**
+	 * Categories field in *Categories*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: categories.categories[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	categories: prismic.GroupField<Simplify<CategoriesDocumentDataCategoriesItem>>;
+}
+
+/**
+ * Categories document from Prismic
+ *
+ * - **API ID**: `categories`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type CategoriesDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+	Simplify<CategoriesDocumentData>,
+	'categories',
 	Lang
 >;
 
@@ -542,6 +588,7 @@ export type SettingsDocument<Lang extends string = string> = prismic.PrismicDocu
 
 export type AllDocumentTypes =
 	| CatalogDocument
+	| CategoriesDocument
 	| CategoryListingPageDocument
 	| PageDocument
 	| ProductDocument
@@ -859,91 +906,6 @@ type DetailSliceVariation = DetailSliceDefault;
 export type DetailSlice = prismic.SharedSlice<'detail', DetailSliceVariation>;
 
 /**
- * Item in *FilterAndSort → Default → Primary → Sort By*
- */
-export interface FilterAndSortSliceDefaultPrimarySortByItem {
-	/**
-	 * Field field in *FilterAndSort → Default → Primary → Sort By*
-	 *
-	 * - **Field Type**: Select
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: filter_and_sort.default.primary.sort_by[].field
-	 * - **Documentation**: https://prismic.io/docs/field#select
-	 */
-	field: prismic.SelectField<'Category' | 'Price' | 'Color' | 'Size'>;
-}
-
-/**
- * Item in *FilterAndSort → Default → Primary → Filters*
- */
-export interface FilterAndSortSliceDefaultPrimaryFiltersItem {
-	/**
-	 * Field field in *FilterAndSort → Default → Primary → Filters*
-	 *
-	 * - **Field Type**: Select
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: filter_and_sort.default.primary.filters[].field
-	 * - **Documentation**: https://prismic.io/docs/field#select
-	 */
-	field: prismic.SelectField<'Category' | 'Price' | 'Color' | 'Size'>;
-}
-
-/**
- * Primary content in *FilterAndSort → Default → Primary*
- */
-export interface FilterAndSortSliceDefaultPrimary {
-	/**
-	 * Sort By field in *FilterAndSort → Default → Primary*
-	 *
-	 * - **Field Type**: Group
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: filter_and_sort.default.primary.sort_by[]
-	 * - **Documentation**: https://prismic.io/docs/field#group
-	 */
-	sort_by: prismic.GroupField<Simplify<FilterAndSortSliceDefaultPrimarySortByItem>>;
-
-	/**
-	 * Filters field in *FilterAndSort → Default → Primary*
-	 *
-	 * - **Field Type**: Group
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: filter_and_sort.default.primary.filters[]
-	 * - **Documentation**: https://prismic.io/docs/field#group
-	 */
-	filters: prismic.GroupField<Simplify<FilterAndSortSliceDefaultPrimaryFiltersItem>>;
-}
-
-/**
- * Default variation for FilterAndSort Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type FilterAndSortSliceDefault = prismic.SharedSliceVariation<
-	'default',
-	Simplify<FilterAndSortSliceDefaultPrimary>,
-	never
->;
-
-/**
- * Slice variation for *FilterAndSort*
- */
-type FilterAndSortSliceVariation = FilterAndSortSliceDefault;
-
-/**
- * FilterAndSort Shared Slice
- *
- * - **API ID**: `filter_and_sort`
- * - **Description**: FilterAndSort
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type FilterAndSortSlice = prismic.SharedSlice<
-	'filter_and_sort',
-	FilterAndSortSliceVariation
->;
-
-/**
  * Item in *Hero → Default → Primary → Sliders*
  */
 export interface HeroSliceDefaultPrimarySlidersItem {
@@ -1167,6 +1129,9 @@ declare module '@prismicio/client' {
 			CatalogDocument,
 			CatalogDocumentData,
 			CatalogDocumentDataSlicesSlice,
+			CategoriesDocument,
+			CategoriesDocumentData,
+			CategoriesDocumentDataCategoriesItem,
 			CategoryListingPageDocument,
 			CategoryListingPageDocumentData,
 			CategoryListingPageDocumentDataSlicesSlice,
@@ -1199,12 +1164,6 @@ declare module '@prismicio/client' {
 			DetailSliceDefaultPrimary,
 			DetailSliceVariation,
 			DetailSliceDefault,
-			FilterAndSortSlice,
-			FilterAndSortSliceDefaultPrimarySortByItem,
-			FilterAndSortSliceDefaultPrimaryFiltersItem,
-			FilterAndSortSliceDefaultPrimary,
-			FilterAndSortSliceVariation,
-			FilterAndSortSliceDefault,
 			HeroSlice,
 			HeroSliceDefaultPrimarySlidersItem,
 			HeroSliceDefaultPrimary,
