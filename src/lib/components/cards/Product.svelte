@@ -79,7 +79,7 @@
 			class="absolute left-1/2 top-1/2 aspect-auto h-full -translate-x-1/2 -translate-y-1/2 rounded-md object-cover"
 		/>
 		<h3
-			class="absolute bottom-0 left-1/2 hidden w-full -translate-x-1/2 bg-white/90 p-4 font-medium dark:bg-secondary/90 md:block"
+			class="absolute bottom-0 left-1/2 hidden w-full -translate-x-1/2 bg-white/90 p-4 font-medium dark:bg-secondary/90 md:block overflow-hidden whitespace-nowrap text-ellipsis"
 		>
 			{name}
 		</h3>
@@ -105,7 +105,7 @@
 
 	<!-- desktop product detail -->
 	<div class="mx-auto hidden w-full p-2 gap-2 rounded-lg md:flex md:items-center md:justify-between">
-		<p class="flex h-10 items-center justify-center rounded-lg bg-white px-4 dark:bg-secondary">
+		<p class="font-bold text-lg bg-pri/30 w-fit py-1 px-3 rounded-lg">
 			${price}
 		</p>
 		<div class="grid grid-cols-2 gap-2">
