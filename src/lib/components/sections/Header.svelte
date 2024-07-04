@@ -7,7 +7,7 @@
 	import { Input } from '../ui/input';
 
 	import { User } from 'lucide-svelte';
-	import { ShoppingBag } from 'lucide-svelte';
+	import { ShoppingCart } from 'lucide-svelte';
 	import { SearchIcon } from 'lucide-svelte';
 	import { Button } from '../ui/button';
 	import UserButton from 'clerk-sveltekit/client/UserButton.svelte';
@@ -44,19 +44,6 @@
 	>
 		<div class="flex items-center gap-4">
 			<Logo {srTitle} on:click={close} class="z-50" />
-			<ul class="hidden gap-6 md:flex">
-				{#each settings.data.navigation as item (item.label)}
-					<li>
-						<PrismicLink
-							field={item.link}
-							class="inline-flex min-h-11 items-center"
-							aria-current={isActive(item.link) ? 'page' : undefined}
-						>
-							{item.label}
-						</PrismicLink>
-					</li>
-				{/each}
-			</ul>
 
 			<div class="relative hidden md:block">
 				<Button size="icon" variant="ghost" class="absolute right-0 top-1/2 -translate-y-1/2">
@@ -67,6 +54,18 @@
 		</div>
 
 		<div class="flex items-center gap-2">
+			<ul class="hidden gap-6 md:flex items-center">
+				{#each settings.data.navigation as item (item.label)}
+					<li>
+						<PrismicLink
+							field={item.link}
+							aria-current={isActive(item.link) ? 'page' : undefined}
+						>
+							{item.label}
+						</PrismicLink>
+					</li>
+				{/each}
+			</ul>
 			<Button size="icon" variant="outline" class="relative">
 				{#if $cartstore}
 					<span
@@ -74,7 +73,7 @@
 						>{Object.keys($cartstore).length}</span
 					>
 				{/if}
-				<ShoppingBag class="h-4 w-4" />
+				<ShoppingCart class="h-4 w-4" />
 			</Button>
 			<div>
 				<SignedIn let:user>
