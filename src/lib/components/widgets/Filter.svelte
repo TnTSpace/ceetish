@@ -9,7 +9,7 @@
 	import type { iFilters } from '$lib/interfaces';
 
   export let allFilters: iFilters
-  export let actualObject: iFilters
+  export let actualFilters: iFilters
   let className: string = ""
   export { className as class }
 
@@ -27,7 +27,7 @@
     <h3 class="font-semibold capitalize">
       Categories
     </h3>
-    <CategoryFilter { allFilters } { actualObject } />
+    <CategoryFilter { allFilters } { actualFilters } />
   </div>
   {/if}
   {#if maxPrice}

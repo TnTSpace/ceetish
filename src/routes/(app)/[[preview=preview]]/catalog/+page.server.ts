@@ -1,8 +1,8 @@
 import { Client, filter } from '@prismicio/client';
 
 import { createClient } from '$lib/prismicio';
-import type { iFilters } from '$lib';
-import type { AllDocumentTypes, CatalogDocument } from '../../../../prismicio-types';
+import type { iFilter, iFilters } from '$lib';
+import type { AllDocumentTypes, CatalogDocument, ProductDocument } from '../../../../prismicio-types';
 
 const checkFilters = ['sizes', 'colors']
 
@@ -20,9 +20,8 @@ const getFilters = (key: string, entries: Record<string, any>) => {
 	}
 }
 
-const fetchProducts = async (url: URL, client: Client<AllDocumentTypes>) => {
-	const entries = Object.fromEntries(url.searchParams.entries())
-	const filters = Object.keys(entries).map(key => getFilters(key, entries))
+const fetchProducts = async (params: Record<string, any>, client: Client<AllDocumentTypes>) => {
+	const filters = Object.keys(params).map(key => getFilters(key, params))
 	const products = await client.getAllByType('product', { filters })
 	return products
 }
@@ -35,46 +34,63 @@ const getAllFilters = (page: CatalogDocument<string>): iFilters => {
 	return { categories, maxPrice, colors, sizes }
 }
 
-export async function load({ url, fetch, cookies }) {
-	const client = createClient({ fetch, cookies });
-
-	const page = await client.getSingle('catalog')
-	const allFilters = getAllFilters(page)
-
-	// const categories = filtersPage.data.categories.map(field => field.category as string)
-	// const colors = filtersPage.data.colors.map(field => field.color as string)
-	// const sizes = filtersPage.data.sizes.map(field => field.size as string)
-	// const maxPrice = filtersPage.data.maxprice as number
-
-	// const entries = Object.fromEntries(url.searchParams.entries())
-	// const filters = Object.keys(entries).map(key => getFilters(key, entries))
-	// const products = await client.getAllByType('product', { filters })
-	const products = await fetchProducts(url, client)
-
+const getActualFilters = (allProducts: ProductDocument<string>[]): iFilters => {
 	const categoryMap: string[] = []
 	const priceMap: number[] = []
 	const colorMap: string[] = []
 	const sizesMap: string[] = []
 	
-	products.forEach(product => {
+	allProducts.forEach(product => {
 		categoryMap.push(product.data.category as string)
 		priceMap.push(product.data.price as number)
 		product.data.colors.map(field => colorMap.push(field.color as string))
 		product.data.sizes.map(field => sizesMap.push(field.size as string))
 	})
 
-	// const filtersObject: iFilters = { categories, maxPrice, colors, sizes }
-	const actualObject: iFilters = {
+	return {
 		categories: categoryMap.filter(Boolean),
 		maxPrice: Math.max(...Array.from(new Set(priceMap))),
 		colors: colorMap.filter(Boolean),
 		sizes: sizesMap.filter(Boolean)
 	}
+}
+
+export async function load({ url, fetch, cookies }) {
+	const searchParams = Object.fromEntries(url.searchParams.entries())
+	const client = createClient({ fetch, cookies });
+	const products = await fetchProducts(searchParams, client) // to remove and replace with js filter here instead of api query
+	const allProducts = await fetchProducts({}, client)
+
+	const page = await client.getSingle('catalog')
+	const allFilters = getAllFilters(page)
+	const actualFilters = getActualFilters(allProducts)
+
+
+	// console.log({ allProducts: allProducts.length, products: products.length })
+
+	// const categoryMap: string[] = []
+	// const priceMap: number[] = []
+	// const colorMap: string[] = []
+	// const sizesMap: string[] = []
+	
+	// allProducts.forEach(product => {
+	// 	categoryMap.push(product.data.category as string)
+	// 	priceMap.push(product.data.price as number)
+	// 	product.data.colors.map(field => colorMap.push(field.color as string))
+	// 	product.data.sizes.map(field => sizesMap.push(field.size as string))
+	// })
+
+	// const actualObject: iFilters = {
+	// 	categories: categoryMap.filter(Boolean),
+	// 	maxPrice: Math.max(...Array.from(new Set(priceMap))),
+	// 	colors: colorMap.filter(Boolean),
+	// 	sizes: sizesMap.filter(Boolean)
+	// }
 
 	return {
 		products,
 		allFilters,
-		actualObject,
+		actualFilters,
 		page,
 		title: page.data.meta_title,
 		meta_description: page.data.meta_description,

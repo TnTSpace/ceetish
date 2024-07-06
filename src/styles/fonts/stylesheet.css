@@ -1,0 +1,90 @@
+@font-face {
+    font-family: 'Avignon Pro';
+    src: url('AvignonPro-BoldItalic.woff2') format('woff2'),
+        url('AvignonPro-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Avignon Pro';
+    src: url('AvignonPro-Bold.woff2') format('woff2'),
+        url('AvignonPro-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Avignon Pro';
+    src: url('AvignonPro.woff2') format('woff2'),
+        url('AvignonPro.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Avignon Pro';
+    src: url('AvignonPro-Italic.woff2') format('woff2'),
+        url('AvignonPro-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Avignon Pro Demi';
+    src: url('AvignonPro-Demi.woff2') format('woff2'),
+        url('AvignonPro-Demi.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Avignon Pro Demi';
+    src: url('AvignonPro-DemiItalic.woff2') format('woff2'),
+        url('AvignonPro-DemiItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Avignon Pro';
+    src: url('AvignonPro-Medium.woff2') format('woff2'),
+        url('AvignonPro-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Avignon Pro';
+    src: url('AvignonPro-MediumItalic.woff2') format('woff2'),
+        url('AvignonPro-MediumItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Avignon Pro Xlight';
+    src: url('AvignonPro-Xlight.woff2') format('woff2'),
+        url('AvignonPro-Xlight.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Avignon Pro Xlight';
+    src: url('AvignonPro-XlightItalic.woff2') format('woff2'),
+        url('AvignonPro-XlightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+

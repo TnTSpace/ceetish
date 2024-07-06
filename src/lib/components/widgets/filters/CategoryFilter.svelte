@@ -14,8 +14,7 @@
 	export { className as class };
 	// export let categories: any[];
   export let allFilters: iFilters
-  export let actualObject: iFilters
-	export let categoryLen: number = 0;
+  export let actualFilters: iFilters
 
 
 	const isActive = (category: string) => {
@@ -41,7 +40,7 @@
   }
 
 	const numProducts = (category: string) => {
-		return actualObject
+		return actualFilters
 		.categories
 		.filter(actualCat => actualCat.toLowerCase() === category.toLowerCase())
 		.length
