@@ -7,12 +7,14 @@
 	import { PrismicImage, PrismicText } from '@prismicio/svelte';
 	import { Badge } from '../ui/badge';
 	import { userstore } from '$lib/stores';
+	import EmblaProduct from './product-pictures/EmblaProduct.svelte';
 
 	export let product: Content.ProductDocument;
 
 	const { data } = product;
 	const { name, category,  images, description, price } = data;
 
+	const emblaImages = images.map(field => field.image)
   $: console.log({ user: $userstore })
 </script>
 
@@ -30,27 +32,7 @@
 				</Dialog.Title>
 			</Dialog.Header>
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-				<div>
-					<div class="relative aspect-video w-full overflow-hidden rounded-lg">
-						{#each images as src, i}
-							<PrismicImage
-								field={src.image}
-								class="absolute left-1/2 top-1/2 h-full -translate-x-1/2 -translate-y-1/2 object-cover object-center"
-							/>
-						{/each}
-					</div>
-					<div class="grid-flow-col gap-2 overflow-auto">
-						{#each images as src, i}
-							<Button
-								class="overflow-hidde aspect-square h-14 w-14 rounded-lg overflow-hidden"
-								size="icon"
-								variant="ghost"
-							>
-								<PrismicImage field={src.image} class="h-full object-cover object-center" />
-							</Button>
-						{/each}
-					</div>
-				</div>
+				<EmblaProduct images={emblaImages} />
 				<div class="flex flex-col gap-2">
 					<Badge class="w-fit overflow-hidden text-ellipsis whitespace-nowrap rounded-full text-xs font-medium capitalize">{category}</Badge>
           <PrismicText field={description} />
