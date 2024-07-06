@@ -9,14 +9,14 @@
 
 	$: products = data.products
 	$: title = data.page.data.title
-	$: filtersObject = data.filtersObject
+	$: allFilters = data.allFilters
+	$: actualObject = data.actualObject
 
-	console.log({ filtersObject })
 </script>
 
 <section>
 	<div class="grid w-full grid-cols-1 gap-4 md:grid-cols-[240px_1fr] center py-4">
-		<Filter { filtersObject } class="w-[240px]" />
+		<Filter { allFilters } { actualObject } class="w-[240px]" />
 		<div class="flex flex-col gap-4">
 			<div class="flex items-center justify-between">
 				<!-- <h2>{}</h2> -->

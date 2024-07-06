@@ -6,11 +6,16 @@
 	import { updateUrlWithQueryParams } from '$lib/common';
 	import { page } from '$app/stores';
 	import { browser } from '$app/environment';
+	import Badge from '$lib/components/ui/badge/badge.svelte';
+	import type { iFilters } from '$lib';
 
 
 	let className: string = '';
 	export { className as class };
-	export let categories: any[];
+	// export let categories: any[];
+  export let allFilters: iFilters
+  export let actualObject: iFilters
+	export let categoryLen: number = 0;
 
 
 	const isActive = (category: string) => {
@@ -22,9 +27,25 @@
   const updateCategory = (category: any) => {
     const stringCategory = category as string
     $filterstore.category = stringCategory.toLowerCase()
-		const json = { ...$filterstore, ages: $filterstore.ages.join('--') };
+		$filterstore = $filterstore
+		console.log({ filterstore: $filterstore })
+		// const json = { ...$filterstore, ages: $filterstore.ages.join('--') };
+		const json = {
+			...$filterstore,
+			colors: $filterstore.colors.join("--"),
+			sizes: $filterstore.sizes.join("--")
+		}
+
+		console.log({ json })
 		updateUrlWithQueryParams(json)
   }
+
+	const numProducts = (category: string) => {
+		return actualObject
+		.categories
+		.filter(actualCat => actualCat.toLowerCase() === category.toLowerCase())
+		.length
+	}
 
  
 </script>
@@ -38,13 +59,14 @@
 		all
 		</Button
 	>
-	{#each categories as category, i}
+	{#each allFilters.categories as category, i}
 		<Button
       on:click={() => updateCategory(category)}
 			variant={isActive(category) ? "outline" : "ghost"}
-			class={cn("item-center flex w-full justify-start text-base font-normal capitalize", !isActive(category) && "text-muted-foreground")}
+			class={cn("item-center flex w-full justify-between text-base font-normal capitalize", !isActive(category) && "text-muted-foreground")}
 			>
-      {category}
+      <span>{ category }</span>
+			<Badge>{ numProducts(category) }</Badge>
       </Button
 		>
 	{/each}

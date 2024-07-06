@@ -8,11 +8,12 @@
 	import AgeFilter from './filters/AgeFilter.svelte';
 	import type { iFilters } from '$lib/interfaces';
 
-  export let filtersObject: iFilters
+  export let allFilters: iFilters
+  export let actualObject: iFilters
   let className: string = ""
   export { className as class }
 
-  const { categories, maxPrice, colors, sizes } = filtersObject
+  const { categories, maxPrice, colors, sizes } = allFilters
 
 	// $: categories = slice.primary.categories.map(item => item.category)
 	// $: maximumPrice = slice.primary.maximum_price
@@ -26,7 +27,7 @@
     <h3 class="font-semibold capitalize">
       Categories
     </h3>
-    <CategoryFilter { categories } />
+    <CategoryFilter { allFilters } { actualObject } />
   </div>
   {/if}
   {#if maxPrice}

@@ -53,7 +53,7 @@ export interface iCampaign {
   txtColor: string;
 }
 
-export type TFilter = "category" | "ages" | "price"
+export type TFilter = "category" | "sizes" | "price" | "colors"
 
 export interface iFilter {
   category: string;

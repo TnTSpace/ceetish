@@ -4,6 +4,51 @@ import type * as prismic from '@prismicio/client';
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+/**
+ * Item in *Catalog → Categories*
+ */
+export interface CatalogDocumentDataCategoriesItem {
+	/**
+	 * Category field in *Catalog → Categories*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: catalog.categories[].category
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	category: prismic.SelectField<'human hair' | 'synthetic hair' | 'hair bundles' | 'accessories'>;
+}
+
+/**
+ * Item in *Catalog → Colors*
+ */
+export interface CatalogDocumentDataColorsItem {
+	/**
+	 * Color field in *Catalog → Colors*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: catalog.colors[].color
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	color: prismic.SelectField<'gold' | 'silver'>;
+}
+
+/**
+ * Item in *Catalog → Sizes*
+ */
+export interface CatalogDocumentDataSizesItem {
+	/**
+	 * Size field in *Catalog → Sizes*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: catalog.sizes[].size
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	size: prismic.SelectField<'14 inches' | '16 inches'>;
+}
+
 type CatalogDocumentDataSlicesSlice = never;
 
 /**
@@ -20,6 +65,50 @@ interface CatalogDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
 	 */
 	title: prismic.TitleField;
+
+	/**
+	 * Categories field in *Catalog*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: catalog.categories[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	categories: prismic.GroupField<Simplify<CatalogDocumentDataCategoriesItem>>;
+
+	/**
+	 * Colors field in *Catalog*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: catalog.colors[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	colors: prismic.GroupField<Simplify<CatalogDocumentDataColorsItem>>;
+
+	/**
+	 * Sizes field in *Catalog*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: catalog.sizes[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	sizes: prismic.GroupField<Simplify<CatalogDocumentDataSizesItem>>;
+
+	/**
+	 * MaxPrice field in *Catalog*
+	 *
+	 * - **Field Type**: Number
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: catalog.maxprice
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#number
+	 */
+	maxprice: prismic.NumberField;
 
 	/**
 	 * Slice Zone field in *Catalog*
@@ -95,6 +184,36 @@ export interface CategoriesDocumentDataCategoriesItem {
 }
 
 /**
+ * Item in *Categories → Colors*
+ */
+export interface CategoriesDocumentDataColorsItem {
+	/**
+	 * color field in *Categories → Colors*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: categories.colors[].color
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	color: prismic.SelectField<'gold' | 'silver'>;
+}
+
+/**
+ * Item in *Categories → Sizes*
+ */
+export interface CategoriesDocumentDataSizesItem {
+	/**
+	 * size field in *Categories → Sizes*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: categories.sizes[].size
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	size: prismic.SelectField<'14 inches' | '16 inches'>;
+}
+
+/**
  * Content for Categories documents
  */
 interface CategoriesDocumentData {
@@ -108,6 +227,28 @@ interface CategoriesDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/field#group
 	 */
 	categories: prismic.GroupField<Simplify<CategoriesDocumentDataCategoriesItem>>;
+
+	/**
+	 * Colors field in *Categories*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: categories.colors[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	colors: prismic.GroupField<Simplify<CategoriesDocumentDataColorsItem>>;
+
+	/**
+	 * Sizes field in *Categories*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: categories.sizes[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	sizes: prismic.GroupField<Simplify<CategoriesDocumentDataSizesItem>>;
 }
 
 /**
@@ -189,6 +330,115 @@ export type CategoryListingPageDocument<Lang extends string = string> =
 		'category_listing_page',
 		Lang
 	>;
+
+/**
+ * Item in *Filters → Categories*
+ */
+export interface FiltersDocumentDataCategoriesItem {
+	/**
+	 * Category field in *Filters → Categories*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: filters.categories[].category
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	category: prismic.SelectField<'human hair' | 'synthetic hair' | 'hair bundles' | 'accessories'>;
+}
+
+/**
+ * Item in *Filters → Colors*
+ */
+export interface FiltersDocumentDataColorsItem {
+	/**
+	 * Color field in *Filters → Colors*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: filters.colors[].color
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	color: prismic.SelectField<'gold' | 'silver'>;
+}
+
+/**
+ * Item in *Filters → Sizes*
+ */
+export interface FiltersDocumentDataSizesItem {
+	/**
+	 * Size field in *Filters → Sizes*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: filters.sizes[].size
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	size: prismic.SelectField<'14 inches' | '16 inches'>;
+}
+
+/**
+ * Content for Filters documents
+ */
+interface FiltersDocumentData {
+	/**
+	 * Categories field in *Filters*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: filters.categories[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	categories: prismic.GroupField<Simplify<FiltersDocumentDataCategoriesItem>>;
+
+	/**
+	 * Colors field in *Filters*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: filters.colors[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	colors: prismic.GroupField<Simplify<FiltersDocumentDataColorsItem>>;
+
+	/**
+	 * Sizes field in *Filters*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: filters.sizes[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	sizes: prismic.GroupField<Simplify<FiltersDocumentDataSizesItem>>;
+
+	/**
+	 * MaxPrice field in *Filters*
+	 *
+	 * - **Field Type**: Number
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: filters.maxprice
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#number
+	 */
+	maxprice: prismic.NumberField;
+}
+
+/**
+ * Filters document from Prismic
+ *
+ * - **API ID**: `filters`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type FiltersDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<
+	Simplify<FiltersDocumentData>,
+	'filters',
+	Lang
+>;
 
 type PageDocumentDataSlicesSlice = AboutSlice | HeroSlice | RichTextSlice;
 
@@ -590,6 +840,7 @@ export type AllDocumentTypes =
 	| CatalogDocument
 	| CategoriesDocument
 	| CategoryListingPageDocument
+	| FiltersDocument
 	| PageDocument
 	| ProductDocument
 	| SettingsDocument;
@@ -1128,13 +1379,23 @@ declare module '@prismicio/client' {
 		export type {
 			CatalogDocument,
 			CatalogDocumentData,
+			CatalogDocumentDataCategoriesItem,
+			CatalogDocumentDataColorsItem,
+			CatalogDocumentDataSizesItem,
 			CatalogDocumentDataSlicesSlice,
 			CategoriesDocument,
 			CategoriesDocumentData,
 			CategoriesDocumentDataCategoriesItem,
+			CategoriesDocumentDataColorsItem,
+			CategoriesDocumentDataSizesItem,
 			CategoryListingPageDocument,
 			CategoryListingPageDocumentData,
 			CategoryListingPageDocumentDataSlicesSlice,
+			FiltersDocument,
+			FiltersDocumentData,
+			FiltersDocumentDataCategoriesItem,
+			FiltersDocumentDataColorsItem,
+			FiltersDocumentDataSizesItem,
 			PageDocument,
 			PageDocumentData,
 			PageDocumentDataSlicesSlice,

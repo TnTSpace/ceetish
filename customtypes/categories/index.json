@@ -22,6 +22,40 @@
 						}
 					}
 				}
+			},
+			"colors": {
+				"type": "Group",
+				"config": {
+					"label": "Colors",
+					"repeat": true,
+					"fields": {
+						"color": {
+							"type": "Select",
+							"config": {
+								"label": "color",
+								"placeholder": "",
+								"options": ["gold", "silver"]
+							}
+						}
+					}
+				}
+			},
+			"sizes": {
+				"type": "Group",
+				"config": {
+					"label": "Sizes",
+					"repeat": true,
+					"fields": {
+						"size": {
+							"type": "Select",
+							"config": {
+								"label": "size",
+								"placeholder": "",
+								"options": ["14 inches", "16 inches"]
+							}
+						}
+					}
+				}
 			}
 		}
 	}
