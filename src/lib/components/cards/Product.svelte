@@ -92,7 +92,7 @@
 			<h3 class={sublineClass}>
 				{name}
 			</h3>
-			<p class="font-bold text-lg bg-primary/20 w-fit py-1 px-3 rounded-lg">
+			<p class="font-bold text-lg bg-primary/10 w-fit py-1 px-3 rounded-lg">
 				${price}
 			</p>
 		</div>
@@ -106,7 +106,7 @@
 
 	<!-- desktop product detail -->
 	<div class="mx-auto hidden w-full p-2 gap-2 rounded-lg md:flex md:items-center md:justify-between">
-		<p class="font-bold text-lg bg-primary/20 w-fit py-1 px-3 rounded-lg">
+		<p class="font-bold text-lg bg-primary/10 w-fit py-1 px-3 rounded-lg">
 			${price}
 		</p>
 		<div class="grid grid-cols-2 gap-2">
