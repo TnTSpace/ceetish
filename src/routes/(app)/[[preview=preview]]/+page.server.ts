@@ -1,6 +1,7 @@
 import { asText } from '@prismicio/client';
 
 import { createClient } from '$lib/prismicio';
+import { fetchProducts } from '$lib/common/products';
 
 export async function load({ fetch, cookies }) {
 	const client = createClient({ fetch, cookies });
@@ -19,3 +20,4 @@ export async function load({ fetch, cookies }) {
 export function entries() {
 	return [{}];
 }
+ 

@@ -5,6 +5,8 @@ import type { LayoutServerLoad } from "./$types";
 export const prerender = 'auto';
 
 export const load: LayoutServerLoad = async ({ fetch, cookies }) => {
+
+  
   const client = createClient({ fetch, cookies })
 
   try {

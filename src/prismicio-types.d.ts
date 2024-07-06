@@ -440,7 +440,7 @@ export type FiltersDocument<Lang extends string = string> = prismic.PrismicDocum
 	Lang
 >;
 
-type PageDocumentDataSlicesSlice = AboutSlice | HeroSlice | RichTextSlice;
+type PageDocumentDataSlicesSlice = ProductfloorSlice | AboutSlice | HeroSlice | RichTextSlice;
 
 /**
  * Content for Page documents
@@ -1326,6 +1326,93 @@ type PoliciesSliceVariation = PoliciesSliceDefault;
 export type PoliciesSlice = prismic.SharedSlice<'policies', PoliciesSliceVariation>;
 
 /**
+ * Item in *Productfloor → Default → Primary → Products*
+ */
+export interface ProductfloorSliceDefaultPrimaryProductsItem {
+	/**
+	 * Product field in *Productfloor → Default → Primary → Products*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: productfloor.default.primary.products[].product
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	product: prismic.ContentRelationshipField;
+}
+
+/**
+ * Primary content in *Productfloor → Default → Primary*
+ */
+export interface ProductfloorSliceDefaultPrimary {
+	/**
+	 * Title field in *Productfloor → Default → Primary*
+	 *
+	 * - **Field Type**: Title
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: productfloor.default.primary.title
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	title: prismic.TitleField;
+
+	/**
+	 * USP field in *Productfloor → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: productfloor.default.primary.usp
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	usp: prismic.RichTextField;
+
+	/**
+	 * CTA field in *Productfloor → Default → Primary*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: productfloor.default.primary.cta
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	cta: prismic.LinkField;
+
+	/**
+	 * Products field in *Productfloor → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: productfloor.default.primary.products[]
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	products: prismic.GroupField<Simplify<ProductfloorSliceDefaultPrimaryProductsItem>>;
+}
+
+/**
+ * Default variation for Productfloor Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProductfloorSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<ProductfloorSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *Productfloor*
+ */
+type ProductfloorSliceVariation = ProductfloorSliceDefault;
+
+/**
+ * Productfloor Shared Slice
+ *
+ * - **API ID**: `productfloor`
+ * - **Description**: Productfloor
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProductfloorSlice = prismic.SharedSlice<'productfloor', ProductfloorSliceVariation>;
+
+/**
  * Primary content in *RichText → Default → Primary*
  */
 export interface RichTextSliceDefaultPrimary {
@@ -1434,6 +1521,11 @@ declare module '@prismicio/client' {
 			PoliciesSliceDefaultPrimary,
 			PoliciesSliceVariation,
 			PoliciesSliceDefault,
+			ProductfloorSlice,
+			ProductfloorSliceDefaultPrimaryProductsItem,
+			ProductfloorSliceDefaultPrimary,
+			ProductfloorSliceVariation,
+			ProductfloorSliceDefault,
 			RichTextSlice,
 			RichTextSliceDefaultPrimary,
 			RichTextSliceVariation,
