@@ -7,6 +7,7 @@
 	import type { Content } from '@prismicio/client';
 	import AgeFilter from './filters/AgeFilter.svelte';
 	import type { iFilters } from '$lib/interfaces';
+	import SizeFilter from './filters/SizeFilter.svelte';
 
   export let allFilters: iFilters
   export let actualFilters: iFilters
@@ -14,10 +15,6 @@
   export { className as class }
 
   const { categories, maxPrice, colors, sizes } = allFilters
-
-	// $: categories = slice.primary.categories.map(item => item.category)
-	// $: maximumPrice = slice.primary.maximum_price
-	// $: ages = slice.primary.ages.map(item => item.age)
 
 </script>
 
@@ -35,7 +32,7 @@
       <h3 class="font-semibold capitalize">
         Price
       </h3>
-      <!-- <AgeFilter { ages } /> -->
+      <SizeFilter { allFilters } { actualFilters } />
     </div>
   {/if}
   {#if colors.length}

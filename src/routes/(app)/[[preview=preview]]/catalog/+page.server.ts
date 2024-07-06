@@ -3,19 +3,21 @@ import { Client, filter } from '@prismicio/client';
 import { createClient } from '$lib/prismicio';
 import type { iFilter, iFilters } from '$lib';
 import type { AllDocumentTypes, CatalogDocument, ProductDocument } from '../../../../prismicio-types';
+import { pluralToSingular } from '$lib';
 
 const checkFilters = ['sizes', 'colors']
 
 const getFilters = (key: string, entries: Record<string, any>) => {
 	const value = entries[key].toLowerCase()
+	const plural = key.toLowerCase()
+	const singular = pluralToSingular(key)
 	
 	if (checkFilters.includes(key)) {
 		const values = value.split("--")
-		
-		const filterKey = `my.product.${key.toLowerCase()}`
+		const filterKey = `my.product.${plural}.${singular}`
 		return filter.any(filterKey, values)
 	} else {
-		const filterKey = `my.product.${key.toLowerCase()}`
+		const filterKey = `my.product.${plural}`
 		return filter.at(filterKey, value)
 	}
 }
