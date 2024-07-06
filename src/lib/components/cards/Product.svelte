@@ -8,6 +8,7 @@
 	import { cartstore } from '$lib/stores';
 	import type { iSKU } from '$lib/interfaces';
 	import { ShoppingCart } from 'lucide-svelte';
+	import { sublineClass } from '$lib/constants';
 
 	export let product: Content.ProductDocument;
 
@@ -88,7 +89,7 @@
 	<!-- mobile product detail -->
 	<div class="flex flex-col justify-between md:hidden p-2">
 		<div>
-			<h3 class="font-medium">
+			<h3 class={sublineClass}>
 				{name}
 			</h3>
 			<p class="font-bold text-lg bg-primary/20 w-fit py-1 px-3 rounded-lg">

@@ -65,29 +65,7 @@ export async function load({ url, fetch, cookies }) {
 
 	const page = await client.getSingle('catalog')
 	const allFilters = getAllFilters(page)
-	const actualFilters = getActualFilters(allProducts)
-
-
-	// console.log({ allProducts: allProducts.length, products: products.length })
-
-	// const categoryMap: string[] = []
-	// const priceMap: number[] = []
-	// const colorMap: string[] = []
-	// const sizesMap: string[] = []
-	
-	// allProducts.forEach(product => {
-	// 	categoryMap.push(product.data.category as string)
-	// 	priceMap.push(product.data.price as number)
-	// 	product.data.colors.map(field => colorMap.push(field.color as string))
-	// 	product.data.sizes.map(field => sizesMap.push(field.size as string))
-	// })
-
-	// const actualObject: iFilters = {
-	// 	categories: categoryMap.filter(Boolean),
-	// 	maxPrice: Math.max(...Array.from(new Set(priceMap))),
-	// 	colors: colorMap.filter(Boolean),
-	// 	sizes: sizesMap.filter(Boolean)
-	// }
+	const actualFilters = getActualFilters(products)
 
 	return {
 		products,

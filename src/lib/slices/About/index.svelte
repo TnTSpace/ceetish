@@ -1,5 +1,6 @@
 <script lang="ts">
 	import LogoIcon from '$lib/components/icons/LogoIcon.svelte';
+	import { sublineClass } from '$lib/constants';
 	import type { Content } from '@prismicio/client';
 	import { PrismicLink, PrismicRichText, PrismicText } from '@prismicio/svelte';
 
@@ -10,7 +11,7 @@
 	<div class="p-4 bg-pri/50  border-l-pri border-l-4 flex flex-col gap-4">
 		<div class="flex items-center gap-2">
 			<LogoIcon />
-			<h2 class="text-md md:text-lg lg:text-3xl">
+			<h2 class={sublineClass}>
 				<PrismicText field={slice.primary.title} />
 			</h2>
 		</div>

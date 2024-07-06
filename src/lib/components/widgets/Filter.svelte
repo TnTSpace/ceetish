@@ -8,6 +8,7 @@
 	import AgeFilter from './filters/AgeFilter.svelte';
 	import type { iFilters } from '$lib/interfaces';
 	import SizeFilter from './filters/SizeFilter.svelte';
+	import ColorFilter from './filters/ColorFilter.svelte';
 
   export let allFilters: iFilters
   export let actualFilters: iFilters
@@ -30,7 +31,7 @@
   {#if maxPrice}
     <div>
       <h3 class="font-semibold capitalize">
-        Price
+        Sizes
       </h3>
       <SizeFilter { allFilters } { actualFilters } />
     </div>
@@ -40,15 +41,7 @@
       <h3 class="font-semibold capitalize">
         Colors
       </h3>
-      <!-- <AgeFilter { ages } /> -->
-    </div>
-  {/if}
-  {#if sizes.length}
-    <div>
-      <h3 class="font-semibold capitalize">
-        Sizes
-      </h3>
-      <!-- <AgeFilter { ages } /> -->
+      <ColorFilter { allFilters } { actualFilters } />
     </div>
   {/if}
 </div>

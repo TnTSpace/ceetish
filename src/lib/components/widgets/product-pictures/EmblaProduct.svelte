@@ -1,10 +1,10 @@
 <script lang="ts">
 	import Mobile from './Mobile.svelte';
 	import Desktop from './Desktop.svelte';
-	import type { Content } from '@prismicio/client';
+	import type { Content, ImageFieldImage } from '@prismicio/client';
 	import { onMount } from 'svelte';
 
-	export let slice: Content.HeroSlice;
+	export let images: ImageFieldImage[]
 
 	$: isMobile = false;
 
@@ -17,7 +17,7 @@
 </script>
 
 {#if isMobile}
-	<Mobile {slice} class="block md:hidden" />
+	<Mobile {images} class="block md:hidden" />
 {:else}
-	<Desktop {slice} class="hidden md:block" />
+	<Desktop {images} class="hidden md:block" />
 {/if}

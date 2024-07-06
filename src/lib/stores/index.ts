@@ -1,5 +1,5 @@
 import { browser } from "$app/environment";
-import { Constants } from "$lib";
+// import { Constants } from "$lib";
 import type { iSKU, iFilter, iCategoryLink } from "$lib/interfaces";
 import type { Content } from "@prismicio/client";
 import { writable } from "svelte/store";
@@ -10,6 +10,12 @@ export const initialFilters = {
   price: "",
   colors: [],
   sizes: []
+}
+
+enum Constants {
+  FILTERS = "filters",
+  CART = "cart",
+  CATEGORIES = "categories"
 }
 
 export interface iCart {

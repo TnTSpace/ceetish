@@ -1,3 +1,4 @@
+import { browser } from "$app/environment";
 import type { iFilter, TFilter } from "$lib/interfaces";
 import { get, type Writable } from "svelte/store";
 
@@ -78,3 +79,13 @@ export const pluralToSingular = (word: string) => {
   // Default to returning the original word if no rule matches
   return word;
 }
+
+export const isActive = (paramValue: string, paramKey: string) => {
+  if (browser) {
+    const url = new URL(location.href);
+    const searchParams = url.searchParams;
+    const urlParamValue = searchParams.get(paramKey);
+    return paramValue.toLowerCase() === urlParamValue?.toLowerCase();
+  }
+  return false;
+};
