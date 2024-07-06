@@ -15,7 +15,7 @@
 	const { name, category,  images, description, price } = data;
 
 	const emblaImages = images.map(field => field.image)
-  $: console.log({ user: $userstore })
+  // $: console.log({ user: $userstore })
 </script>
 
 <Dialog.Root>

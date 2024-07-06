@@ -5,15 +5,19 @@
 	import { page } from '$app/stores';
 	import FilterDrawer from '../widgets/FilterDrawer.svelte';
 
-	$: console.log({ page: $page.data, from: "catalog" })
 	$: allFilters = $page.data.allFilters
 	$: actualFilters = $page.data.actualFilters
+	const showFilter = $page.url.pathname.toLowerCase() === "/catalog"
+
+	console.log({ pathname: $page.url.pathname, showFilter })
 </script>
 
 <div class="sticky bottom-0 left-0 w-full md:hidden  bg-white dark:bg-secondary z-[2]">
 	<div class="h-14 flex justify-between items-center center">
 		<SearchDialog class="block md:hidden" />
 		<ModeToggle />
-		<FilterDrawer { allFilters } { actualFilters }/>
+		{#if showFilter}
+			<FilterDrawer { allFilters } { actualFilters }/>
+		{/if}
   </div>
 </div>
