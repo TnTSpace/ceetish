@@ -9,6 +9,7 @@
 	import type { iFilters } from '$lib/interfaces';
 	import SizeFilter from './filters/SizeFilter.svelte';
 	import ColorFilter from './filters/ColorFilter.svelte';
+	import PriceFilter from './filters/PriceFilter.svelte';
 
   export let allFilters: iFilters
   export let actualFilters: iFilters
@@ -29,6 +30,14 @@
   </div>
   {/if}
   {#if maxPrice}
+    <div>
+      <h3 class="font-semibold capitalize">
+        Price Range
+      </h3>
+      <PriceFilter { allFilters } { actualFilters } />
+    </div>
+  {/if}
+  {#if sizes.length}
     <div>
       <h3 class="font-semibold capitalize">
         Sizes
