@@ -15,7 +15,6 @@
 	filterstore.subscribe((value) => {
 		if (browser && !firstPageEntry) {
 		const json = serializeParams(filterstore)
-		console.log({ json })
 		updateUrlWithQueryParams(json)
 		}
 	});
