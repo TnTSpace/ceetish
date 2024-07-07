@@ -17,12 +17,12 @@
 
 </script>
 
-<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
-	<div class="center">
+<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} class="my-4">
+	<div class="center flex flex-col gap-4 bg-secondary/90">
 		<div class="flex items-center justify-between">
-			<div class="flex flex-col gap-1">
+			<div class="flex flex-col">
 				<h2 class={sublineClass}><PrismicText field={slice.primary.title} /></h2>
-				<p class="text-sm"><PrismicText field={slice.primary.usp} /></p>
+				<p class="text-xs sm:text-sm"><PrismicText field={slice.primary.usp} /></p>
 			</div>
 			<PrismicLink field={slice.primary.cta}>See all</PrismicLink>
 		</div>

@@ -96,10 +96,10 @@
 				${price}
 			</p>
 		</div>
-		<div class="flex gap-2 justify-end">
+		<div class="flex flex-col gap-2 items-end">
 			<ProductDialog {product} />
-			<Button size="icon">
-				<ShoppingCart class="h-4 w-4" />
+			<Button>
+				Add to Cart 
 			</Button>
 		</div>
 	</div>
@@ -109,10 +109,10 @@
 		<p class="font-bold text-lg bg-primary/10 w-fit py-1 px-3 rounded-lg">
 			${price}
 		</p>
-		<div class="grid grid-cols-2 gap-2">
+		<div class="flex items-center gap-2">
 			<ProductDialog {product} />
-			<Button size="icon">
-				<ShoppingCart class="h-4 w-4" />
+			<Button>
+				Add to Cart 
 			</Button>
 		</div>
 	</div>
