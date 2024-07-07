@@ -83,7 +83,7 @@
 			{#if $cartstore && $cartstore[product.uid]}
 				<CartCounter on:action={onAction} { product } />
 			{:else}
-				<Button on:click={addToCart}>
+				<Button on:click={addToCart} class="w-full">
 					Add to Cart 
 				</Button>
 			{/if}
@@ -100,7 +100,7 @@
 			{#if $cartstore && $cartstore[product.uid]}
 				<CartCounter on:action={onAction} { product } />
 			{:else}
-				<Button on:click={addToCart}>
+				<Button on:click={addToCart} class="w-full">
 					Add to Cart 
 				</Button>
 			{/if}
