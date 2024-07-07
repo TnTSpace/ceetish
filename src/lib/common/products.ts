@@ -70,9 +70,10 @@ export const getPrice = (cartValue: iCartValue) => {
 }
 
 export const getTotalCartPrice = (cart: iCart) => {
-	return Object.keys(cart).reduce((acc, cur) => {
+	const price = Object.keys(cart).reduce((acc, cur) => {
 		const cartPrice = getPrice(cart[cur])
 		acc += cartPrice
 		return acc
 	}, 0)
+	return `£${price.toFixed(2)}`
 }

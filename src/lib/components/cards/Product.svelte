@@ -72,7 +72,7 @@
 			</h3>
 			<div class="flex items-center gap-2">
 				<p class="font-bold text-lg bg-primary/10 w-fit py-1 px-3 rounded-lg h-9 flex items-center justify-center">
-					${price}
+					£{price?.toFixed(2)}
 				</p>
 				<ProductDialog {product} class="md:hidden" />
 			</div>
@@ -91,7 +91,7 @@
 	<!-- desktop product detail -->
 	<div class="mx-auto hidden w-full p-2 gap-2 rounded-lg md:flex md:items-center md:justify-between">
 		<p class="font-bold text-lg bg-primary/10 w-fit py-1 px-3 rounded-lg">
-			${price}
+			£{price?.toFixed(2)}
 		</p>
 		<div class="flex items-center gap-2">
 			<ProductDialog {product} />

@@ -5,7 +5,7 @@
 	import { cartstore, getTotalCartPrice } from "$lib";
 
 	$: products = $cartstore ? Object.keys($cartstore).map(key => $cartstore[key]) : []
-	$: subtotal = $cartstore ? getTotalCartPrice($cartstore) : 0
+	$: subtotal = $cartstore ? getTotalCartPrice($cartstore) : '£0.00'
 </script>
 
 <section>
@@ -37,7 +37,7 @@
 							</p>
 							<span class="lowercase">x{item.count}</span>
 						</div>
-						<p class="font-bold">{getPrice(item)}</p>
+						<p class="font-bold">£{getPrice(item).toFixed(2)}</p>
 					</div>
 				{/each}
 				<hr class="dark:opacity-60" />
@@ -59,7 +59,7 @@
 							<p>{item.document.data.name}</p>
 							<span class="lowercase">x{item.count}</span>
 						</div>
-						<p class="font-bold">{getPrice(item)}</p>
+						<p class="font-bold">£{getPrice(item).toFixed(2)}</p>
 					</div>
 				{/each}
 				<hr class="dark:opacity-60" />

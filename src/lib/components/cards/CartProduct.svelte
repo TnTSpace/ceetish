@@ -74,7 +74,7 @@
 		<div class="flex flex-col sm:flex-row gap-2 justify-between w-full">
 			<div class="flex items-center gap-2">
 				<p class="font-bold text-lg bg-primary/10 w-fit py-1 px-3 rounded-lg h-9 flex items-center justify-center">
-					${price}
+					£{price?.toFixed(2)}
 				</p>
 				<ProductDialog {product} />
 			</div>
