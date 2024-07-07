@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import Product from '$lib/components/cards/Product.svelte';
-	import { sublineClass } from '$lib/constants';
+	import { productGrid, sublineClass } from '$lib/constants';
 	import type { Content, ContentRelationshipField } from '@prismicio/client';
 	import { PrismicLink, PrismicRichText, PrismicText } from '@prismicio/svelte';
 
@@ -31,7 +31,7 @@
 			</div>
 			<PrismicLink field={slice.primary.cta}>See all</PrismicLink>
 		</div>
-		<div class="grid grid-cols-4 gap-4">
+		<div class={productGrid}>
 			{#each slice.primary.products as item, i}
 				<Product product={ getProduct(item.product) } />
 			{/each}

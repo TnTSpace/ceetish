@@ -4,6 +4,7 @@
 	import { components } from '$lib/slices';
 	import Product from '$lib/components/cards/Product.svelte';
 	import Filter from "$lib/components/widgets/Filter.svelte"
+	import { productGrid } from '$lib';
 
 	export let data;
 
@@ -24,7 +25,7 @@
 	
 				<!-- <Select {list} label="Sort By" class="w-fit" /> -->
 			</div>
-			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+			<div class={productGrid}>
 				{#each products as product, i}
 					<Product { product } />
 				{/each}
