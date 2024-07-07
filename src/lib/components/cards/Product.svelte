@@ -20,12 +20,22 @@
 
 	const addToCart = () => {
 		const exists = $cartstore[product.uid];
-		console.log({ exists, from: 'add to cart' });
 		if (!exists) {
-			$cartstore[product.uid] = product.data;
-			$cartstore = $cartstore;
+			$cartstore[product.uid] = { document: product, count: 1 }
+		} else {
+			const cartProduct = $cartstore[product.uid]
+			const count = cartProduct.count + 1
+			$cartstore[product.uid] = { ...cartProduct, count  }
 		}
+		$cartstore = $cartstore;
 	};
+
+	const removeFromCart = () => {
+		const cartProduct = $cartstore[product.uid]
+		const count = cartProduct.count - 1
+		$cartstore[product.uid] = { ...cartProduct, count }
+		$cartstore = $cartstore
+	}
 </script>
 
 <!-- <div
@@ -92,13 +102,15 @@
 			<h3 class={sublineClass}>
 				{name}
 			</h3>
-			<p class="font-bold text-lg bg-primary/10 w-fit py-1 px-3 rounded-lg">
-				${price}
-			</p>
+			<div class="flex items-center gap-2">
+				<p class="font-bold text-lg bg-primary/10 w-fit py-1 px-3 rounded-lg h-9 flex items-center justify-center">
+					${price}
+				</p>
+				<ProductDialog {product} class="md:hidden" />
+			</div>
 		</div>
 		<div class="flex flex-col gap-2 items-end">
-			<ProductDialog {product} />
-			<Button>
+			<Button class="w-full">
 				Add to Cart 
 			</Button>
 		</div>

@@ -49,7 +49,7 @@
 
 <div class={cn('embla', className)}>
 	<div bind:this={slideViewport} class="embla__viewport">
-		<div class="embla__container">
+		<div class="embla__container max-w-[300px]">
 			{#each images as image, i}
 				<PrismicImage field={image} class="aspect-square w-full" />
 			{/each}
@@ -60,7 +60,7 @@
 			<div class="embla-thumbs__container">
 				{#each images as image, i}
 					<div
-						class="embla-thumbs__slide embla-thumbs__slide--selected aspect-square overflow-hidden rounded-2xl"
+						class="embla-thumbs__slide embla-thumbs__slide--selected aspect-square overflow-hidden rounded-lg"
 					>
 						<button type="button" class="embla-thumbs__slide__number relative aspect-square">
 							<PrismicImage

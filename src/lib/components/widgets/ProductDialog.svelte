@@ -15,12 +15,14 @@
 	const { name, category,  images, description, price } = data;
 
 	const emblaImages = images.map(field => field.image)
-  // $: console.log({ user: $userstore })
+	
+	let className: string = ""
+	export { className as class }
 </script>
 
 <Dialog.Root>
 	<Dialog.Trigger class="flex items-center justify-center"> 
-		<Button size="icon">
+		<Button size="icon" class={className}>
 			<IconPreview class="w-4 h-4" />
 		</Button>
 	</Dialog.Trigger>

@@ -19,7 +19,7 @@ enum Constants {
 }
 
 export interface iCart {
-  [key: string]: any
+  [key: string]: { count: number, document: Content.ProductDocument }
 }
 
 const getLocalStorage = (key: string, initialValue: any) => {
