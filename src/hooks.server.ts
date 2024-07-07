@@ -9,4 +9,4 @@ export const handle: Handle = sequence(
 		protectedPaths: ['/cart'],
 		signInUrl: '/sign-in',
 	})
-)
+) 
