@@ -3,7 +3,7 @@ import { filter, Client } from "@prismicio/client"
 import { pluralToSingular } from "."
 import type { AllDocumentTypes, CatalogDocument, ProductDocument } from "../../prismicio-types"
 
-const checkFilters = ['sizes', 'colors']
+const checkFilters = ['sizes', 'colors', 'uids']
 
 export const getFilters = (key: string, entries: Record<string, any>) => {
 	const value = entries[key].toLowerCase()
@@ -12,11 +12,11 @@ export const getFilters = (key: string, entries: Record<string, any>) => {
 	
 	if (checkFilters.includes(key)) {
 		const values = value.split("--")
-		const filterKey = `my.product.${plural}.${singular}`
+		const filterKey = plural === "uids" ? `my.product.${singular}` : `my.product.${plural}.${singular}`
 		return filter.any(filterKey, values)
 	} else {
 		const filterKey = `my.product.${plural}`
-		return filter.at(filterKey, value)
+		return filter.any(filterKey, [value])
 	}
 }
 
