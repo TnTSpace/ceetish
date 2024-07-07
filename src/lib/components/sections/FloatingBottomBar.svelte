@@ -8,8 +8,6 @@
 	$: allFilters = $page.data.allFilters
 	$: actualFilters = $page.data.actualFilters
 	const showFilter = $page.url.pathname.toLowerCase() === "/catalog"
-
-	console.log({ pathname: $page.url.pathname, showFilter })
 </script>
 
 <div class="sticky bottom-0 left-0 w-full md:hidden  bg-white dark:bg-secondary z-[2]">

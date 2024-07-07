@@ -15,11 +15,6 @@
 
 	$: productfloorproducts = $page.data.productfloorproducts as Content.ProductDocument[];
 
-	$: console.log({ productfloorproducts })
-
-	// for (const [key, value] of productfloors) {
-	// 	console.log({ key, value });
-	// }
 </script>
 
 <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>

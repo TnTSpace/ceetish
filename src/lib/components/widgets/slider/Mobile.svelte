@@ -4,23 +4,55 @@
 	import Heading1 from './Heading1.svelte';
 	import { cn } from '$lib/utils';
 	import { onMount } from 'svelte';
-	import { initEmbla } from './scripts';
-	import './css/base.css';
-	import './css/embla.css';
+	import EmblaCarousel, { type EmblaOptionsType, type EmblaCarouselType } from 'embla-carousel';
+	import {
+		addThumbBtnsClickHandlers,
+		addToggleThumbBtnsActive
+	} from './scripts/EmblaCarouselThumbsButton';
 
+	let className: string = '';
+	export { className as class };
 	export let slice: Content.HeroSlice;
 
 	$: sliders = slice.primary.sliders;
 
-	let className: string = '';
 
-	export { className as class };
+	let slideViewport: HTMLElement;
+	let thumbViewport: HTMLElement;
+	let emblaApiMain: EmblaCarouselType;
+	let emblaApiThumb: EmblaCarouselType;
 
-	onMount(() => initEmbla('mobile'));
+
+	const OPTIONS: EmblaOptionsType = {};
+	const OPTIONS_THUMBS: EmblaOptionsType = {
+		containScroll: 'keepSnaps',
+		dragFree: true
+	};
+	onMount(() => {
+		const viewportNodeMainCarousel = <HTMLElement>slideViewport;
+		const viewportNodeThumbCarousel = <HTMLElement>thumbViewport;
+
+		emblaApiMain = EmblaCarousel(viewportNodeMainCarousel, OPTIONS);
+		emblaApiThumb = EmblaCarousel(viewportNodeThumbCarousel, OPTIONS_THUMBS);
+
+		const removeThumbBtnsClickHandlers = addThumbBtnsClickHandlers(emblaApiMain, emblaApiThumb);
+		const removeToggleThumbBtnsActive = addToggleThumbBtnsActive(emblaApiMain, emblaApiThumb);
+
+		return () => {
+			emblaApiMain
+				.on('destroy', removeThumbBtnsClickHandlers)
+				.on('destroy', removeToggleThumbBtnsActive);
+
+			emblaApiThumb
+				.on('destroy', removeThumbBtnsClickHandlers)
+				.on('destroy', removeToggleThumbBtnsActive);
+		};
+	});
+
 </script>
 
 <div class={cn('embla', className)}>
-	<div class="embla__viewport">
+	<div bind:this={slideViewport} class="embla__viewport">
 		<div class="embla__container">
 			{#each sliders as slider, i}
 				<div
@@ -43,7 +75,7 @@
 		</div>
 	</div>
 	<div class="embla-thumbs">
-		<div class="embla-thumbs__viewport">
+		<div bind:this={thumbViewport} class="embla-thumbs__viewport">
 			<div class="embla-thumbs__container">
 				{#each sliders as slider, i}
 					<div
