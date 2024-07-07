@@ -84,8 +84,7 @@ const config: Config = {
 					maxWidth: '1290px',
 					marginLeft: 'auto',
 					marginRight: 'auto',
-					paddingLeft: '16px',
-					paddingRight: '16px'
+					padding: '16px'
 				},
 				'.amazonchip': {
 					backgroundColor: 'transparent',
