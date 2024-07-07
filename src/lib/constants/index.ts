@@ -1,6 +1,6 @@
 export enum Constants {
   FILTERS = "filters",
-  CART = "cart",
+  CART = "ceetishcart",
   CATEGORIES = "categories",
   ACTION = "action"
 }
