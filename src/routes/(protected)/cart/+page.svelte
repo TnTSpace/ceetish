@@ -11,12 +11,12 @@
 <section>
 	<div class="center grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-4">
 		<div
-			class="flex lg:hidden items-center justify-between rounded-lg p-2 shadow-custom"
+			class="flex lg:hidden items-center justify-between rounded-lg p-2 shadow-custom bg-white dark:bg-secondary"
 		>
 			<h2 class="uppercase font-semibold text-sm">subtotal</h2>
 			<p class="font-bold">{subtotal}</p>
 		</div>
-		<div class="grid grid-cols-1 gap-2 h-min">
+		<div class="grid grid-cols-1 gap-4 h-min">
 			<h2 class="uppercase font-semibold text-sm">cart details</h2>
 			<div class="grid grid-cols-1 gap-4">
 				{#each products as item, i}
@@ -28,7 +28,7 @@
 		</div>
 		<div class="hidden lg:flex lg:flex-col gap-4">
 			<h2 class="uppercase font-semibold text-sm">cart summary</h2>
-			<div class="rounded-lg p-2 shadow-custom flex flex-col gap-4">
+			<div class="rounded-lg p-4 shadow flex flex-col gap-4 bg-white dark:bg-secondary">
 				{#each products as item, i}
 					<div class="flex items-center justify-between">
 						<div class="capitalize font-semibold text-sm flex items-center gap-1">
@@ -51,7 +51,7 @@
 		</div>
 		{#key subtotal}
 			<div
-				class="flex flex-col gap-4 lg:hidden rounded-lg p-2 shadow-custom"
+				class="flex flex-col gap-4 lg:hidden rounded-lg p-4 shadow-custom bg-white dark:bg-secondary"
 			>
 				{#each products as item, i}
 					<div class="flex items-center justify-between">

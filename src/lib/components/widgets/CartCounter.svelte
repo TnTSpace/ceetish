@@ -18,7 +18,7 @@
 </script>
 
 <div class="flex items-center gap-4">
-	<Button size="icon" on:click={() => onClick(Actions.REMOVE)}>
+	<Button size="icon" variant="amazonchip" on:click={() => onClick(Actions.REMOVE)}>
 		<Minus />
 	</Button>
 	{#if $cartstore && $cartstore[product.uid]}
@@ -26,7 +26,7 @@
 	{:else}
 		<span>{0}</span>
 	{/if}
-	<Button size="icon" on:click={() => onClick(Actions.ADD)}>
+	<Button size="icon" variant="amazonchip" on:click={() => onClick(Actions.ADD)}>
 		<Plus />
 	</Button>
 </div>

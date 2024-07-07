@@ -88,7 +88,7 @@ const config: Config = {
 				},
 				'.amazonchip': {
 					backgroundColor: 'transparent',
-					borderRadius: '50px',
+					borderRadius: '4px',
 					fontSize: '13px',
 					border: '1px solid #d5d9d9',
 					boxShadow: '0 2px 5px rgba(0,0,0,0.1)'

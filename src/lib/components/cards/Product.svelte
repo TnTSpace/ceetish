@@ -1,13 +1,11 @@
 <script lang="ts">
-	import { PrismicText, PrismicImage, PrismicRichText, PrismicLink } from '@prismicio/svelte';
+	import { PrismicImage } from '@prismicio/svelte';
 	import type { Content } from '@prismicio/client';
 	import { cn } from '$lib/utils';
 	import { Button } from '../ui/button';
-	import { Badge } from '../ui/badge';
 	import ProductDialog from '../widgets/ProductDialog.svelte';
 	import { cartstore } from '$lib/stores';
-	import type { iSKU, TAction } from '$lib/interfaces';
-	import { ShoppingCart } from 'lucide-svelte';
+	import type { TAction } from '$lib/interfaces'; 
 	import { Actions, sublineClass } from '$lib/constants';
 	import CartCounter from '../widgets/CartCounter.svelte';
 
