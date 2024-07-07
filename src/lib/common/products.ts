@@ -1,4 +1,4 @@
-import type { iFilters } from "$lib/interfaces"
+import type { iCart, iCartValue, iFilters } from "$lib/interfaces"
 import { filter, Client } from "@prismicio/client"
 import { pluralToSingular } from "."
 import type { AllDocumentTypes, CatalogDocument, ProductDocument } from "../../prismicio-types"
@@ -53,4 +53,26 @@ export const getActualFilters = (allProducts: ProductDocument<string>[]): iFilte
 		colors: colorMap.filter(Boolean),
 		sizes: sizesMap.filter(Boolean)
 	}
+}
+
+export const getTotalCartItems = (cart: iCart) => {
+	return Object.keys(cart).reduce((acc, cur) => {
+		const cartCount = cart[cur].count
+		acc += cartCount
+		return acc
+	}, 0)
+}
+
+export const getPrice = (cartValue: iCartValue) => {
+	const count = cartValue.count
+	const price = cartValue.document.data.price as number
+	return count * price
+}
+
+export const getTotalCartPrice = (cart: iCart) => {
+	return Object.keys(cart).reduce((acc, cur) => {
+		const cartPrice = getPrice(cart[cur])
+		acc += cartPrice
+		return acc
+	}, 0)
 }

@@ -1,3 +1,4 @@
+import type { Content } from "@prismicio/client";
 
 export interface iSKU {
   uid: string;
@@ -112,4 +113,10 @@ export interface iWhere {
 export interface iCategoryLink {
   href: string;
   name: string;
+}
+
+export interface iCartValue { count: number, document: Content.ProductDocument }
+
+export interface iCart {
+  [key: string]: iCartValue
 }

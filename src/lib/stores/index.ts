@@ -1,6 +1,6 @@
 import { browser } from "$app/environment";
 // import { Constants } from "$lib";
-import type { iSKU, iFilter, iCategoryLink } from "$lib/interfaces";
+import type { iSKU, iFilter, iCategoryLink, iCart } from "$lib/interfaces";
 import type { Content } from "@prismicio/client";
 import { writable } from "svelte/store";
 import type { User } from "@clerk/backend";
@@ -18,9 +18,6 @@ enum Constants {
   CATEGORIES = "categories"
 }
 
-export interface iCart {
-  [key: string]: { count: number, document: Content.ProductDocument }
-}
 
 const getLocalStorage = (key: string, initialValue: any) => {
   if (browser) {

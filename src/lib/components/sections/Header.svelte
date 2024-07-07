@@ -16,6 +16,7 @@
 	import ModeToggle from '../widgets/ModeToggle.svelte';
 	import { userstore, cartstore } from '$lib/stores';
 	import { Badge } from '../ui/badge';
+	import { getTotalCartItems } from '$lib/common/products';
 
 	export let settings: SettingsDocument<string>;
 
@@ -36,11 +37,7 @@
 		return path && $page.url.pathname.includes(path);
 	};
 
-	$: count = $cartstore ? Object.keys($cartstore).reduce((acc, cur) => {
-		const cartCount = $cartstore[cur].count
-		acc += cartCount
-		return acc
-	}, 0) : 0
+	$: count = $cartstore ? getTotalCartItems($cartstore) : 0
 </script>
 
 <header class="sticky left-0 top-0 z-[3] bg-white dark:bg-secondary">

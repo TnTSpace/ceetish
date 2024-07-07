@@ -1,9 +1,6 @@
 <script>
-	import Header from '$lib/components/sections/Header.svelte';
-	// import Footer from '$lib/components/Footer.svelte';
-	import { PrismicPreview } from '@prismicio/svelte/kit';
-	import { page } from '$app/stores';
-	import { repositoryName } from '$lib/prismicio';
+	import Header from '$lib/components/sections/Header.svelte'; 
+	import { page } from '$app/stores'; 
 	import FloatingBottomBar from '$lib/components/sections/FloatingBottomBar.svelte';
 
 </script>
@@ -23,4 +20,3 @@
 </main>
 
 <FloatingBottomBar />
-<PrismicPreview {repositoryName}></PrismicPreview>
