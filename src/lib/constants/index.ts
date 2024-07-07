@@ -1,7 +1,8 @@
 export enum Constants {
   FILTERS = "filters",
   CART = "cart",
-  CATEGORIES = "categories"
+  CATEGORIES = "categories",
+  ACTION = "action"
 }
 
 
@@ -25,4 +26,9 @@ export enum Collection {
   USERS = "users",
   PARTNERS = "partners",
   CONTACT = "contact"
+}
+
+export enum Actions {
+  ADD = "add",
+  REMOVE = "remove"
 }

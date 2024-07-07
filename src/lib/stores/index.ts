@@ -24,6 +24,7 @@ export interface iCart {
 
 const getLocalStorage = (key: string, initialValue: any) => {
   if (browser) {
+    console.log("to get cart from localstorage")
     const storedValue = localStorage.getItem(key) 
     return storedValue ? JSON.parse(storedValue) : initialValue
   }

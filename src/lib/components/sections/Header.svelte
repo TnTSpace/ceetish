@@ -35,6 +35,12 @@
 		const path = asLink(link);
 		return path && $page.url.pathname.includes(path);
 	};
+
+	$: count = $cartstore ? Object.keys($cartstore).reduce((acc, cur) => {
+		const cartCount = $cartstore[cur].count
+		acc += cartCount
+		return acc
+	}, 0) : 0
 </script>
 
 <header class="sticky left-0 top-0 z-[3] bg-white dark:bg-secondary">
@@ -70,7 +76,7 @@
 				{#if $cartstore}
 					<span
 						class="absolute right-0 top-0 flex h-4 w-4 -translate-y-1/4 translate-x-1/4 items-center justify-center rounded-full text-xs font-black"
-						>{Object.keys($cartstore).length}</span
+						>{count}</span
 					>
 				{/if}
 				<ShoppingCart class="h-4 w-4" />

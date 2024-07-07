@@ -6,9 +6,10 @@
 	import { Badge } from '../ui/badge';
 	import ProductDialog from '../widgets/ProductDialog.svelte';
 	import { cartstore } from '$lib/stores';
-	import type { iSKU } from '$lib/interfaces';
+	import type { iSKU, TAction } from '$lib/interfaces';
 	import { ShoppingCart } from 'lucide-svelte';
-	import { sublineClass } from '$lib/constants';
+	import { Actions, sublineClass } from '$lib/constants';
+	import CartCounter from '../widgets/CartCounter.svelte';
 
 	export let product: Content.ProductDocument;
 
@@ -33,50 +34,19 @@
 	const removeFromCart = () => {
 		const cartProduct = $cartstore[product.uid]
 		const count = cartProduct.count - 1
-		$cartstore[product.uid] = { ...cartProduct, count }
+		if (count === 0) {
+			delete $cartstore[product.uid]
+		} else {
+			$cartstore[product.uid] = { ...cartProduct, count }
+		}
 		$cartstore = $cartstore
 	}
-</script>
 
-<!-- <div
-	class={cn(
-		'grid h-[49vw] max-h-[196px] w-full grid-cols-2  gap-2 overflow-hidden rounded-lg bg-white p-2 shadow-custom dark:bg-secondary sm:h-fit sm:max-h-none sm:grid-cols-1 relative',
-		className
-	)}
->
-	<a class="relative overflow-hidden sm:aspect-square" href={`/product/${product.uid}`}>
-		<PrismicImage
-			field={images[0]?.image}
-			class="absolute left-1/2 top-1/2 aspect-auto h-full -translate-x-1/2 -translate-y-1/2 rounded-md object-cover"
-		/>
-	</a>
-	<div class="flex flex-col justify-between gap-2">
-		<div class="flex flex-col gap-2">
-			<h3 class="w-full font-medium">
-				{name}
-			</h3>
-			<Badge
-				class="w-fit overflow-hidden text-ellipsis whitespace-nowrap rounded-full pt-1 text-xs font-medium capitalize leading-[1]"
-				>{category}</Badge
-			>
-			<p>${price}</p>
-			<PrismicRichText field={description} />
-		</div>
-		<div class="flex items-center justify-between gap-2">
-			<div>
-				<ProductDialog {product} />
-			</div>
-			<a href={`/product/${product.uid}`}>
-				<Button class="hidden w-full md:flex">Details</Button>
-				<Button class="md:hidden" size="icon">detail</Button>
-			</a>
-			<div>
-				<Button class="hidden w-full md:flex" on:click={addToCart}>Buy</Button>
-				<Button class="md:hidden" size="icon" on:click={addToCart}>cart</Button>
-			</div>
-		</div>
-	</div>
-</div> -->
+	const onAction = (evt: CustomEvent) => {
+		const detail = evt.detail as TAction
+		detail === Actions.ADD ? addToCart() : removeFromCart()
+	}
+</script>
 
 <div
 	class={cn(
@@ -110,9 +80,13 @@
 			</div>
 		</div>
 		<div class="flex flex-col gap-2 items-end">
-			<Button class="w-full">
-				Add to Cart 
-			</Button>
+			{#if $cartstore && $cartstore[product.uid]}
+				<CartCounter on:action={onAction} { product } />
+			{:else}
+				<Button on:click={addToCart}>
+					Add to Cart 
+				</Button>
+			{/if}
 		</div>
 	</div>
 
@@ -123,9 +97,13 @@
 		</p>
 		<div class="flex items-center gap-2">
 			<ProductDialog {product} />
-			<Button>
-				Add to Cart 
-			</Button>
+			{#if $cartstore && $cartstore[product.uid]}
+				<CartCounter on:action={onAction} { product } />
+			{:else}
+				<Button on:click={addToCart}>
+					Add to Cart 
+				</Button>
+			{/if}
 		</div>
 	</div>
 </div>

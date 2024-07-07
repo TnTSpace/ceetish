@@ -1,20 +1,32 @@
-<script lang="ts"> 
-	import Minus from "../icons/Minus.svelte";
-	import { Button } from "../ui/button";
+<script lang="ts">
+	import { Actions } from '$lib/constants';
+	import type { TAction } from '$lib/interfaces';
+	import type { Content } from '@prismicio/client';
+	import Minus from '../icons/Minus.svelte';
+	import Plus from '../icons/Plus.svelte';
+	import { Button } from '../ui/button';
+	import { createEventDispatcher } from 'svelte';
+	import { cartstore } from '$lib/stores';
 
-  const btnClassName = "border-2 dark:border-white/50 p-0 w-10 h-10 flex items-center justify-center rounded-lg"
+	const dispatch = createEventDispatcher();
 
-  export let hidden: boolean = false
+	export let product: Content.ProductDocument;
 
-
+	const onClick = (action: TAction) => {
+		dispatch('action', action);
+	};
 </script>
 
-<div class:hidden class="flex items-center gap-4">
-  <Button size="icon">
-    <Minus />
-  </Button>
-  <span>{0}</span>
-  <Button size="icon">
-    <Minus />
-  </Button>
+<div class="flex items-center gap-4">
+	<Button size="icon" on:click={() => onClick(Actions.REMOVE)}>
+		<Minus />
+	</Button>
+	{#if $cartstore && $cartstore[product.uid]}
+		<span>{$cartstore[product.uid].count}</span>
+	{:else}
+		<span>{0}</span>
+	{/if}
+	<Button size="icon" on:click={() => onClick(Actions.ADD)}>
+		<Plus />
+	</Button>
 </div>

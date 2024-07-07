@@ -84,6 +84,8 @@ export interface iSession {
 
 export type TStatus = "success" | "error"
 
+export type TAction = "add" | "remove"
+
 export interface iStatus {
   message: string;
   status: TStatus;
