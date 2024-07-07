@@ -2,7 +2,7 @@ import { createClient } from "$lib/prismicio";
 import { error } from "@sveltejs/kit";
 import type { LayoutServerLoad } from "./$types";
 
-export const prerender = 'auto';
+// export const prerender = 'auto';
 
 export const load: LayoutServerLoad = async ({ fetch, cookies }) => {
 
