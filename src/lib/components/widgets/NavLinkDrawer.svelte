@@ -21,7 +21,7 @@
  
 <Drawer.Root bind:open>
   <Drawer.Trigger asChild let:builder>
-    <Button builders={[builder]} variant="outline" size="icon" class="md:hidden">
+    <Button builders={[builder]} variant="outline" size="icon" class="md:hidden amazonchip dark:border-none dark:bg-primary/10">
       <Hamburger />
     </Button>
   </Drawer.Trigger>

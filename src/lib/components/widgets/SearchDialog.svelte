@@ -5,7 +5,7 @@
 	import { Label } from '$lib/components/ui/label/index.js';
 	import { cn } from '$lib/utils';
 
-  import IconSearch from '~icons/ph/magnifying-glass-bold'
+  import { SearchIcon as IconSearch } from 'lucide-svelte';
 
   let className: string = ""
   
@@ -21,8 +21,8 @@
 
 
   <Dialog.Root>
-    <Dialog.Trigger class={cn(buttonVariants({ variant: 'outline', size: "icon" }), className, "flex items-center justify-center")} >
-      <IconSearch />
+    <Dialog.Trigger class={cn(buttonVariants({ variant: 'outline', size: "icon" }), className, "flex items-center justify-center", "relative amazonchip dark:border-none dark:bg-primary/10")} >
+      <IconSearch class="!w-4 !h-4" />
     </Dialog.Trigger>
     <Dialog.Content class="sm:max-w-[425px]">
       <form on:submit={onSubmit} class="flex flex-col gap-4">

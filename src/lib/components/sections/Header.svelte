@@ -69,7 +69,7 @@
 					</li>
 				{/each}
 			</ul>
-			<Button size="icon" variant="outline" class="relative" href="/cart">
+			<Button size="icon" variant="outline" class="relative amazonchip dark:border-none dark:bg-primary/10" href="/cart">
 				{#if $cartstore}
 					<span
 						class="absolute right-0 top-0 flex h-4 w-4 -translate-y-1/4 translate-x-1/4 items-center justify-center rounded-full text-xs font-black"
