@@ -2,6 +2,7 @@
 	import { page } from '$app/stores';
 	import Product from '$lib/components/cards/Product.svelte';
 	import { productGrid, sublineClass } from '$lib/constants';
+	import { cn } from '$lib/utils';
 	import type { Content, ContentRelationshipField } from '@prismicio/client';
 	import { PrismicLink, PrismicRichText, PrismicText } from '@prismicio/svelte';
 
@@ -26,7 +27,7 @@
 			</div>
 			<PrismicLink field={slice.primary.cta}>See all</PrismicLink>
 		</div>
-		<div class={productGrid}>
+		<div class={cn(productGrid, "lg:grid-cols-6")}>
 			{#each slice.primary.products as item, i}
 				<Product product={ getProduct(item.product) } />
 			{/each}

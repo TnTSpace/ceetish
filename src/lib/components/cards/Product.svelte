@@ -78,7 +78,7 @@
 	</div>
 
 	<div
-		class="mx-auto w-full gap-2 p-2 flex items-center justify-between bg-primary/20"
+		class="mx-auto w-full gap-2 p-2 flex items-center justify-between bg-muted-foreground/10"
 	>
 		<ProductDialog {product} class="hidden md:flex" />
 		
