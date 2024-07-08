@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { ImageFieldImage } from '@prismicio/client';
-	import { PrismicText, SliceZone, PrismicImage } from '@prismicio/svelte';
+	import { PrismicText, SliceZone, PrismicImage, PrismicRichText } from '@prismicio/svelte';
 
 	import { components } from '$lib/slices';
 	import Bounded from '$lib/components/widgets/Bounded.svelte';
@@ -8,8 +8,11 @@
 	import EmblaProduct from '$lib/components/widgets/product-pictures/EmblaProduct.svelte';
 
 	export let data;
+	
+	const { name, category,  description, price, details } = data.page.data
 
 	$: images = data.page.data.images.map(field => field.image)
+	
 </script>
 
 <Bounded>
@@ -19,11 +22,14 @@
 		</div>
 		<div class="flex flex-col gap-2">
 			<h1 class="font-medium">
-				{data.page.data.name} 
+				{name} 
 			</h1>
 			<p class="text-muted-foreground">
-				<PrismicText field={data.page.data.description} />
+				<PrismicText field={description} />
 			</p>
+			<div class="prose dark:prose-invert">
+				<PrismicRichText field={details} />
+			</div>
 		</div>
 	</div>
 	<div class="">

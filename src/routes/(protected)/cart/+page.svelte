@@ -5,7 +5,7 @@
 	import { cartstore, getTotalCartPrice } from "$lib";
 
 	$: products = $cartstore ? Object.keys($cartstore).map(key => $cartstore[key]) : []
-	$: subtotal = $cartstore ? getTotalCartPrice($cartstore) : '£0.00'
+	$: subtotal = $cartstore ? getTotalCartPrice($cartstore) : 0
 </script>
 
 <section>
@@ -14,7 +14,7 @@
 			class="flex lg:hidden items-center justify-between rounded-lg p-2 shadow-custom bg-white dark:bg-secondary"
 		>
 			<h2 class="uppercase font-semibold text-sm">subtotal</h2>
-			<p class="font-bold">{subtotal}</p>
+			<p class="font-bold">£{subtotal.toFixed(2)}</p>
 		</div>
 		<div class="grid grid-cols-1 gap-4 h-min">
 			<h2 class="uppercase font-semibold text-sm">cart details</h2>
@@ -43,7 +43,7 @@
 				<hr class="dark:opacity-60" />
 				<div class="flex items-center justify-between">
 					<h2 class="uppercase font-semibold text-sm">subtotal</h2>
-					<p class="font-bold">{subtotal}</p>
+					<p class="font-bold">£{subtotal.toFixed(2)}</p>
 				</div>
 			</div>
 			cartform
@@ -65,7 +65,7 @@
 				<hr class="dark:opacity-60" />
 				<div class="flex items-center justify-between">
 					<h2 class="uppercase font-semibold text-sm">subtotal</h2>
-					<p class="font-bold">{subtotal}</p>
+					<p class="font-bold">£{subtotal.toFixed(2)}</p>
 				</div>
 				<hr class="dark:opacity-60" />
 				<!-- <CartForm on:formsubmit={handleSubmit} {subtotal} /> -->

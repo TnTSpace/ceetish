@@ -75,5 +75,5 @@ export const getTotalCartPrice = (cart: iCart) => {
 		acc += cartPrice
 		return acc
 	}, 0)
-	return `£${price.toFixed(2)}`
+	return price
 }

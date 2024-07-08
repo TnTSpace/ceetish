@@ -8,7 +8,7 @@
 	import { cartstore } from '$lib/stores';
 	import type { iSKU, TAction } from '$lib/interfaces';
 	import { ShoppingCart } from 'lucide-svelte';
-	import { Actions, sublineClass } from '$lib/constants';
+	import { Actions, priceClass, sublineClass } from '$lib/constants';
 	import CartCounter from '../widgets/CartCounter.svelte';
 
 	export let product: Content.ProductDocument;
@@ -73,7 +73,7 @@
 		</div>
 		<div class="flex flex-col sm:flex-row gap-2 justify-between w-full">
 			<div class="flex items-center gap-2">
-				<p class="font-bold text-lg bg-primary/10 w-fit py-1 px-3 rounded-lg h-9 flex items-center justify-center">
+				<p class={priceClass}>
 					£{price?.toFixed(2)}
 				</p>
 				<ProductDialog {product} />

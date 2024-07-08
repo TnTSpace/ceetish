@@ -6,7 +6,7 @@
 	import ProductDialog from '../widgets/ProductDialog.svelte';
 	import { cartstore } from '$lib/stores';
 	import type { TAction } from '$lib/interfaces'; 
-	import { Actions, sublineClass } from '$lib/constants';
+	import { Actions, priceClass, sublineClass } from '$lib/constants';
 	import CartCounter from '../widgets/CartCounter.svelte';
 
 	export let product: Content.ProductDocument;
@@ -52,6 +52,7 @@
 		className
 	)}
 >
+	<ProductDialog {product} class="hidden md:flex absolute top-2 right-2 z-[1]" />
 	<a class="relative aspect-square overflow-hidden" href={`/product/${product.uid}`}>
 		<PrismicImage
 			field={images[0]?.image}
@@ -71,7 +72,7 @@
 				{name}
 			</h3>
 			<div class="flex items-center gap-2">
-				<p class="font-bold text-lg bg-primary/10 w-fit py-1 px-3 rounded-lg h-9 flex items-center justify-center">
+				<p class={priceClass}>
 					£{price?.toFixed(2)}
 				</p>
 				<ProductDialog {product} class="md:hidden" />
@@ -90,11 +91,10 @@
 
 	<!-- desktop product detail -->
 	<div class="mx-auto hidden w-full p-2 gap-2 rounded-lg md:flex md:items-center md:justify-between">
-		<p class="font-bold text-lg bg-primary/10 w-fit py-1 px-3 rounded-lg">
+		<p class={priceClass}>
 			£{price?.toFixed(2)}
 		</p>
 		<div class="flex items-center gap-2">
-			<ProductDialog {product} />
 			{#if $cartstore && $cartstore[product.uid]}
 				<CartCounter on:action={onAction} { product } />
 			{:else}
