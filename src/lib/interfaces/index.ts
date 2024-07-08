@@ -1,4 +1,5 @@
 import type { Content } from "@prismicio/client";
+import type { User } from "@clerk/backend";
 
 export interface iSKU {
   uid: string;
@@ -119,4 +120,15 @@ export interface iCartValue { count: number, document: Content.ProductDocument }
 
 export interface iCart {
   [key: string]: iCartValue
+}
+
+export interface iUser extends User {
+  fullName: string;
+}
+
+export interface iPayload {
+  amount: string;
+  email: string;
+  fullName: string;
+  products: iCartValue[]
 }

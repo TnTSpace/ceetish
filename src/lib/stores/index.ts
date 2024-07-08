@@ -1,9 +1,7 @@
 import { browser } from "$app/environment";
 // import { Constants } from "$lib";
-import type { iSKU, iFilter, iCategoryLink, iCart } from "$lib/interfaces";
-import type { Content } from "@prismicio/client";
+import type { iFilter, iCategoryLink, iCart, iUser } from "$lib/interfaces";
 import { writable } from "svelte/store";
-import type { User } from "@clerk/backend";
 
 export const initialFilters = {
   category: "",
@@ -41,7 +39,7 @@ filterstore.subscribe(value => setLocalStorage(Constants.FILTERS, value))
 cartstore.subscribe(value => setLocalStorage(Constants.CART, value))
 categorystore.subscribe(value => setLocalStorage(Constants.CATEGORIES, value))
 
-const userstore = writable<User | null>(null);
+const userstore = writable<iUser | null>(null);
 
 export { userstore, cartstore, filterstore, categorystore }
 

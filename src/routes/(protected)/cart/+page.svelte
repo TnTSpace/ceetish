@@ -1,20 +1,52 @@
 <script lang="ts">
+	import type { iStatus, iPayload } from '$lib';
 	import { Button } from '$lib/components/ui/button';
 	import { getPrice } from '$lib/common/products';
 	import CartProduct from '$lib/components/cards/CartProduct.svelte';
 	import { cartstore, getTotalCartPrice, userstore } from "$lib";
+	import toast from 'svelte-french-toast';
 
 	$: products = $cartstore ? Object.keys($cartstore).map(key => $cartstore[key]) : []
 	$: subtotal = $cartstore ? getTotalCartPrice($cartstore) : 0
-	$: console.log({ userstore: $userstore })
+	$: console.log({ products })
 
-	const onSubmit = (evt: SubmitEvent) => {
+	const onSubmit = async (evt: SubmitEvent) => {
 		evt.preventDefault()
 		const form = evt.target as HTMLFormElement
 		const formData = new FormData(form)
 		const entries = Object.fromEntries(formData.entries())
 
-		console.log({ entries })
+		const json: iPayload = {
+			amount: entries.amount as string,
+			email: $userstore?.emailAddresses[0] as unknown as string,
+			fullName: $userstore?.fullName as string,
+			products
+		}
+
+		console.log({ json })
+
+		const promise = fetch('/api/checkout', {
+			method: 'post',
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(json)
+		})
+
+		const response = await toast.promise(promise, {
+			success: 'Successful checkout',
+			loading: 'Checking out...',
+			error: 'Error :('
+		})
+
+		const result = await response.json() as iStatus
+
+		if (result.status === "success") {
+			location.href = result?.data?.url
+		} else {
+
+		}
+
 	}
 </script>
 
@@ -57,7 +89,7 @@
 				</div>
 				<hr class="dark:opacity-60" />
 				<form on:submit={onSubmit} class="w-full">
-					<input name="total" type="text" hidden bind:value={subtotal} />
+					<input name="amount" type="text" hidden bind:value={subtotal} />
 					<Button type="submit" class="w-full">
 						Checkout (£{subtotal.toFixed(2)})
 					</Button>
@@ -84,7 +116,7 @@
 				</div>
 				<hr class="dark:opacity-60" />
 				<form on:submit={onSubmit} class="w-full">
-					<input name="total" type="text" hidden bind:value={subtotal} />
+					<input name="amount" type="text" hidden bind:value={subtotal} />
 					<Button type="submit" class="w-full">
 						Checkout (£{subtotal.toFixed(2)})
 					</Button>
