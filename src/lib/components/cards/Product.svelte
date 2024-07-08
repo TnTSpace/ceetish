@@ -49,7 +49,7 @@
 
 <div
 	class={cn(
-		'relative w-full overflow-hidden border border-opacity-10 bg-white shadow dark:bg-primary/10 flex flex-col justify-between',
+		'relative w-full overflow-hidden border border-opacity-10 bg-white shadow dark:bg-primary/10 flex flex-col gap-2 justify-between rounded-lg',
 		className
 	)}
 >
@@ -62,31 +62,31 @@
 		</a>
 	
 		<div aria-label="details" class="p-4 pb-0">
-			<h3 class="overflow-hidden md:text-ellipsis md:whitespace-nowrap">
+			<h3 class="overflow-hidden md:text-ellipsis md:whitespace-nowrap twolines">
 				{name}
 			</h3>
-			<p class="text-sm text-muted-foreground hidden md:block">
+			<p class="text-sm text-muted-foreground hidden md:twolines">
 				<PrismicText field={description} />
 			</p>
+			<div class="flex items-center justify-between">
 			<p class={priceClass}>
 				£{price?.toFixed(2)}
 			</p>
+			<ProductDialog {product} class="flex md:hidden" />
+			</div>
 		</div>
 	</div>
 
 	<div
 		class="mx-auto w-full gap-2 p-2 flex items-center justify-between bg-primary/20"
 	>
-		<ProductDialog {product} />
+		<ProductDialog {product} class="hidden md:flex" />
 		
-		<div class="flex items-center gap-2">
+		<div class="flex items-center gap-2 w-full md:w-fit">
 			{#if $cartstore && $cartstore[product.uid]}
 				<CartCounter on:action={onAction} {product} />
 			{:else}
-				<Button on:click={addToCart} class="hidden md:inline-block">Add to Cart</Button>
-				<Button on:click={addToCart} size="icon" variant="outline" class="flex md:hidden">
-					<ShoppingCart class="h-4 w-4" />
-				</Button>
+				<Button on:click={addToCart} class="w-full">Add to Cart</Button>
 			{/if}
 		</div>
 	</div>

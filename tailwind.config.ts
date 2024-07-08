@@ -95,7 +95,15 @@ const config: Config = {
 				},
 				'.clip': {
 					clipPath: 'polygon(30% 0, 100% 0%, 100% 100%, 0% 100%)'
-				}
+				},
+				'.twolines': {
+					whiteSpace: 'initial',
+					textOverflow: 'ellipsis',
+					display: '-webkit-box',
+					'-webkit-box-orient': 'vertical',
+					'-webkit-line-clamp': '2',
+					overflow: 'hidden'
+			}
 			}
 			addUtilities(newUtilities, ['responsive', 'hover'])
 		},
