@@ -67,7 +67,7 @@
 							"config": {
 								"label": "Size",
 								"placeholder": "",
-								"options": ["14 inches", "16 inches"]
+								"options": ["14 inches", "16 inches", "22 inches"]
 							}
 						}
 					}

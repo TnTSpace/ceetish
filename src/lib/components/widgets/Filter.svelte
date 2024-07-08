@@ -1,11 +1,6 @@
 <script lang="ts">
-	import CategoryFilter from './filters/CategoryFilter.svelte';
-	import { page } from '$app/stores';
-	import { Button } from '$lib/components/ui/button';
-	import Select from '$lib/components/widgets/Select.svelte';
-	import { cn } from '$lib/utils';
-	import type { Content } from '@prismicio/client';
-	import AgeFilter from './filters/AgeFilter.svelte';
+	import CategoryFilter from './filters/CategoryFilter.svelte'; 
+	import { cn } from '$lib/utils'; 
 	import type { iFilters } from '$lib/interfaces';
 	import SizeFilter from './filters/SizeFilter.svelte';
 	import ColorFilter from './filters/ColorFilter.svelte';

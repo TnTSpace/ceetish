@@ -46,7 +46,7 @@ export interface CatalogDocumentDataSizesItem {
 	 * - **API ID Path**: catalog.sizes[].size
 	 * - **Documentation**: https://prismic.io/docs/field#select
 	 */
-	size: prismic.SelectField<'14 inches' | '16 inches'>;
+	size: prismic.SelectField<'14 inches' | '16 inches' | '22 inches'>;
 }
 
 type CatalogDocumentDataSlicesSlice = never;
@@ -373,7 +373,7 @@ export interface FiltersDocumentDataSizesItem {
 	 * - **API ID Path**: filters.sizes[].size
 	 * - **Documentation**: https://prismic.io/docs/field#select
 	 */
-	size: prismic.SelectField<'14 inches' | '16 inches'>;
+	size: prismic.SelectField<'14 inches' | '16 inches' | '22 inches'>;
 }
 
 /**
