@@ -10,9 +10,9 @@ export const checkBoxClass = "flex h-6 w-6 rounded-md border border-input bg-tra
 
 export const sublineClass = "sm:text-lg font-semibold leading-normal tracking-tight"
 
-export const productGrid = "grid grid-cols-2 sm:grid-cols-4 overflow-hidden gap-2"
+export const productGrid = "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 overflow-hidden gap-2"
 
-export const priceClass = "font-bold text-lg w-fit rounded-lg h-9 flex items-center justify-center"
+export const priceClass = "font-bold text-lg w-fit rounded-lg flex items-center justify-center"
 
 export enum Collection {
   COURSES = "courses",

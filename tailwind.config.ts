@@ -77,7 +77,7 @@ const config: Config = {
 		}
 	},
 	plugins: [
-		function({ addUtilities }) {
+		function ({ addUtilities }) {
 			const newUtilities = {
 				'.center': {
 					width: '100%',
@@ -103,7 +103,13 @@ const config: Config = {
 					'-webkit-box-orient': 'vertical',
 					'-webkit-line-clamp': '2',
 					overflow: 'hidden'
-			}
+				},
+				'.oneline': {
+					width: '100%',
+					overflow: 'hidden',
+					whiteSpace: 'nowrap',
+					textOverflow: 'ellipsis'
+				}
 			}
 			addUtilities(newUtilities, ['responsive', 'hover'])
 		},

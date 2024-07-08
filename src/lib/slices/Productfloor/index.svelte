@@ -27,7 +27,7 @@
 			</div>
 			<PrismicLink field={slice.primary.cta}>See all</PrismicLink>
 		</div>
-		<div class={cn(productGrid, "lg:grid-cols-6")}>
+		<div class={cn(productGrid, "lg:grid-cols-5")}>
 			{#each slice.primary.products as item, i}
 				<Product product={ getProduct(item.product) } />
 			{/each}

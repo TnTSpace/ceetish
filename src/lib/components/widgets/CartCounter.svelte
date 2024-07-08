@@ -17,7 +17,7 @@
 	};
 </script>
 
-<div class="flex items-center gap-4 justify-between w-full md">
+<div class="flex items-center gap-4 justify-between w-32">
 	<Button size="icon" variant="amazonchip" class="bg-white dark:bg-primary/10" on:click={() => onClick(Actions.REMOVE)}>
 		<Minus />
 	</Button>
