@@ -8,5 +8,8 @@
 <div class="flex flex-col items-center justify-center h-[100vh] gap-2">
 	<Logo />
 	<h1 class="text-lg font-medium capitalize">{$page.error?.message}</h1>
-	<Button on:click={() => location.reload()}>Refresh</Button>
+	<div class="flex items-center justify-center gap-4">
+		<Button on:click={() => location.reload()}>Refresh</Button>
+		<Button href="/">Go Home</Button>
+	</div>
 </div>
