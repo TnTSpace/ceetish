@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Content } from '@prismicio/client'; 
+	import NavLinkDrawer from './../widgets/NavLinkDrawer.svelte';
 	import ModeToggle from '../widgets/ModeToggle.svelte';
 	import SearchDialog from '../widgets/SearchDialog.svelte';
 	import { page } from '$app/stores';
@@ -17,5 +17,6 @@
 		{#if showFilter}
 			<FilterDrawer { allFilters } { actualFilters }/>
 		{/if}
+		<NavLinkDrawer />
   </div>
 </div>
