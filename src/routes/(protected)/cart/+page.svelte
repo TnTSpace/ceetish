@@ -1,11 +1,21 @@
 <script lang="ts">
+	import { Button } from '$lib/components/ui/button';
 	import { getPrice } from '$lib/common/products';
-	import { PrismicText } from '@prismicio/svelte';
 	import CartProduct from '$lib/components/cards/CartProduct.svelte';
-	import { cartstore, getTotalCartPrice } from "$lib";
+	import { cartstore, getTotalCartPrice, userstore } from "$lib";
 
 	$: products = $cartstore ? Object.keys($cartstore).map(key => $cartstore[key]) : []
 	$: subtotal = $cartstore ? getTotalCartPrice($cartstore) : 0
+	$: console.log({ userstore: $userstore })
+
+	const onSubmit = (evt: SubmitEvent) => {
+		evt.preventDefault()
+		const form = evt.target as HTMLFormElement
+		const formData = new FormData(form)
+		const entries = Object.fromEntries(formData.entries())
+
+		console.log({ entries })
+	}
 </script>
 
 <section>
@@ -45,9 +55,14 @@
 					<h2 class="uppercase font-semibold text-sm">subtotal</h2>
 					<p class="font-bold">£{subtotal.toFixed(2)}</p>
 				</div>
+				<hr class="dark:opacity-60" />
+				<form on:submit={onSubmit} class="w-full">
+					<input name="total" type="text" hidden bind:value={subtotal} />
+					<Button type="submit" class="w-full">
+						Checkout (£{subtotal.toFixed(2)})
+					</Button>
+				</form>
 			</div>
-			cartform
-			<!-- <CartForm on:formsubmit={handleSubmit} {subtotal} /> -->
 		</div>
 		{#key subtotal}
 			<div
@@ -68,8 +83,12 @@
 					<p class="font-bold">£{subtotal.toFixed(2)}</p>
 				</div>
 				<hr class="dark:opacity-60" />
-				<!-- <CartForm on:formsubmit={handleSubmit} {subtotal} /> -->
-				 cart form
+				<form on:submit={onSubmit} class="w-full">
+					<input name="total" type="text" hidden bind:value={subtotal} />
+					<Button type="submit" class="w-full">
+						Checkout (£{subtotal.toFixed(2)})
+					</Button>
+				</form>
 			</div>
 		{/key}
 	</div>

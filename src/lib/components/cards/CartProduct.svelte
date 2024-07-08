@@ -1,13 +1,11 @@
 <script lang="ts">
-	import { PrismicText, PrismicImage, PrismicRichText, PrismicLink } from '@prismicio/svelte';
+	import { PrismicText, PrismicImage } from '@prismicio/svelte';
 	import type { Content } from '@prismicio/client';
 	import { cn } from '$lib/utils';
 	import { Button } from '../ui/button';
-	import { Badge } from '../ui/badge';
 	import ProductDialog from '../widgets/ProductDialog.svelte';
 	import { cartstore } from '$lib/stores';
-	import type { iSKU, TAction } from '$lib/interfaces';
-	import { ShoppingCart } from 'lucide-svelte';
+	import type { TAction } from '$lib/interfaces';
 	import { Actions, priceClass, sublineClass } from '$lib/constants';
 	import CartCounter from '../widgets/CartCounter.svelte';
 
@@ -46,6 +44,7 @@
 		const detail = evt.detail as TAction
 		detail === Actions.ADD ? addToCart() : removeFromCart()
 	}
+
 </script>
 
 <div
@@ -54,7 +53,7 @@
 		className
 	)}
 >
-	<a class="relative aspect-square w-[160px] h-[160px] overflow-hidden" href={`/product/${product.uid}`}>
+	<a class="relative aspect-square w-full max-w-40 md:w-40 md:h-40 overflow-hidden" href={`/product/${product.uid}`}>
 		<PrismicImage
 			field={images[0]?.image}
 			class="absolute left-1/2 top-1/2 aspect-auto h-full -translate-x-1/2 -translate-y-1/2 rounded-md object-cover"
