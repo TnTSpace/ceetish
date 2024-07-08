@@ -16,6 +16,6 @@
 			</h2>
 		</div>
 		<PrismicRichText field={slice.primary.body} />
-		<PrismicLink class="bg-white dark:bg-font py-2 px-4 w-full text-center md:w-fit" field={slice.primary.cta_link}>{slice.primary.cta_label}</PrismicLink>
+		<PrismicLink class="bg-white dark:bg-font py-2 px-4 w-full text-center md:w-fit rounded-lg" field={slice.primary.cta_link}>{slice.primary.cta_label}</PrismicLink>
 	</div>
 </section>
