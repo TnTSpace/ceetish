@@ -28,7 +28,7 @@
 			<IconPreview class="w-4 h-4" />
 		</Button>
 	</Dialog.Trigger>
-	<Dialog.Content class="md:max-w-2xl mx-auto w-[calc(100%-32px)]">
+	<Dialog.Content class="md:max-w-2xl mx-auto w-[calc(100%-32px)] bg-white dark:bg-primary/10">
 		<div class="flex flex-col gap-4">
 			<Dialog.Header>
 				<Dialog.Title>
