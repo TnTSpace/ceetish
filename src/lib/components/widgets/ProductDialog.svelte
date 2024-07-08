@@ -37,8 +37,9 @@
 			</Dialog.Header>
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 				<EmblaProduct images={emblaImages} />
+				<Badge class="md:hidden w-fit h-fit overflow-hidden text-ellipsis whitespace-nowrap rounded-full text-xs font-medium capitalize">{category}</Badge>
 				<div class="flex flex-col gap-2 h-[120px] md:h-auto overflow-auto">
-					<Badge class="w-fit overflow-hidden text-ellipsis whitespace-nowrap rounded-full text-xs font-medium capitalize">{category}</Badge>
+					<Badge class="hidden md:inline-block w-fit h-fit overflow-hidden text-ellipsis whitespace-nowrap rounded-full text-xs font-medium capitalize">{category}</Badge>
           <p class="text-muted-foreground text-sm">
 						<PrismicText field={description} />
 					</p>

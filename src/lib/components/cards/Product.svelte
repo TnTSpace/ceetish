@@ -48,7 +48,7 @@
 
 <div
 	class={cn(
-		'relative grid w-full grid-cols-2 rounded-lg overflow-hidden shadow-sm md:grid-cols-1 bg-white dark:bg-secondary',
+		'relative grid w-full grid-cols-2 rounded-lg overflow-hidden shadow-sm md:grid-cols-1 bg-white dark:bg-primary/10',
 		className
 	)}
 >

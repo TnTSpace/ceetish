@@ -55,7 +55,7 @@
 			{#each sliders as slider, i}
 				<div
 					aria-label="desktop"
-					class="embla__slide relative hidden aspect-video max-h-[500px] w-full overflow-hidden rounded-lg bg-secondary/20 md:block md:aspect-[16/6]"
+					class="embla__slide relative hidden aspect-video max-h-[500px] w-full overflow-hidden rounded-lg bg-secondary/20 dark:bg-primary/10 md:block md:aspect-[16/6]"
 				>
 					<div
 						class="absolute left-0 top-1/2 flex h-full w-[40%] -translate-y-1/2 flex-col items-center justify-center gap-8"

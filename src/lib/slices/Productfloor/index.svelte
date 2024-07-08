@@ -18,7 +18,7 @@
 </script>
 
 <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} class="my-4">
-	<div class="center flex flex-col gap-4 bg-secondary/90">
+	<div class="center flex flex-col gap-4 bg-primary/10">
 		<div class="flex items-center justify-between">
 			<div class="flex flex-col">
 				<h2 class={sublineClass}><PrismicText field={slice.primary.title} /></h2>

@@ -57,7 +57,7 @@
 			{#each sliders as slider, i}
 				<div
 					aria-label="mobile"
-					class="embla__slide relative flex w-full flex-col gap-4 overflow-hidden rounded-lg bg-secondary"
+					class="embla__slide relative flex w-full flex-col gap-4 overflow-hidden rounded-lg bg-secondary/20 dark:bg-primary/10"
 				>
 					<div class="relative aspect-video w-full overflow-hidden">
 						<PrismicImage field={slider.image} class="absolute aspect-auto w-full" />
