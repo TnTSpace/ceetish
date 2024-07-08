@@ -11,7 +11,7 @@
 <section>
 	<div class="center grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-4">
 		<div
-			class="flex lg:hidden items-center justify-between rounded-lg p-2 shadow-custom bg-white dark:bg-secondary"
+			class="flex lg:hidden items-center justify-between rounded-lg p-2 shadow bg-white dark:bg-secondary"
 		>
 			<h2 class="uppercase font-semibold text-sm">subtotal</h2>
 			<p class="font-bold">£{subtotal.toFixed(2)}</p>
@@ -51,7 +51,7 @@
 		</div>
 		{#key subtotal}
 			<div
-				class="flex flex-col gap-4 lg:hidden rounded-lg p-4 shadow-custom bg-white dark:bg-secondary"
+				class="flex flex-col gap-4 lg:hidden rounded-lg p-4 shadow bg-white dark:bg-secondary"
 			>
 				{#each products as item, i}
 					<div class="flex items-center justify-between">
