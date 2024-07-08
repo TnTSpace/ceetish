@@ -51,7 +51,7 @@
 	<div bind:this={slideViewport} class="embla__viewport">
 		<div class="embla__container max-w-[300px]">
 			{#each images as image, i}
-				<PrismicImage field={image} class="aspect-square w-full" />
+				<PrismicImage field={image} class="aspect-square w-full rounded-lg" />
 			{/each}
 		</div>
 	</div>
