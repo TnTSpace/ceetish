@@ -33,13 +33,11 @@ const setLocalStorage = (key: string, value: any) => {
 
 const filterstore = writable<iFilter>(initialFilters)
 const cartstore = writable<iCart>(getLocalStorage(Constants.CART, {}))
-const categorystore = writable<iCategoryLink[]>(getLocalStorage(Constants.CATEGORIES, []))
+const userstore = writable<iUser | null>(null);
 
 filterstore.subscribe(value => setLocalStorage(Constants.FILTERS, value))
 cartstore.subscribe(value => setLocalStorage(Constants.CART, value))
-categorystore.subscribe(value => setLocalStorage(Constants.CATEGORIES, value))
 
-const userstore = writable<iUser | null>(null);
 
-export { userstore, cartstore, filterstore, categorystore }
+export { userstore, cartstore, filterstore }
 
