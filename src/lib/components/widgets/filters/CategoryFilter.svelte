@@ -3,11 +3,12 @@
 	import { Button } from '$lib/components/ui/button';
 	import { cn } from '$lib/utils';
 	import { filterstore } from '$lib/stores';
-	import { isActive, serializeParams, updateUrlWithQueryParams } from '$lib/common';
+	import { serializeParams, updateUrlWithQueryParams } from '$lib/common';
 	import { page } from '$app/stores';
 	import { browser } from '$app/environment';
 	import Badge from '$lib/components/ui/badge/badge.svelte';
-	import type { iFilters } from '$lib';
+	import { eFilters, type iFilters } from '$lib';
+	import { onMount } from 'svelte';
 
 	let className: string = '';
 	export { className as class };
@@ -15,12 +16,13 @@
 	export let actualFilters: iFilters;
 
 
-	const updateCategory = (category: any) => {
-		const stringCategory = category as string;
-		$filterstore.category = stringCategory.toLowerCase();
-		$filterstore = $filterstore;
-		const json = serializeParams(filterstore);
-		updateUrlWithQueryParams(json);
+	const updateCategory = (category: string) => {
+		$page.url.searchParams.set(eFilters.CATEGORY, category.toLowerCase())
+		if (category === '') {
+			$page.url.searchParams.delete(eFilters.CATEGORY)
+		} 
+		
+		location.href = $page.url.toString()
 	};
 
 	const numProducts = (category: string) => {
@@ -28,12 +30,20 @@
 			(actualCat) => actualCat.toLowerCase() === category.toLowerCase()
 		).length;
 	};
+
+	const isActive = (filtername: string, reference: string) => {
+		const searchParams = $page.url.searchParams
+		const queryValue = searchParams.get(filtername) as string
+		const value = queryValue ? queryValue as string : '';
+		const valueList = value.split("--")
+		return valueList.includes(reference.toLowerCase())
+	}
 </script>
 
 <div class={cn(className)}>
 	<Button
 		on:click={() => updateCategory('')}
-		variant={isActive('', 'category') ? 'outline' : 'ghost'}
+		variant={isActive(eFilters.CATEGORY, '') ? 'outline' : 'ghost'}
 		class={cn(
 			'item-center flex w-full justify-start text-base font-normal capitalize',
 			!isActive('', 'category') && 'text-muted-foreground'
@@ -44,10 +54,10 @@
 	{#each allFilters.categories as category, i}
 		<Button
 			on:click={() => updateCategory(category)}
-			variant={isActive(category, 'category') ? 'outline' : 'ghost'}
+			variant={isActive(eFilters.CATEGORY, category) ? 'outline' : 'ghost'}
 			class={cn(
 				'item-center flex w-full justify-between text-base font-normal capitalize',
-				!isActive(category, 'category') && 'text-muted-foreground'
+				!isActive(eFilters.CATEGORY, category) && 'text-muted-foreground'
 			)}
 		>
 			<span>{category}</span>
