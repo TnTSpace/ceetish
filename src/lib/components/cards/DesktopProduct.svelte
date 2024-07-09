@@ -65,7 +65,7 @@
 			<h3 class="overflow-hidden twolines md:text-ellipsis md:whitespace-nowrap">
 				{name}
 			</h3>
-			<p class="hidden text-sm text-muted-foreground md:twolines">
+			<p class="hidden text-sm text-muted-foreground md:twolines h-10">
 				<PrismicText field={description} />
 			</p>
 			<p class={priceClass}>

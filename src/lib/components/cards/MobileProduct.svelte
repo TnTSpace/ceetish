@@ -69,9 +69,8 @@
       </p>
 		</div>
 	</div>
+	<hr class="dark:border-primary/20" />
 	<div aria-label="details" class="flex flex-col gap-2">
-		<!-- <hr class="dark:opacity-100" /> -->
-    <div class="h-[0.5px] w-full amazonchip dark:opacity-10"></div>
 		<div class="flex items-center justify-between w-full">
 			<ProductDialog {product} />
 			<div class="flex items-center gap-2">
