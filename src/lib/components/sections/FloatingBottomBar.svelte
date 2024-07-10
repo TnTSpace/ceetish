@@ -7,9 +7,9 @@
 	import { onMount } from 'svelte';
 	import Skeleton from '../ui/skeleton/skeleton.svelte';
 
-	$: allFilters = $page.data.allFilters
-	$: actualFilters = $page.data.actualFilters
-	const showFilter = $page.url.pathname.toLowerCase() === "/catalog"
+	$: allFilters = $page.data.allFilters;
+	$: actualFilters = $page.data.actualFilters;
+	const showFilter = $page.url.pathname.toLowerCase() === '/catalog';
 
 	let mounted = new Promise((resolve, reject) => {
 		onMount(() => {
@@ -18,22 +18,24 @@
 	});
 </script>
 
-<div class="sticky bottom-0 left-0 w-full md:hidden  bg-white dark:bg-secondary z-[2]">
+<div class="sticky bottom-0 left-0 z-[2] w-full bg-white dark:bg-secondary md:hidden">
 	{#await mounted}
-	<div class="h-14 flex justify-between items-center center">
-		<Skeleton class="w-10 h-10" />
-		<Skeleton class="w-10 h-10" />
-		<Skeleton class="w-10 h-10" />
-		<Skeleton class="w-10 h-10" />
-  </div>
+		<div class="flex h-14 items-center justify-between center">
+			<Skeleton class="h-10 w-10" />
+			<Skeleton class="h-10 w-10" />
+			{#if showFilter}
+				<Skeleton class="h-10 w-10" />
+			{/if}
+			<Skeleton class="h-10 w-10" />
+		</div>
 	{:then value}
-	<div class="h-14 flex justify-between items-center center">
-		<SearchDialog class="block md:hidden" />
-		<ModeToggle />
-		{#if showFilter}
-			<FilterDrawer { allFilters } { actualFilters }/>
-		{/if}
-		<NavLinkDrawer />
-  </div>
+		<div class="flex h-14 items-center justify-between center">
+			<SearchDialog class="block md:hidden" />
+			<ModeToggle />
+			{#if showFilter}
+				<FilterDrawer {allFilters} {actualFilters} />
+			{/if}
+			<NavLinkDrawer />
+		</div>
 	{/await}
 </div>
