@@ -8,6 +8,7 @@
 	import type { TAction } from '$lib/interfaces';
 	import { Actions, priceClass, sublineClass } from '$lib/constants';
 	import CartCounter from '../widgets/CartCounter.svelte';
+	import MobileProduct from './MobileProduct.svelte';
 
 	export let product: Content.ProductDocument;
 
@@ -20,34 +21,34 @@
 	const addToCart = () => {
 		const exists = $cartstore[product.uid];
 		if (!exists) {
-			$cartstore[product.uid] = { document: product, count: 1 }
+			$cartstore[product.uid] = { document: product, count: 1 };
 		} else {
-			const cartProduct = $cartstore[product.uid]
-			const count = cartProduct.count + 1
-			$cartstore[product.uid] = { ...cartProduct, count  }
+			const cartProduct = $cartstore[product.uid];
+			const count = cartProduct.count + 1;
+			$cartstore[product.uid] = { ...cartProduct, count };
 		}
 		$cartstore = $cartstore;
 	};
 
 	const removeFromCart = () => {
-		const cartProduct = $cartstore[product.uid]
-		const count = cartProduct.count - 1
+		const cartProduct = $cartstore[product.uid];
+		const count = cartProduct.count - 1;
 		if (count === 0) {
-			delete $cartstore[product.uid]
+			delete $cartstore[product.uid];
 		} else {
-			$cartstore[product.uid] = { ...cartProduct, count }
+			$cartstore[product.uid] = { ...cartProduct, count };
 		}
-		$cartstore = $cartstore
-	}
+		$cartstore = $cartstore;
+	};
 
 	const onAction = (evt: CustomEvent) => {
-		const detail = evt.detail as TAction
-		detail === Actions.ADD ? addToCart() : removeFromCart()
-	}
-
+		const detail = evt.detail as TAction;
+		detail === Actions.ADD ? addToCart() : removeFromCart();
+	};
 </script>
 
-<div
+<MobileProduct {product} class="" />
+<!-- <div
 	class={cn(
 		'relative flex w-full rounded-lg overflow-hidden shadow-sm bg-white dark:bg-secondary',
 		className
@@ -60,7 +61,6 @@
 		/>
 	</a>
 
-	<!-- mobile product detail -->
 	<div class="flex flex-col justify-between p-2 w-full">
 		<div>
 			<h3 class={sublineClass}>
@@ -88,4 +88,4 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->

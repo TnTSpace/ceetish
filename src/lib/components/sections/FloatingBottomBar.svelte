@@ -12,9 +12,7 @@
 	const showFilter = $page.url.pathname.toLowerCase() === '/catalog';
 
 	let mounted = new Promise((resolve, reject) => {
-		onMount(() => {
-			resolve(true);
-		});
+		onMount(() => resolve(true));
 	});
 </script>
 

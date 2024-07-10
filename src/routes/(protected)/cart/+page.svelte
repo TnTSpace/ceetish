@@ -60,7 +60,7 @@
 		</div>
 		<div class="grid grid-cols-1 gap-4 h-min">
 			<h2 class="uppercase font-semibold text-sm">cart details</h2>
-			<div class="grid grid-cols-1 gap-4">
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 				{#each products as item, i}
 					<CartProduct product={item.document} />
 				{:else}
