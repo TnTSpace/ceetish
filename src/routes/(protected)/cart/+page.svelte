@@ -2,7 +2,6 @@
 	import type { iStatus, iPayload } from '$lib';
 	import { Button } from '$lib/components/ui/button';
 	import { getPrice } from '$lib/common/products';
-	import CartProduct from '$lib/components/cards/CartProduct.svelte';
 	import { cartstore, getTotalCartPrice, userstore } from "$lib";
 	import toast from 'svelte-french-toast';
 	import MobileProduct from '$lib/components/cards/MobileProduct.svelte';
