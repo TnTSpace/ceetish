@@ -89,3 +89,18 @@ export const isActive = (paramValue: string, paramKey: string) => {
   }
   return false;
 };
+
+export const act = (list: string[], str: string, action: 'remove' | 'add') => {
+  switch (action) {
+    case 'remove':
+      let set = new Set(list);
+      set.delete(str);
+      list = Array.from(set);
+      break;
+    case 'add':
+      list.push(str);
+      list = list;
+      break;
+  }
+  return list;
+};

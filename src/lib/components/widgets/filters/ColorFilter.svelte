@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { act } from '$lib';
 	import { page } from '$app/stores';
 	import type { iFilters } from '$lib';
 	import { capitalize } from '$lib/common';
@@ -11,13 +12,7 @@
 	export let allFilters: iFilters;
 	export let actualFilters: iFilters;
 
-	let firstPageEntry = true;
-
 	const { colors } = allFilters;
-
-	onMount(() => {
-		firstPageEntry = false;
-	});
 
 	let colorList: string[] = [];
 
@@ -33,23 +28,7 @@
 		const colorParams = $page.url.searchParams.get(eFilters.COLORS);
 		const colorString = colorParams ? (colorParams as string) : '';
 		colorList = colorString.split('--').map((color) => color.toLowerCase());
-		console.log(colorList);
 	});
-
-	const act = (list: string[], str: string, action: 'remove' | 'add') => {
-		switch (action) {
-			case 'remove':
-				let set = new Set(list);
-				set.delete(str);
-				list = Array.from(set);
-				break;
-			case 'add':
-				list.push(str);
-				list = list;
-				break;
-		}
-		return list;
-	};
 
 	const onInput = (evt: Event) => {
 		const target = evt.target as HTMLInputElement;
@@ -73,16 +52,14 @@
 		<Button class="flex justify-start !p-0" variant="ghost">
 			<label class="item-center flex w-full cursor-pointer justify-between gap-2 px-4 py-2">
 				<div class="flex items-center gap-1">
-					{#if $filterstore && $filterstore.colors}
-						<!-- <div class="h-6 w-6 rounded" style={`background-color:${color}`}></div> -->
-						<input
-							on:input={onInput}
-							class={checkBoxClass}
-							type="checkbox"
-							bind:group={colorList}
-							value={color}
-						/>
-					{/if}
+					<!-- <div class="h-6 w-6 rounded" style={`background-color:${color}`}></div> -->
+					<input
+						on:input={onInput}
+						class={checkBoxClass}
+						type="checkbox"
+						bind:group={colorList}
+						value={color}
+					/>
 					<span>{capitalize(color)}</span>
 				</div>
 				<Badge>{numProducts(color)}</Badge>
