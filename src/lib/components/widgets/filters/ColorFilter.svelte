@@ -49,6 +49,7 @@
 
 <div class="mt-2 flex flex-col">
 	{#each colors as color, i}
+		{#if numProducts(color)}
 		<Button class="flex justify-start !p-0" variant="ghost">
 			<label class="item-center flex w-full cursor-pointer justify-between gap-2 px-4 py-2">
 				<div class="flex items-center gap-1">
@@ -65,5 +66,6 @@
 				<Badge>{numProducts(color)}</Badge>
 			</label>
 		</Button>
+		{/if}
 	{/each}
 </div>
