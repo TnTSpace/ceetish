@@ -5,6 +5,7 @@
 	import CartProduct from '$lib/components/cards/CartProduct.svelte';
 	import { cartstore, getTotalCartPrice, userstore } from "$lib";
 	import toast from 'svelte-french-toast';
+	import MobileProduct from '$lib/components/cards/MobileProduct.svelte';
 
 	$: products = $cartstore ? Object.keys($cartstore).map(key => $cartstore[key]) : []
 	$: subtotal = $cartstore ? getTotalCartPrice($cartstore) : 0
@@ -62,7 +63,7 @@
 			<h2 class="uppercase font-semibold text-sm">cart details</h2>
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 				{#each products as item, i}
-					<CartProduct product={item.document} />
+					<MobileProduct product={item.document} />
 				{:else}
 					 <p>No products found</p>
 				{/each}
