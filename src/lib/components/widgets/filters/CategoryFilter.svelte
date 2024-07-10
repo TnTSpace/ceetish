@@ -52,6 +52,7 @@
 		all
 	</Button>
 	{#each allFilters.categories as category, i}
+		{#if numProducts(category)}
 		<Button
 			on:click={() => updateCategory(category)}
 			variant={isActive(eFilters.CATEGORY, category) ? 'outline' : 'ghost'}
@@ -63,5 +64,6 @@
 			<span>{category}</span>
 			<Badge>{numProducts(category)}</Badge>
 		</Button>
+		{/if}
 	{/each}
 </div>

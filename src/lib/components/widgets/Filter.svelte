@@ -15,7 +15,7 @@
 
 </script>
 
-<div class={cn("flex-col gap-4 hidden md:flex", className)}>
+<div class={cn("flex-col gap-4 hidden md:flex bg-white dark:bg-primary/10 p-4 rounded-lg", className)}>
   {#if categories.length}
   <div>
     <h3 class="font-semibold capitalize">
@@ -24,6 +24,7 @@
     <CategoryFilter { allFilters } { actualFilters } />
   </div>
   {/if}
+	<hr class="dark:border-primary/20" />
   {#if maxPrice}
     <div>
       <h3 class="font-semibold capitalize">
@@ -32,6 +33,7 @@
       <PriceFilter { allFilters } { actualFilters } />
     </div>
   {/if}
+	<hr class="dark:border-primary/20" />
   {#if sizes.length}
     <div>
       <h3 class="font-semibold capitalize">
@@ -40,6 +42,7 @@
       <SizeFilter { allFilters } { actualFilters } />
     </div>
   {/if}
+	<hr class="dark:border-primary/20" />
   {#if colors.length}
     <div>
       <h3 class="font-semibold capitalize">

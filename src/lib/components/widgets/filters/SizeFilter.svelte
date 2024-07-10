@@ -46,18 +46,20 @@
 
 <div class="mt-2 flex flex-col">
 	{#each sizes as size, i}
-		<label class="item-center flex cursor-pointer justify-between gap-2 px-4 py-2">
-			<div class="flex items-center justify-start gap-1">
-				<input
-					on:input={onInput}
-					type="checkbox"
-					class={checkBoxClass}
-					bind:group={sizeList}
-					value={size}
-				/>
-				<span>{capitalize(size)}</span>
-			</div>
-			<Badge>{numProducts(size)}</Badge>
-		</label>
+		{#if numProducts(size)}
+			<label class="item-center flex cursor-pointer justify-between gap-2 px-4 py-2">
+				<div class="flex items-center justify-start gap-1">
+					<input
+						on:input={onInput}
+						type="checkbox"
+						class={checkBoxClass}
+						bind:group={sizeList}
+						value={size}
+					/>
+					<span>{capitalize(size)}</span>
+				</div>
+				<Badge>{numProducts(size)}</Badge>
+			</label>
+		{/if}
 	{/each}
 </div>
