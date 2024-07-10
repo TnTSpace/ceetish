@@ -20,6 +20,8 @@ export const productGrid = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:gr
 
 export const priceClass = "font-bold text-lg w-fit rounded-lg flex items-center justify-center"
 
+export const btnClasses = "relative amazonchip dark:border-none dark:bg-primary/10"
+
 export enum Collection {
   COURSES = "courses",
   SERVICES = "services",

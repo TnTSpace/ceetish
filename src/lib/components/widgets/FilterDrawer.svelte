@@ -3,8 +3,8 @@
   import { Button } from "$lib/components/ui/button/index.js";
   import { Filter as IconFilter } from "lucide-svelte";
 	import Filter from "./Filter.svelte";
-	import type { Content } from "@prismicio/client";
-	import type { iFilters } from "$lib";
+	import { btnClasses, type iFilters } from "$lib";
+	import { cn } from "$lib/utils";
  
   export let allFilters: iFilters
   export let actualFilters: iFilters
@@ -19,7 +19,7 @@
   <Drawer.Content class="md:hidden">
     <div class="mx-auto w-full max-w-sm h-60 overflow-auto">
       <div class="p-4 pb-0">
-        <Filter { allFilters } { actualFilters } class="flex md:hidden" />
+        <Filter { allFilters } { actualFilters } class={cn("flex md:hidden", btnClasses)} />
       </div>
       <Drawer.Footer>
         <!-- <Button>Submit</Button> -->

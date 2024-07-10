@@ -8,6 +8,8 @@
 	import Hamburger from "../icons/Hamburger.svelte";
 	import { PrismicLink } from "@prismicio/svelte";
   import { buttonVariants } from "$lib/components/ui/button/index.js";
+	import { cn } from "$lib/utils";
+	import { btnClasses } from "$lib/constants";
   
   $: open = false
   
@@ -21,7 +23,7 @@
  
 <Drawer.Root bind:open>
   <Drawer.Trigger asChild let:builder>
-    <Button builders={[builder]} variant="outline" size="icon" class="md:hidden amazonchip dark:border-none dark:bg-primary/10">
+    <Button builders={[builder]} variant="outline" size="icon" class={cn("md:hidden", btnClasses)}>
       <Hamburger />
     </Button>
   </Drawer.Trigger>

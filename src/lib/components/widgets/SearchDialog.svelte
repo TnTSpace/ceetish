@@ -3,6 +3,7 @@
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
+	import { btnClasses } from '$lib/constants';
 	import { cn } from '$lib/utils';
 
   import { SearchIcon as IconSearch } from 'lucide-svelte';
@@ -21,7 +22,7 @@
 
 
   <Dialog.Root>
-    <Dialog.Trigger class={cn(buttonVariants({ variant: 'outline', size: "icon" }), className, "flex items-center justify-center", "relative amazonchip dark:border-none dark:bg-primary/10")} >
+    <Dialog.Trigger class={cn(buttonVariants({ variant: 'outline', size: "icon" }), className, "flex items-center justify-center", btnClasses)} >
       <IconSearch class="!w-4 !h-4" />
     </Dialog.Trigger>
     <Dialog.Content class="sm:max-w-[425px]">
