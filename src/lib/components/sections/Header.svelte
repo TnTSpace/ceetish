@@ -17,6 +17,7 @@
 	import { userstore, cartstore } from '$lib/stores';
 	import { Badge } from '../ui/badge';
 	import { getTotalCartItems } from '$lib/common/products';
+	import { btnClasses } from '$lib/constants';
 
 	export let settings: SettingsDocument<string>;
 
@@ -84,7 +85,7 @@
 					<UserButton afterSignOutUrl="/" />
 				</SignedIn>
 				<SignedOut>
-					<Button size="icon" variant="outline" href="/sign-in">
+					<Button size="icon" variant="outline" href="/sign-in" class={btnClasses}>
 						<User class="h-4 w-4" />
 					</Button>
 				</SignedOut>
