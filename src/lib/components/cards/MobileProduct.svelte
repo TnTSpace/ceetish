@@ -49,7 +49,7 @@
 	};
 
 	let mounted = new Promise((resolve, reject) => {
-		onMount(() => {});
+		onMount(() => resolve(true));
 	});
 </script>
 
