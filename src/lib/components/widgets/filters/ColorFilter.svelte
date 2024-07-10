@@ -33,16 +33,37 @@
 		const colorParams = $page.url.searchParams.get(eFilters.COLORS);
 		const colorString = colorParams ? (colorParams as string) : '';
 		colorList = colorString.split('--').map((color) => color.toLowerCase());
+		console.log(colorList);
 	});
+
+	const act = (list: string[], str: string, action: 'remove' | 'add') => {
+		switch (action) {
+			case 'remove':
+				let set = new Set(list);
+				set.delete(str);
+				list = Array.from(set);
+				break;
+			case 'add':
+				list.push(str);
+				list = list;
+				break;
+		}
+		return list;
+	};
 
 	const onInput = (evt: Event) => {
 		const target = evt.target as HTMLInputElement;
-		const value = target.value.toLowerCase();
-		if (value === '') {
-			$page.url.searchParams.delete(eFilters.COLORS);
-		} else {
-			$page.url.searchParams.set(eFilters.COLORS, value);
-		}
+		const newVal = target.value.toLowerCase();
+		const exists = colorList.includes(newVal);
+
+		colorList = exists ? act(colorList, newVal, 'remove') : act(colorList, newVal, 'add');
+
+		const value = colorList.join('--');
+
+		value === ''
+			? $page.url.searchParams.delete(eFilters.COLORS)
+			: $page.url.searchParams.set(eFilters.COLORS, value);
+
 		location.href = $page.url.toString();
 	};
 </script>
