@@ -30,7 +30,7 @@
       <h3 class="font-semibold capitalize">
         Price Range
       </h3>
-      <PriceFilter { allFilters } { actualFilters } />
+      <PriceFilter { allFilters } />
     </div>
   {/if}
 	<hr class="dark:border-primary/20" />

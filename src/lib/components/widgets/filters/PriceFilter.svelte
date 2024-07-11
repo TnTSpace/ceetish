@@ -6,7 +6,8 @@
 	import { onMount } from 'svelte';
 
 	export let allFilters: iFilters;
-	export let actualFilters: iFilters;
+
+	const { maxPrice } = allFilters
 
 	let lowerLimit = 0;
 	let upperLimit = 999;
@@ -44,10 +45,12 @@
 	};
 
 	onMount(() => {
-		const price = $page.url.searchParams.get(eFilters.PRICE) as string
-		const limits = upperAndLowerLimit(price)
-		lowerLimit = limits.lowerLimit
-		upperLimit = limits.upperLimit
+		const price = $page.url.searchParams.get(eFilters.PRICE)
+		if (price) {
+			const limits = upperAndLowerLimit(price as string)
+			lowerLimit = limits.lowerLimit
+			upperLimit = limits.upperLimit
+		}
 	})
 </script>
 

@@ -9,7 +9,8 @@ export enum eFilters {
   CATEGORY = "category",
   SIZES = "sizes",
   COLORS = "colors",
-  PRICE = "price"
+  PRICE = "price",
+  SEARCH = "search"
 }
 
 
