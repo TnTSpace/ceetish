@@ -1,4 +1,5 @@
 <script>
+	import SelectedFilters from '$lib/components/widgets/filters/SelectedFilters.svelte';
 	import { PrismicText, SliceZone } from '@prismicio/svelte';
 
 	import { components } from '$lib/slices';
@@ -18,20 +19,21 @@
 	<div class="grid w-full grid-cols-1 gap-4 py-4 center md:grid-cols-[240px_1fr]">
 		<Filter {allFilters} {actualFilters} class="w-[240px]" />
 		<div class="flex flex-col gap-4">
-			<div class="flex items-center justify-between">
+			<div class="flex flex-col items-center justify-between gap-2 md:flex-row">
 				<!-- <h2>{}</h2> -->
-				<PrismicText field={title} />
-
-				<!-- <Select {list} label="Sort By" class="w-fit" /> -->
+				<div class="flex items-center justify-between w-full md:w-fit gap-2">
+					<PrismicText field={title} />
+					<p class="text-sm text-muted-foreground">({products.length} products found)</p>
+				</div>
+				<SelectedFilters />
 			</div>
 			<div class={productGrid}>
 				{#each products as product, i}
 					<Product {product} />
-				{:else}
-					<p>No products found</p>
 				{/each}
 			</div>
 		</div>
 	</div>
 </section>
 <!-- <SliceZone slices={data.page.data.slices} {components} /> -->
+<!-- todo: top exclusion filter -->

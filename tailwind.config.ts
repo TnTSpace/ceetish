@@ -93,6 +93,12 @@ const config: Config = {
 					border: '1px solid #d5d9d9',
 					boxShadow: '0 2px 5px rgba(0,0,0,0.1)'
 				},
+				'.amazonchipfilter': {
+					borderRadius: '50px',
+					fontSize: '13px',
+					border: '1px solid #d5d9d911',
+					boxShadow: '0 2px 5px rgba(0,0,0,0.1)'
+				},
 				'.clip': {
 					clipPath: 'polygon(30% 0, 100% 0%, 100% 100%, 0% 100%)'
 				},

@@ -37,7 +37,9 @@
 
 		colorList = exists ? act(colorList, newVal, 'remove') : act(colorList, newVal, 'add');
 
-		const value = colorList.join('--');
+		let value = colorList.join('--');
+
+		value = value.startsWith("--") ? value.substring(2) : value
 
 		value === ''
 			? $page.url.searchParams.delete(eFilters.COLORS)

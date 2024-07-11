@@ -34,7 +34,8 @@
 
 		sizeList = exists ? act(sizeList, newVal, 'remove') : act(sizeList, newVal, 'add');
 
-		const value = sizeList.join('--');
+		let value = sizeList.join('--');
+		value = value.startsWith("--") ? value.substring(2) : value
 
 		value == ''
 			? $page.url.searchParams.delete(eFilters.SIZES)
