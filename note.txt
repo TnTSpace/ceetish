@@ -11,3 +11,4 @@ Sliders
 ToDo
 - Hookup add to carts to firebase instead of localstorage
 - Add all products to the platform
+- Educational pages
