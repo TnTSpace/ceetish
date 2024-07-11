@@ -4,11 +4,9 @@
 	import Logo from '../icons/Logo.svelte';
 	import { asLink, type LinkField } from '@prismicio/client';
 	import { page } from '$app/stores';
-	import { Input } from '../ui/input';
 
 	import { User } from 'lucide-svelte';
-	import { ShoppingCart } from 'lucide-svelte';
-	import { SearchIcon } from 'lucide-svelte';
+	import { ShoppingCart } from 'lucide-svelte'; 
 	import { Button } from '../ui/button';
 	import UserButton from 'clerk-sveltekit/client/UserButton.svelte';
 	import SignedIn from 'clerk-sveltekit/client/SignedIn.svelte';
@@ -17,9 +15,8 @@
 	import { userstore, cartstore } from '$lib/stores';
 	import { getTotalCartItems } from '$lib/common/products';
 	import { btnClasses } from '$lib/constants'; 
-	import { onMount } from 'svelte';
-	import Skeleton from '../ui/skeleton/skeleton.svelte';
-	import SearchFilter from '../widgets/filters/SearchFilter.svelte';
+	import { onMount } from 'svelte'; 
+	import SearchDialog from '../widgets/SearchDialog.svelte';
 
 	export let settings: SettingsDocument<string>;
 
@@ -55,11 +52,7 @@
 		aria-label="Main"
 		class="mx-auto flex items-center justify-between px-2 py-2 font-medium center"
 	>
-		<div class="flex items-center gap-4">
-			<Logo {srTitle} on:click={close} class="z-50" />
-
-			<SearchFilter class="hidden md:block" />
-		</div>
+	<Logo {srTitle} on:click={close} class="z-50" />
 
 		<div class="flex items-center gap-2">
 			<ul class="hidden gap-6 md:flex items-center">
@@ -97,6 +90,7 @@
 				</SignedOut>
 			</div>
 			<ModeToggle class="hidden items-center justify-center md:flex" />
+			<SearchDialog class="!hidden !md:flex" />
 		</div>
 	</nav>
 </header>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import SearchFilter from './filters/SearchFilter.svelte';
 	import CategoryFilter from './filters/CategoryFilter.svelte'; 
 	import { cn } from '$lib/utils'; 
 	import type { iFilters } from '$lib/interfaces';
@@ -16,6 +17,7 @@
 </script>
 
 <div class={cn("flex-col gap-4 hidden md:flex bg-white dark:bg-primary/10 p-4 rounded-lg", className)}>
+  <SearchFilter />
   {#if categories.length}
   <div>
     <h3 class="font-semibold capitalize">

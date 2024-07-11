@@ -6,6 +6,7 @@
 
 	export let settings: SettingsDocument<string>;
 
+
 	let mounted = new Promise((resolve, reject) => {
 		onMount(() => resolve(true));
 	});
