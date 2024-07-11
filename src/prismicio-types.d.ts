@@ -515,6 +515,92 @@ export type PageDocument<Lang extends string = string> = prismic.PrismicDocument
 	Lang
 >;
 
+type PolicyDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Policy documents
+ */
+interface PolicyDocumentData {
+	/**
+	 * Title field in *Policy*
+	 *
+	 * - **Field Type**: Title
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: policy.title
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	title: prismic.TitleField;
+
+	/**
+	 * Body field in *Policy*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: policy.body
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	body: prismic.RichTextField;
+
+	/**
+	 * Slice Zone field in *Policy*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: policy.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#slices
+	 */
+	slices: prismic.SliceZone<PolicyDocumentDataSlicesSlice> /**
+	 * Meta Title field in *Policy*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **API ID Path**: policy.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */;
+	meta_title: prismic.KeyTextField;
+
+	/**
+	 * Meta Description field in *Policy*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A brief summary of the page
+	 * - **API ID Path**: policy.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	meta_description: prismic.KeyTextField;
+
+	/**
+	 * Meta Image field in *Policy*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: policy.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Policy document from Prismic
+ *
+ * - **API ID**: `policy`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PolicyDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+	Simplify<PolicyDocumentData>,
+	'policy',
+	Lang
+>;
+
 /**
  * Item in *Product → Colors*
  */
@@ -558,6 +644,21 @@ export interface ProductDocumentDataImagesItem {
 	 * - **Documentation**: https://prismic.io/docs/field#image
 	 */
 	image: prismic.ImageField<never>;
+}
+
+/**
+ * Item in *Product → Policies*
+ */
+export interface ProductDocumentDataPoliciesItem {
+	/**
+	 * Policy field in *Product → Policies*
+	 *
+	 * - **Field Type**: Content Relationship
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: product.policies[].policy
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	policy: prismic.ContentRelationshipField<'policy'>;
 }
 
 type ProductDocumentDataSlicesSlice = DetailSlice;
@@ -675,6 +776,17 @@ interface ProductDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/field#embed
 	 */
 	video: prismic.EmbedField;
+
+	/**
+	 * Policies field in *Product*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: product.policies[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	policies: prismic.GroupField<Simplify<ProductDocumentDataPoliciesItem>>;
 
 	/**
 	 * Slice Zone field in *Product*
@@ -842,6 +954,7 @@ export type AllDocumentTypes =
 	| CategoryListingPageDocument
 	| FiltersDocument
 	| PageDocument
+	| PolicyDocument
 	| ProductDocument
 	| SettingsDocument;
 
@@ -1486,11 +1599,15 @@ declare module '@prismicio/client' {
 			PageDocument,
 			PageDocumentData,
 			PageDocumentDataSlicesSlice,
+			PolicyDocument,
+			PolicyDocumentData,
+			PolicyDocumentDataSlicesSlice,
 			ProductDocument,
 			ProductDocumentData,
 			ProductDocumentDataColorsItem,
 			ProductDocumentDataSizesItem,
 			ProductDocumentDataImagesItem,
+			ProductDocumentDataPoliciesItem,
 			ProductDocumentDataSlicesSlice,
 			SettingsDocument,
 			SettingsDocumentData,

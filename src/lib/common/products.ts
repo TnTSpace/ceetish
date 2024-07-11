@@ -1,6 +1,6 @@
 import type { iCart, iCartValue, iFilters } from "$lib/interfaces"
 import { filter, Client } from "@prismicio/client"
-import { pluralToSingular } from "."
+import { pluralToSingular, upperAndLowerLimit } from "."
 import type { AllDocumentTypes, CatalogDocument, ProductDocument } from "../../prismicio-types"
 
 const checkFilters = ['sizes', 'colors', 'uids']
@@ -9,6 +9,12 @@ export const getFilters = (key: string, entries: Record<string, any>) => {
 	const value = entries[key].toLowerCase()
 	const plural = key.toLowerCase()
 	const singular = pluralToSingular(key)
+
+	if (key = "price") {
+		const filterKey = `my.product.price`
+		const { lowerLimit, upperLimit } = upperAndLowerLimit(value)
+		return filter.numberInRange(filterKey, lowerLimit, upperLimit)
+	}
 	
 	if (checkFilters.includes(key)) {
 		const values = value.split("--")

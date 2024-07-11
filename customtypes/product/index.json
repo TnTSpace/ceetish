@@ -116,6 +116,23 @@
 					"placeholder": ""
 				}
 			},
+			"policies": {
+				"type": "Group",
+				"config": {
+					"label": "Policies",
+					"repeat": true,
+					"fields": {
+						"policy": {
+							"type": "Link",
+							"config": {
+								"label": "Policy",
+								"select": "document",
+								"customtypes": ["policy"]
+							}
+						}
+					}
+				}
+			},
 			"slices": {
 				"type": "Slices",
 				"fieldset": "Slice Zone",

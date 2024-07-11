@@ -8,7 +8,8 @@ export enum Constants {
 export enum eFilters {
   CATEGORY = "category",
   SIZES = "sizes",
-  COLORS = "colors"
+  COLORS = "colors",
+  PRICE = "price"
 }
 
 

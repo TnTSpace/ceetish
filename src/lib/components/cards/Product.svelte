@@ -8,6 +8,7 @@
 
 	let className: string = '';
 	export { className as class };
+	console.log({ product })
 </script>
 
 <div>

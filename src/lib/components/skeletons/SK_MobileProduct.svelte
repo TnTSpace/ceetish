@@ -1,9 +1,13 @@
 <script lang="ts">
+	import { cn } from '$lib/utils';
 	import Skeleton from '../ui/skeleton/skeleton.svelte';
 
+	let className: string = ""
+
+	export { className as class }
 </script>
 
-<div class="flex flex-col gap-2 overflow-hidden rounded-lg p-2 shadow-custom bg-white dark:bg-primary/10">
+<div class={cn("flex flex-col gap-2 overflow-hidden rounded-lg p-2 shadow-custom bg-white dark:bg-primary/10", className)}>
 	<div class="grid grid-cols-[1fr_2fr] gap-2">
 		<div class="relative aspect-square w-full overflow-hidden">
       <Skeleton class="absolute left-1/2 top-1/2 aspect-auto h-full w-full -translate-x-1/2 -translate-y-1/2 rounded-md object-cover" />

@@ -104,3 +104,10 @@ export const act = (list: string[], str: string, action: 'remove' | 'add') => {
   }
   return list;
 };
+
+export const upperAndLowerLimit = (value: string) => {
+  const pieces = value.split('-')
+  const lowerLimit = Number(pieces[0])
+  const upperLimit = Number(pieces[1])
+  return { lowerLimit, upperLimit }
+}

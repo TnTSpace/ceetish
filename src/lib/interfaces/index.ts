@@ -132,3 +132,8 @@ export interface iPayload {
   fullName: string;
   products: iCartValue[]
 }
+
+export interface iPrice {
+  lowerLimit: string;
+  upperLimit: string;
+}
