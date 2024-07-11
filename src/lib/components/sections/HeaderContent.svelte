@@ -19,6 +19,7 @@
 	import { btnClasses } from '$lib/constants'; 
 	import { onMount } from 'svelte';
 	import Skeleton from '../ui/skeleton/skeleton.svelte';
+	import SearchFilter from '../widgets/filters/SearchFilter.svelte';
 
 	export let settings: SettingsDocument<string>;
 
@@ -57,12 +58,7 @@
 		<div class="flex items-center gap-4">
 			<Logo {srTitle} on:click={close} class="z-50" />
 
-			<div class="relative hidden md:block">
-				<Button size="icon" variant="ghost" class="absolute right-0 top-1/2 -translate-y-1/2">
-					<SearchIcon class="h-4 w-4" />
-				</Button>
-				<Input placeholder="Your search begins here" name="search" class="w-full pr-12" />
-			</div>
+			<SearchFilter class="hidden md:block" />
 		</div>
 
 		<div class="flex items-center gap-2">

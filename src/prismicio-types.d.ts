@@ -266,71 +266,6 @@ export type CategoriesDocument<Lang extends string = string> = prismic.PrismicDo
 	Lang
 >;
 
-type CategoryListingPageDocumentDataSlicesSlice = BannerSlice;
-
-/**
- * Content for Category Listing Page documents
- */
-interface CategoryListingPageDocumentData {
-	/**
-	 * Slice Zone field in *Category Listing Page*
-	 *
-	 * - **Field Type**: Slice Zone
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: category_listing_page.slices[]
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/field#slices
-	 */
-	slices: prismic.SliceZone<CategoryListingPageDocumentDataSlicesSlice> /**
-	 * Meta Title field in *Category Listing Page*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: A title of the page used for social media and search engines
-	 * - **API ID Path**: category_listing_page.meta_title
-	 * - **Tab**: SEO & Metadata
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */;
-	meta_title: prismic.KeyTextField;
-
-	/**
-	 * Meta Description field in *Category Listing Page*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: A brief summary of the page
-	 * - **API ID Path**: category_listing_page.meta_description
-	 * - **Tab**: SEO & Metadata
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */
-	meta_description: prismic.KeyTextField;
-
-	/**
-	 * Meta Image field in *Category Listing Page*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: category_listing_page.meta_image
-	 * - **Tab**: SEO & Metadata
-	 * - **Documentation**: https://prismic.io/docs/field#image
-	 */
-	meta_image: prismic.ImageField<never>;
-}
-
-/**
- * Category Listing Page document from Prismic
- *
- * - **API ID**: `category_listing_page`
- * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type CategoryListingPageDocument<Lang extends string = string> =
-	prismic.PrismicDocumentWithUID<
-		Simplify<CategoryListingPageDocumentData>,
-		'category_listing_page',
-		Lang
-	>;
-
 /**
  * Item in *Filters → Categories*
  */
@@ -745,6 +680,17 @@ interface ProductDocumentData {
 	sizes: prismic.GroupField<Simplify<ProductDocumentDataSizesItem>>;
 
 	/**
+	 * Search Metadata field in *Product*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: product.search_metadata
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	search_metadata: prismic.RichTextField;
+
+	/**
 	 * Details field in *Product*
 	 *
 	 * - **Field Type**: Rich Text
@@ -951,7 +897,6 @@ export type SettingsDocument<Lang extends string = string> = prismic.PrismicDocu
 export type AllDocumentTypes =
 	| CatalogDocument
 	| CategoriesDocument
-	| CategoryListingPageDocument
 	| FiltersDocument
 	| PageDocument
 	| PolicyDocument
@@ -1588,9 +1533,6 @@ declare module '@prismicio/client' {
 			CategoriesDocumentDataCategoriesItem,
 			CategoriesDocumentDataColorsItem,
 			CategoriesDocumentDataSizesItem,
-			CategoryListingPageDocument,
-			CategoryListingPageDocumentData,
-			CategoryListingPageDocumentDataSlicesSlice,
 			FiltersDocument,
 			FiltersDocumentData,
 			FiltersDocumentDataCategoriesItem,

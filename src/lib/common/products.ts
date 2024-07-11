@@ -16,6 +16,11 @@ export const getFilters = (key: string, entries: Record<string, any>) => {
 		const { lowerLimit, upperLimit } = upperAndLowerLimit(value)
 		return filter.numberInRange(filterKey, lowerLimit, upperLimit)
 	}
+
+	if (key.includes(eFilters.SEARCH)) {
+		const filterKey = `my.product.search_metadata` 
+		return filter.fulltext(filterKey, value)
+	}
 	
 	if (checkFilters.includes(key)) {
 		const values = value.split("--")
