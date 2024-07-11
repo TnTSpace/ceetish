@@ -82,7 +82,7 @@
 			<div class="embla-thumbs__container">
 				{#each sliders as slider, i}
 					<div
-						class="embla-thumbs__slide embla-thumbs__slide--selected aspect-square overflow-hidden rounded-2xl"
+						class="embla-thumbs__slide embla-thumbs__slide--selected aspect-square overflow-hidden rounded-lg"
 					>
 						<button type="button" class="embla-thumbs__slide__number relative aspect-square">
 							<PrismicImage
