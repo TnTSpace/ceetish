@@ -10,7 +10,7 @@
 	const { maxPrice } = allFilters
 
 	let lowerLimit = 0;
-	let upperLimit = 999;
+	let upperLimit = Number(maxPrice);
 
 	const onSubmit = (evt: SubmitEvent) => {
 		evt.preventDefault();
