@@ -36,7 +36,7 @@
 </script>
 
 <form class={cn("relative", className)} on:submit={onSubmit}>
-  <Button size="icon" variant="ghost" class="absolute right-0 top-1/2 -translate-y-1/2">
+  <Button type="submit" size="icon" variant="ghost" class="absolute right-0 top-1/2 -translate-y-1/2">
     <SearchIcon class="h-4 w-4" />
   </Button>
   <Input bind:value={search} placeholder="Your search begins here" name="search" class="w-full pr-12" />

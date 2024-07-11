@@ -28,7 +28,7 @@
       <form on:submit={onSubmit} class="flex flex-col gap-4">
         <Dialog.Header>
           <Dialog.Title>Search</Dialog.Title>
-          <Dialog.Description>Search for products</Dialog.Description>
+          <Dialog.Description>products with keywords</Dialog.Description>
         </Dialog.Header>
         <div>
           <SearchFilter />
