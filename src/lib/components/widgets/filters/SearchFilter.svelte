@@ -20,11 +20,10 @@
     const form = evt.target as HTMLFormElement
     const formData = new FormData(form)
     const entries = Object.fromEntries(formData.entries()) as unknown as { search: string; }
-    $page.url.searchParams.set(eFilters.SEARCH, entries.search.toLowerCase())
 
     search = ""
 
-    location.href = $page.url.toString()
+    location.href = `/catalog/?search=${entries.search.toLowerCase().split(" ").join('+')}`
   }
 
   onMount(() => {
