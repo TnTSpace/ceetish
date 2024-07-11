@@ -1,6 +1,5 @@
 import { browser } from "$app/environment";
-// import { Constants } from "$lib";
-import type { iFilter, iCategoryLink, iCart, iUser } from "$lib/interfaces";
+import type { iFilter, iCart, iUser } from "$lib/interfaces";
 import { writable } from "svelte/store";
 
 export const initialFilters = {
@@ -24,6 +23,7 @@ const getLocalStorage = (key: string, initialValue: any) => {
     return storedValue ? JSON.parse(storedValue) : initialValue
   }
 }
+
 
 const setLocalStorage = (key: string, value: any) => {
   if (browser) {

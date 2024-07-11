@@ -25,19 +25,8 @@ export const priceClass = "font-bold text-lg w-fit rounded-lg flex items-center 
 export const btnClasses = "relative amazonchip dark:border-none dark:bg-primary/10"
 
 export enum Collection {
-  COURSES = "courses",
-  SERVICES = "services",
-  AFFILIATES = "affiliates",
-  SUBSCRIBERS = "subscribers",
-  REGISTRATION = "registration",
-  FINANCE = "finance",
-  REFEREES = "referees",
-  SLIDES = "slides",
-  BLOG = "blog",
-  SCHOOLS = "schools",
-  USERS = "users",
-  PARTNERS = "partners",
-  CONTACT = "contact"
+  USERS = 'users',
+  CART = 'cart'
 }
 
 export enum Actions {

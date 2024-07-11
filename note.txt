@@ -7,3 +7,7 @@ Sliders
 - High quality affordable extensions: https://www.ceetish.com/category/hair-extensions
 - Your favorite premium hairline: https://www.ceetish.com/category/hair-extensions
 - Bring out the best in you: https://www.ceetish.com/category/hair-extensions
+
+ToDo
+- Hookup add to carts to firebase instead of localstorage
+- Add all products to the platform

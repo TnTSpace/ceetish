@@ -4,20 +4,21 @@
 	import { cn } from '$lib/utils';
 	import { Button } from '../ui/button';
 	import ProductDialog from '../widgets/ProductDialog.svelte';
-	import { cartstore } from '$lib/stores';
+	import { cartstore, userstore } from '$lib/stores';
 	import type { TAction } from '$lib/interfaces';
 	import { Actions, priceClass, sublineClass } from '$lib/constants';
 	import CartCounter from '../widgets/CartCounter.svelte';
+	import { setCart } from '$lib/common/cart';
 
 	export let product: Content.ProductDocument;
 
 	let className: string = '';
 	export { className as class };
 
-	const { data, uid } = product;
-	const { name, category, images, price, description } = data;
+	const { data } = product;
+	const { name, images, price, description } = data;
 
-	const addToCart = () => {
+	const addToCart = async () => {
 		const exists = $cartstore[product.uid];
 		if (!exists) {
 			$cartstore[product.uid] = { document: product, count: 1 };
@@ -27,9 +28,12 @@
 			$cartstore[product.uid] = { ...cartProduct, count };
 		}
 		$cartstore = $cartstore;
+		if ($userstore) {
+			await setCart($userstore.emailAddresses[0].emailAddress, $cartstore)
+		}
 	};
 
-	const removeFromCart = () => {
+	const removeFromCart = async () => {
 		const cartProduct = $cartstore[product.uid];
 		const count = cartProduct.count - 1;
 		if (count === 0) {
@@ -38,6 +42,9 @@
 			$cartstore[product.uid] = { ...cartProduct, count };
 		}
 		$cartstore = $cartstore;
+		if ($userstore) {
+			await setCart($userstore.emailAddresses[0].emailAddress, $cartstore)
+		} 
 	};
 
 	const onAction = (evt: CustomEvent) => {
