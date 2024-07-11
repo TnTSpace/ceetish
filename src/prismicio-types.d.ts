@@ -293,7 +293,7 @@ export interface FiltersDocumentDataColorsItem {
 	 * - **API ID Path**: filters.colors[].color
 	 * - **Documentation**: https://prismic.io/docs/field#select
 	 */
-	color: prismic.SelectField<'gold' | 'silver'>;
+	color: prismic.SelectField<'gold' | 'silver' | 'pink' | 'brown'>;
 }
 
 /**
@@ -548,7 +548,7 @@ export interface ProductDocumentDataColorsItem {
 	 * - **API ID Path**: product.colors[].color
 	 * - **Documentation**: https://prismic.io/docs/field#select
 	 */
-	color: prismic.SelectField<'gold' | 'silver' | 'pink'>;
+	color: prismic.SelectField<'gold' | 'silver' | 'pink' | 'brown'>;
 }
 
 /**

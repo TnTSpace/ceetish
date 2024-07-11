@@ -34,7 +34,7 @@
 							"config": {
 								"label": "Color",
 								"placeholder": "",
-								"options": ["gold", "silver"]
+								"options": ["gold", "silver", "pink", "brown"]
 							}
 						}
 					}
