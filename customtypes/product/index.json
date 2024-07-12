@@ -52,10 +52,10 @@
 					"placeholder": ""
 				}
 			},
-			"discount": {
+			"old_price": {
 				"type": "Number",
 				"config": {
-					"label": "Discount",
+					"label": "Old Price",
 					"placeholder": ""
 				}
 			},

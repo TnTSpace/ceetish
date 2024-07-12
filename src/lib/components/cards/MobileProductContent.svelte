@@ -16,7 +16,7 @@
 	export { className as class };
 
 	const { data, uid } = product;
-	const { name, category, images, price, description } = data;
+	const { name, category, images, price, description, old_price } = data;
 
 	const addToCart = async () => {
 		const exists = $cartstore[product.uid];
@@ -29,7 +29,7 @@
 		}
 		$cartstore = $cartstore;
 		if ($userstore) {
-			await setCart($userstore.emailAddresses[0].emailAddress, $cartstore)
+			await setCart($userstore.emailAddresses[0].emailAddress, $cartstore);
 		}
 	};
 
@@ -43,7 +43,7 @@
 		}
 		$cartstore = $cartstore;
 		if ($userstore) {
-			await setCart($userstore.emailAddresses[0].emailAddress, $cartstore)
+			await setCart($userstore.emailAddresses[0].emailAddress, $cartstore);
 		}
 	};
 
@@ -51,46 +51,53 @@
 		const detail = evt.detail as TAction;
 		detail === Actions.ADD ? addToCart() : removeFromCart();
 	};
-
 </script>
 
 <div
-class={cn(
-  'flex flex-col gap-2 overflow-hidden rounded-lg bg-white p-2 shadow-custom dark:bg-primary/10',
-  className
-)}>
-<div class="grid grid-cols-[1fr_2fr] gap-2">
-  <a class="relative aspect-square w-full overflow-hidden" href={`/product/${product.uid}`}>
-    <PrismicImage
-      field={images[0]?.image}
-      class="absolute left-1/2 top-1/2 aspect-auto h-full -translate-x-1/2 -translate-y-1/2 rounded-md object-cover"
-    />
-  </a>
-  <div class="flex h-full w-full flex-col justify-between overflow-hidden text-ellipsis">
-    <div>
-      <h2 class="w-full overflow-hidden text-ellipsis text-base font-semibold oneline">
-        {name}
-      </h2>
-      <p class="hidden w-full text-sm text-muted-foreground twolines dark:opacity-60">
-        <PrismicText field={description} />
-      </p>
-    </div>
-    <p class={priceClass}>
-      £{price?.toFixed(2)}
-    </p>
-  </div>
-</div>
-<hr class="dark:border-primary/20" />
-<div aria-label="details" class="flex flex-col gap-2">
-  <div class="flex w-full items-center justify-between">
-    <ProductDialog {product} />
-    <div class="flex items-center gap-2">
-      {#if $cartstore && $cartstore[product.uid]}
-        <CartCounter on:action={onAction} {product} />
-      {:else}
-        <Button on:click={addToCart} class="w-full">Add to Cart</Button>
-      {/if}
-    </div>
-  </div>
-</div>
+	class={cn(
+		'flex flex-col gap-2 overflow-hidden rounded-lg bg-white p-2 shadow-custom dark:bg-primary/10',
+		className
+	)}
+>
+	<div class="grid grid-cols-[1fr_2fr] gap-2">
+		<a class="relative aspect-square w-full overflow-hidden" href={`/product/${product.uid}`}>
+			<PrismicImage
+				field={images[0]?.image}
+				class="absolute left-1/2 top-1/2 aspect-auto h-full -translate-x-1/2 -translate-y-1/2 rounded-md object-cover"
+			/>
+		</a>
+		<div class="flex h-full w-full flex-col justify-between overflow-hidden text-ellipsis">
+			<div>
+				<h2 class="w-full overflow-hidden text-ellipsis text-base font-semibold oneline">
+					{name}
+				</h2>
+				<p class="hidden w-full text-sm text-muted-foreground twolines dark:opacity-60">
+					<PrismicText field={description} />
+				</p>
+			</div>
+			<div class="flex items-center gap-1">
+				<p class={priceClass}>
+					£{price?.toFixed(2)}
+				</p>
+				{#if old_price}
+					<p class="text-sm text-muted-foreground line-through">
+						£{old_price?.toFixed(2)}
+					</p>
+				{/if}
+			</div>
+		</div>
+	</div>
+	<hr class="dark:border-primary/20" />
+	<div aria-label="details" class="flex flex-col gap-2">
+		<div class="flex w-full items-center justify-between">
+			<ProductDialog {product} />
+			<div class="flex items-center gap-2">
+				{#if $cartstore && $cartstore[product.uid]}
+					<CartCounter on:action={onAction} {product} />
+				{:else}
+					<Button on:click={addToCart} class="w-full">Add to Cart</Button>
+				{/if}
+			</div>
+		</div>
+	</div>
 </div>

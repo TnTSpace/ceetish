@@ -46,7 +46,7 @@ export interface CatalogDocumentDataSizesItem {
 	 * - **API ID Path**: catalog.sizes[].size
 	 * - **Documentation**: https://prismic.io/docs/field#select
 	 */
-	size: prismic.SelectField<'14 inches' | '16 inches' | '22 inches'>;
+	size: prismic.SelectField<'14 inches' | '16 inches' | '22 inches' | '12 inches' | '10 inches'>;
 }
 
 type CatalogDocumentDataSlicesSlice = never;
@@ -659,15 +659,15 @@ interface ProductDocumentData {
 	price: prismic.NumberField;
 
 	/**
-	 * Discount field in *Product*
+	 * Old Price field in *Product*
 	 *
 	 * - **Field Type**: Number
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: product.discount
+	 * - **API ID Path**: product.old_price
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/field#number
 	 */
-	discount: prismic.NumberField;
+	old_price: prismic.NumberField;
 
 	/**
 	 * Colors field in *Product*

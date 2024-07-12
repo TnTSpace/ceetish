@@ -8,6 +8,7 @@ export async function load({ url, fetch, cookies }) {
 	// const allProducts = await fetchProducts({}, client)
 
 	const page = await client.getSingle('catalog')
+	console.log({ data: page.data })
 	const allFilters = getAllFilters(page)
 	const actualFilters = getActualFilters(products)
 
