@@ -12,6 +12,15 @@
 				},
 				"type": "UID"
 			},
+			"in_stock": {
+				"type": "Boolean",
+				"config": {
+					"label": "In Stock",
+					"placeholder_false": "false",
+					"placeholder_true": "true",
+					"default_value": true
+				}
+			},
 			"name": {
 				"type": "Text",
 				"config": {
@@ -61,7 +70,7 @@
 							"config": {
 								"label": "Color",
 								"placeholder": "",
-								"options": ["gold", "silver", "pink", "brown"]
+								"options": ["gold", "silver", "pink", "brown", "black"]
 							}
 						}
 					}

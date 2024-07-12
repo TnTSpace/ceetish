@@ -31,7 +31,7 @@ export interface CatalogDocumentDataColorsItem {
 	 * - **API ID Path**: catalog.colors[].color
 	 * - **Documentation**: https://prismic.io/docs/field#select
 	 */
-	color: prismic.SelectField<'gold' | 'silver'>;
+	color: prismic.SelectField<'gold' | 'silver' | 'brown' | 'pink' | 'black'>;
 }
 
 /**
@@ -548,7 +548,7 @@ export interface ProductDocumentDataColorsItem {
 	 * - **API ID Path**: product.colors[].color
 	 * - **Documentation**: https://prismic.io/docs/field#select
 	 */
-	color: prismic.SelectField<'gold' | 'silver' | 'pink' | 'brown'>;
+	color: prismic.SelectField<'gold' | 'silver' | 'pink' | 'brown' | 'black'>;
 }
 
 /**
@@ -602,6 +602,18 @@ type ProductDocumentDataSlicesSlice = DetailSlice;
  * Content for Product documents
  */
 interface ProductDocumentData {
+	/**
+	 * In Stock field in *Product*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: true
+	 * - **API ID Path**: product.in_stock
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#boolean
+	 */
+	in_stock: prismic.BooleanField;
+
 	/**
 	 * Name field in *Product*
 	 *

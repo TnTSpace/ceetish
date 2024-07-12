@@ -12,3 +12,6 @@ ToDo
 - Hookup add to carts to firebase instead of localstorage
 - Add all products to the platform
 - Educational pages
+- Once a successful purchase is made, clear out localstorage and firebase storage
+- build the success page after successful stripe payment
+- build the error page after error stripe payment or cancelled stripe payment

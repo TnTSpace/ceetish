@@ -69,7 +69,7 @@ class={cn(
   </a>
 
   <div aria-label="details" class="p-4 pb-0">
-    <h3 class="overflow-hidden twolines md:text-ellipsis md:whitespace-nowrap">
+    <h3 class="overflow-hidden oneline md:text-ellipsis md:whitespace-nowrap">
       {name}
     </h3>
     <p class="hidden h-10 text-sm text-muted-foreground md:twolines">

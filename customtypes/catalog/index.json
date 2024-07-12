@@ -50,7 +50,7 @@
 							"config": {
 								"label": "Color",
 								"placeholder": "",
-								"options": ["gold", "silver"]
+								"options": ["gold", "silver", "brown", "pink", "black"]
 							}
 						}
 					}

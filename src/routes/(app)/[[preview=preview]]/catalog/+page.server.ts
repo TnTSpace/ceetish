@@ -11,6 +11,8 @@ export async function load({ url, fetch, cookies }) {
 	const allFilters = getAllFilters(page)
 	const actualFilters = getActualFilters(products)
 
+	console.log({ allFilters })
+
 	return {
 		products,
 		allFilters,

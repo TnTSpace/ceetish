@@ -16,7 +16,7 @@
 
 	let colorList: string[] = [];
 
-	$: colorList = colorList;
+	$: colorList = colorList; 
 
 	const numProducts = (color: string) => {
 		return actualFilters.colors.filter(
