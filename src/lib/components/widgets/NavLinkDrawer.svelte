@@ -27,7 +27,7 @@
       <Hamburger />
     </Button>
   </Drawer.Trigger>
-  <Drawer.Content>
+  <Drawer.Content class="bg-white dark:bg-primary-10">
     <div class="mx-auto w-full max-w-sm">
       <Drawer.Header>
         <Drawer.Title>Ceetish Collection</Drawer.Title>

@@ -1,4 +1,4 @@
-<script lang="ts"> 
+<script lang="ts">
 	import type { SettingsDocument } from '../../../prismicio-types';
 	import { PrismicLink } from '@prismicio/svelte';
 	import Logo from '../icons/Logo.svelte';
@@ -6,7 +6,7 @@
 	import { page } from '$app/stores';
 
 	import { User } from 'lucide-svelte';
-	import { ShoppingCart } from 'lucide-svelte'; 
+	import { ShoppingCart } from 'lucide-svelte';
 	import { Button } from '../ui/button';
 	import UserButton from 'clerk-sveltekit/client/UserButton.svelte';
 	import SignedIn from 'clerk-sveltekit/client/SignedIn.svelte';
@@ -14,8 +14,8 @@
 	import ModeToggle from '../widgets/ModeToggle.svelte';
 	import { userstore, cartstore } from '$lib/stores';
 	import { getTotalCartItems } from '$lib/common/products';
-	import { btnClasses } from '$lib/constants'; 
-	import { onMount } from 'svelte'; 
+	import { btnClasses } from '$lib/constants';
+	import { onMount } from 'svelte';
 	import SearchDialog from '../widgets/SearchDialog.svelte';
 
 	export let settings: SettingsDocument<string>;
@@ -35,39 +35,40 @@
 		return path && $page.url.pathname.includes(path);
 	};
 
-	$: count = $cartstore ? getTotalCartItems($cartstore) : 0
+	$: count = $cartstore ? getTotalCartItems($cartstore) : 0;
 
-  let mounted = new Promise((resolve, reject) => {
+	let mounted = new Promise((resolve, reject) => {
 		onMount(() => {
-      setTimeout(() => {
-        resolve(true)
-      }, 2000);
-    });
+			setTimeout(() => {
+				resolve(true);
+			}, 2000);
+		});
 	});
 </script>
-
 
 <header class="sticky left-0 top-0 z-[3] bg-white dark:bg-secondary">
 	<nav
 		aria-label="Main"
 		class="mx-auto flex items-center justify-between px-2 py-2 font-medium center"
 	>
-	<Logo {srTitle} on:click={close} class="z-50" />
+		<Logo {srTitle} on:click={close} class="z-50" />
 
 		<div class="flex items-center gap-2">
-			<ul class="hidden gap-6 md:flex items-center">
+			<ul class="hidden items-center gap-6 md:flex">
 				{#each settings.data.navigation as item (item.label)}
 					<li>
-						<PrismicLink
-							field={item.link}
-							aria-current={isActive(item.link) ? 'page' : undefined}
-						>
+						<PrismicLink field={item.link} aria-current={isActive(item.link) ? 'page' : undefined}>
 							{item.label}
 						</PrismicLink>
 					</li>
 				{/each}
 			</ul>
-			<Button size="icon" variant="outline" class="relative amazonchip dark:border-none dark:bg-primary/10" href="/cart">
+			<Button
+				size="icon"
+				variant="outline"
+				class="relative amazonchip dark:border-none dark:bg-primary/10"
+				href="/cart"
+			>
 				{#if $cartstore}
 					<span
 						class="absolute right-0 top-0 flex h-4 w-4 -translate-y-1/4 translate-x-1/4 items-center justify-center rounded-full text-xs font-black"
@@ -78,10 +79,10 @@
 			</Button>
 			<div>
 				<SignedIn let:user>
-          <div class="w-9 h-9">
-            <pre>{getUser(user)}</pre>
-            <UserButton afterSignOutUrl="/" />
-          </div>
+					<div class="h-9 w-9">
+						<pre>{getUser(user)}</pre>
+						<UserButton afterSignOutUrl="/" />
+					</div>
 				</SignedIn>
 				<SignedOut>
 					<Button size="icon" variant="outline" href="/sign-in" class={btnClasses}>
@@ -90,7 +91,7 @@
 				</SignedOut>
 			</div>
 			<ModeToggle class="hidden items-center justify-center md:flex" />
-			<SearchDialog class="!hidden !md:flex" />
+			<SearchDialog class="!hidden md:!flex" />
 		</div>
 	</nav>
 </header>

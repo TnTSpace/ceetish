@@ -15,7 +15,7 @@
       <IconFilter class="w-4 h-4"/>
     </Button>
   </Drawer.Trigger>
-  <Drawer.Content class="md:hidden">
+  <Drawer.Content class="md:hidden bg-white dark:bg-secondary">
     <div class="mx-auto w-full max-w-sm h-60 overflow-auto">
       <div class="p-4 pb-0">
         <Filter { allFilters } { actualFilters } class="flex md:hidden" />
