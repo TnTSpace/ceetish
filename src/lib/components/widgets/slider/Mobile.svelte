@@ -69,8 +69,8 @@
 							<p>
 								<PrismicText field={slider.subline} />
 							</p>
+							<Button class="w-full md:w-fit">{slider.cta_label}</Button>
 						</div>
-						<Button class="w-full md:w-fit">{slider.cta_label}</Button>
 					</div>
 					<PrismicLink class="absolute w-full h-full top-0 z-[1]" field={slider.cta_link} />
 				</div>
