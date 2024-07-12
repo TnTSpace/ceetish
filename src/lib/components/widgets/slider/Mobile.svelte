@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Content } from '@prismicio/client';
-	import { PrismicRichText, PrismicText, PrismicImage } from '@prismicio/svelte';
+	import { PrismicRichText, PrismicText, PrismicImage, PrismicLink } from '@prismicio/svelte';
 	import Heading1 from './Heading1.svelte';
 	import { cn } from '$lib/utils';
 	import { onMount } from 'svelte';
@@ -9,6 +9,7 @@
 		addThumbBtnsClickHandlers,
 		addToggleThumbBtnsActive
 	} from './scripts/EmblaCarouselThumbsButton';
+	import Button from '$lib/components/ui/button/button.svelte';
 
 	let className: string = '';
 	export { className as class };
@@ -69,7 +70,9 @@
 								<PrismicText field={slider.subline} />
 							</p>
 						</div>
+						<Button class="w-full md:w-fit">{slider.cta_label}</Button>
 					</div>
+					<PrismicLink class="absolute w-full h-full top-0 z-[1]" field={slider.cta_link} />
 				</div>
 			{/each}
 		</div>
