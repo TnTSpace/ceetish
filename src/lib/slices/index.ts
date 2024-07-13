@@ -6,6 +6,7 @@ import Detail from './Detail/index.svelte';
 import Hero from './Hero/index.svelte';
 import Policies from './Policies/index.svelte';
 import Productfloor from './Productfloor/index.svelte';
+import Reviews from './Reviews/index.svelte';
 import RichText from './RichText/index.svelte';
 
 export const components = {
@@ -15,5 +16,6 @@ export const components = {
 	hero: Hero,
 	policies: Policies,
 	productfloor: Productfloor,
+	reviews: Reviews,
 	rich_text: RichText
 };

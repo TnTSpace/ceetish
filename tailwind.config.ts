@@ -14,6 +14,13 @@ const config: Config = {
 			}
 		},
 		extend: {
+			typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: '100%', // add required value here
+          }
+        }
+      },
 			colors: {
 				pri: '#e773c8',
 				font: '#282828',

@@ -375,7 +375,12 @@ export type FiltersDocument<Lang extends string = string> = prismic.PrismicDocum
 	Lang
 >;
 
-type PageDocumentDataSlicesSlice = ProductfloorSlice | AboutSlice | HeroSlice | RichTextSlice;
+type PageDocumentDataSlicesSlice =
+	| ReviewsSlice
+	| ProductfloorSlice
+	| AboutSlice
+	| HeroSlice
+	| RichTextSlice;
 
 /**
  * Content for Page documents
@@ -1483,6 +1488,93 @@ type ProductfloorSliceVariation = ProductfloorSliceDefault;
 export type ProductfloorSlice = prismic.SharedSlice<'productfloor', ProductfloorSliceVariation>;
 
 /**
+ * Item in *Reviews → Default → Primary → Reviews*
+ */
+export interface ReviewsSliceDefaultPrimaryReviewsItem {
+	/**
+	 * Name field in *Reviews → Default → Primary → Reviews*
+	 *
+	 * - **Field Type**: Title
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: reviews.default.primary.reviews[].name
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	name: prismic.TitleField;
+
+	/**
+	 * Image field in *Reviews → Default → Primary → Reviews*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: reviews.default.primary.reviews[].image
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	image: prismic.ImageField<never>;
+
+	/**
+	 * Review field in *Reviews → Default → Primary → Reviews*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: reviews.default.primary.reviews[].review
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	review: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *Reviews → Default → Primary*
+ */
+export interface ReviewsSliceDefaultPrimary {
+	/**
+	 * Title field in *Reviews → Default → Primary*
+	 *
+	 * - **Field Type**: Title
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: reviews.default.primary.title
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	title: prismic.TitleField;
+
+	/**
+	 * Reviews field in *Reviews → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: reviews.default.primary.reviews[]
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	reviews: prismic.GroupField<Simplify<ReviewsSliceDefaultPrimaryReviewsItem>>;
+}
+
+/**
+ * Default variation for Reviews Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ReviewsSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<ReviewsSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *Reviews*
+ */
+type ReviewsSliceVariation = ReviewsSliceDefault;
+
+/**
+ * Reviews Shared Slice
+ *
+ * - **API ID**: `reviews`
+ * - **Description**: Reviews
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ReviewsSlice = prismic.SharedSlice<'reviews', ReviewsSliceVariation>;
+
+/**
  * Primary content in *RichText → Default → Primary*
  */
 export interface RichTextSliceDefaultPrimary {
@@ -1597,6 +1689,11 @@ declare module '@prismicio/client' {
 			ProductfloorSliceDefaultPrimary,
 			ProductfloorSliceVariation,
 			ProductfloorSliceDefault,
+			ReviewsSlice,
+			ReviewsSliceDefaultPrimaryReviewsItem,
+			ReviewsSliceDefaultPrimary,
+			ReviewsSliceVariation,
+			ReviewsSliceDefault,
 			RichTextSlice,
 			RichTextSliceDefaultPrimary,
 			RichTextSliceVariation,
