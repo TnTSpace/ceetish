@@ -1047,7 +1047,32 @@ export interface SettingsDocumentDataFooterLinksItem {
 	link: prismic.LinkField;
 }
 
-type SettingsDocumentDataSlicesSlice = PoliciesSlice;
+/**
+ * Item in *Settings → Policies*
+ */
+export interface SettingsDocumentDataPoliciesItem {
+	/**
+	 * Title field in *Settings → Policies*
+	 *
+	 * - **Field Type**: Title
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: settings.policies[].title
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	title: prismic.TitleField;
+
+	/**
+	 * Body field in *Settings → Policies*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: settings.policies[].body
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	body: prismic.RichTextField;
+}
+
+type SettingsDocumentDataSlicesSlice = never;
 
 /**
  * Content for Settings documents
@@ -1107,6 +1132,17 @@ interface SettingsDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/field#group
 	 */
 	footer_links: prismic.GroupField<Simplify<SettingsDocumentDataFooterLinksItem>>;
+
+	/**
+	 * Policies field in *Settings*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: settings.policies[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	policies: prismic.GroupField<Simplify<SettingsDocumentDataPoliciesItem>>;
 
 	/**
 	 * Slice Zone field in *Settings*
@@ -1889,6 +1925,7 @@ declare module '@prismicio/client' {
 			SettingsDocumentData,
 			SettingsDocumentDataNavigationItem,
 			SettingsDocumentDataFooterLinksItem,
+			SettingsDocumentDataPoliciesItem,
 			SettingsDocumentDataSlicesSlice,
 			AllDocumentTypes,
 			AboutSlice,

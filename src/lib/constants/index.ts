@@ -38,6 +38,8 @@ export const btnClasses = "relative amazonchip dark:border-none dark:bg-primary/
 
 export const sublineClasses = "text-xl md:text-3xl font-medium text-center"
 
+export const highlightClasses = "p-4 bg-primary/50  border-l-primary border-l-4 flex flex-col gap-4"
+
 export enum Collection {
   USERS = 'users',
   CART = 'cart'

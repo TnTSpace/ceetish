@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { highlightClasses } from '$lib';
 	import LogoIcon from '$lib/components/icons/LogoIcon.svelte';
 	import { sublineClasses } from '$lib/constants';
 	import { cn } from '$lib/utils';
@@ -9,7 +10,7 @@
 </script>
 
 <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} class="center">
-	<div class="p-4 bg-primary/50  border-l-primary border-l-4 flex flex-col gap-4">
+	<div class={highlightClasses}>
 		<div class="flex items-center gap-2">
 			<LogoIcon />
 			<h2 class={cn(sublineClasses, "text-start")}>
