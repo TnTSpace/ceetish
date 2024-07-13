@@ -1,5 +1,5 @@
 import { browser } from "$app/environment";
-import type { iFilter, iCart, iUser } from "$lib/interfaces";
+import type { iFilter, iCart, iUser, iCategoryLink } from "$lib/interfaces";
 import { writable } from "svelte/store";
 
 export const initialFilters = {
@@ -33,11 +33,13 @@ const setLocalStorage = (key: string, value: any) => {
 
 const filterstore = writable<iFilter>(initialFilters)
 const cartstore = writable<iCart>(getLocalStorage(Constants.CART, {}))
+const categorystore = writable<iCategoryLink[]>(getLocalStorage(Constants.CATEGORIES, []))
 const userstore = writable<iUser | null>(null);
 
 filterstore.subscribe(value => setLocalStorage(Constants.FILTERS, value))
 cartstore.subscribe(value => setLocalStorage(Constants.CART, value))
 
+categorystore.subscribe(value => setLocalStorage(Constants.CATEGORIES, value))
 
-export { userstore, cartstore, filterstore }
+export { userstore, cartstore, filterstore, categorystore }
 

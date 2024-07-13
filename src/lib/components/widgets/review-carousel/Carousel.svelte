@@ -9,7 +9,7 @@
 		addPrevNextBtnsClickHandlers,
 		addNavBtnListeners,
 		addPlayBtnListeners
-	} from './scripts/EmblaCarouselThumbsButton';
+	} from '$lib/common/embla';
 	import Card from '$lib/components/ui/card/card.svelte';
 	import Avatar from '$lib/components/icons/Avatar.svelte';
 	import { buttonVariants } from '$lib/components/ui/button';
