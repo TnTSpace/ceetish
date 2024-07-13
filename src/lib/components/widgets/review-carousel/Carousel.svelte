@@ -63,7 +63,7 @@
 						{#if image.dimensions}
 							<PrismicImage field={image} class="h-[100px] w-[100px] rounded-full" />
 						{:else}
-							<Avatar class="h-[100px] w-[100px] rounded-full" />
+							<Avatar class="h-[100px] w-[100px] rounded-full fill-muted-foreground" />
 						{/if}
 						<h2>
 							<PrismicText field={name} />
