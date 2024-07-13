@@ -23,7 +23,7 @@
  
 <Drawer.Root bind:open>
   <Drawer.Trigger asChild let:builder>
-    <Button builders={[builder]} variant="outline" size="icon" class={cn("md:hidden", btnClasses)}>
+    <Button aria-label="nav link toggle" builders={[builder]} variant="outline" size="icon" class={cn("md:hidden", btnClasses)}>
       <Hamburger />
     </Button>
   </Drawer.Trigger>

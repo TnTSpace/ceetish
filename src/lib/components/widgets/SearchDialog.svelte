@@ -21,7 +21,7 @@
 
 
   <Dialog.Root>
-    <Dialog.Trigger class={cn(buttonVariants({ variant: 'outline', size: "icon" }), className, "flex items-center justify-center", btnClasses)} >
+    <Dialog.Trigger aria-label="search button" class={cn(buttonVariants({ variant: 'outline', size: "icon" }), className, "flex items-center justify-center", btnClasses)} >
       <IconSearch class="!w-4 !h-4" />
     </Dialog.Trigger>
     <Dialog.Content class="sm:max-w-[425px] w-[calc(100%-32px)] mx-auto bg-white/10 dark:bg-primary/10">
