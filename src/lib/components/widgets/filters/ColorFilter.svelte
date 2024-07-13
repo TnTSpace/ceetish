@@ -35,8 +35,9 @@
 			const el = document.querySelector(`div[data-color="${color}"]`) as HTMLDivElement;
 			if (el) {
 				el.classList.add('border-[3px]');
+				el.classList.add('dark:border-[3px]')
 				el.classList.add('border-white');
-				el.classList.add('dark:border-primary/10')
+				el.classList.add('dark:border-secondary')
 				el.setAttribute('style', `background-color:${el.style.backgroundColor};outline: 3px solid ${color}`);
 			}
 		});
