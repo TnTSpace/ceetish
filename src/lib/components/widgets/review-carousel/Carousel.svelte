@@ -37,7 +37,7 @@
 		const viewportNodeMainCarousel = <HTMLElement>slideViewport; 
 
 		emblaApi = EmblaCarousel(viewportNodeMainCarousel, OPTIONS, [
-			Autoplay({ playOnInit: false, delay: 3000 })
+			Autoplay({ playOnInit: false, delay: 6000 })
 		]); 
 
 		const removePrevNextBtnClickHandlers = addPrevNextBtnsClickHandlers(emblaApi, prevBtn, nextBtn)
