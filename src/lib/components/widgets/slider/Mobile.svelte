@@ -17,12 +17,10 @@
 
 	$: sliders = slice.primary.sliders;
 
-
 	let slideViewport: HTMLElement;
 	let thumbViewport: HTMLElement;
 	let emblaApiMain: EmblaCarouselType;
 	let emblaApiThumb: EmblaCarouselType;
-
 
 	const OPTIONS: EmblaOptionsType = {};
 	const OPTIONS_THUMBS: EmblaOptionsType = {
@@ -49,7 +47,6 @@
 				.on('destroy', removeToggleThumbBtnsActive);
 		};
 	});
-
 </script>
 
 <div class={cn('embla', className)}>
@@ -61,7 +58,7 @@
 					class="embla__slide relative flex w-full flex-col gap-4 overflow-hidden rounded-lg bg-white dark:bg-primary/10"
 				>
 					<div class="relative aspect-video w-full overflow-hidden">
-						<PrismicImage field={slider.image} class="absolute aspect-auto w-full" />
+						<PrismicImage field={slider.image} loading="lazy" class="absolute aspect-auto w-full" />
 					</div>
 					<div class="flex w-full flex-col items-center justify-center gap-8">
 						<div class="flex w-full flex-col p-4 pt-0">
@@ -72,7 +69,7 @@
 							<Button class="w-full md:w-fit">{slider.cta_label}</Button>
 						</div>
 					</div>
-					<PrismicLink class="absolute w-full h-full top-0 z-[1]" field={slider.cta_link} />
+					<PrismicLink class="absolute top-0 z-[1] h-full w-full" field={slider.cta_link} />
 				</div>
 			{/each}
 		</div>

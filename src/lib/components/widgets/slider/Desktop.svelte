@@ -72,6 +72,7 @@
 					<div class="absolute right-0 top-1/2 h-full w-[60%] -translate-y-1/2 clip">
 						<PrismicImage
 							field={slider.image}
+							loading="lazy"
 							class="absolute right-0 top-1/2 w-full -translate-y-1/2"
 						/>
 					</div>

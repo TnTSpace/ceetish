@@ -61,7 +61,7 @@
 				<Card class="embla__slide flex items-center justify-center flex-col gap-6 bg-white dark:bg-primary/10 flex-grow-0 flex-shrink-0 basis-[95%] md:basis-[40%] p-4">
 					<div class="flex flex-col items-center gap-2">
 						{#if image.dimensions}
-							<PrismicImage field={image} class="h-[100px] w-[100px] rounded-full" />
+							<PrismicImage loading="lazy" field={image} class="h-[100px] w-[100px] rounded-full" />
 						{:else}
 							<Avatar class="h-[100px] w-[100px] rounded-full fill-muted-foreground" />
 						{/if}
