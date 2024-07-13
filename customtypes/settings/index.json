@@ -56,6 +56,40 @@
 					}
 				}
 			},
+			"footer_links": {
+				"type": "Group",
+				"config": {
+					"label": "Footer Links",
+					"repeat": true,
+					"fields": {
+						"name": {
+							"type": "StructuredText",
+							"config": {
+								"label": "Name",
+								"placeholder": "",
+								"allowTargetBlank": true,
+								"single": "heading2"
+							}
+						},
+						"section": {
+							"type": "Select",
+							"config": {
+								"label": "Section",
+								"placeholder": "",
+								"options": ["About", "Categories", "Resources", "Legal", "Contact Us"]
+							}
+						},
+						"link": {
+							"type": "Link",
+							"config": {
+								"label": "Link",
+								"placeholder": "",
+								"select": null
+							}
+						}
+					}
+				}
+			},
 			"slices": {
 				"type": "Slices",
 				"fieldset": "Slice Zone",

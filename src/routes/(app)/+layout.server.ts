@@ -11,11 +11,9 @@ export const load: LayoutServerLoad = async ({ fetch, cookies }) => {
 
   try {
     const settings = await client.getSingle("settings")
-    const educationalDocuments = await client.getAllByType("educational")
 
     return {
       settings,
-      educationalDocuments
     }
   } catch (err: any) {
     return error(404, {

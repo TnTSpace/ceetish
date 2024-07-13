@@ -1023,6 +1023,41 @@ export interface SettingsDocumentDataNavigationItem {
 	label: prismic.KeyTextField;
 }
 
+/**
+ * Item in *Settings → Footer Links*
+ */
+export interface SettingsDocumentDataFooterLinksItem {
+	/**
+	 * Name field in *Settings → Footer Links*
+	 *
+	 * - **Field Type**: Title
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: settings.footer_links[].name
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	name: prismic.TitleField;
+
+	/**
+	 * Section field in *Settings → Footer Links*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: settings.footer_links[].section
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	section: prismic.SelectField<'About' | 'Categories' | 'Resources' | 'Legal' | 'Contact Us'>;
+
+	/**
+	 * Link field in *Settings → Footer Links*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: settings.footer_links[].link
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	link: prismic.LinkField;
+}
+
 type SettingsDocumentDataSlicesSlice = PoliciesSlice;
 
 /**
@@ -1072,6 +1107,17 @@ interface SettingsDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/field#group
 	 */
 	navigation: prismic.GroupField<Simplify<SettingsDocumentDataNavigationItem>>;
+
+	/**
+	 * Footer Links field in *Settings*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: settings.footer_links[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	footer_links: prismic.GroupField<Simplify<SettingsDocumentDataFooterLinksItem>>;
 
 	/**
 	 * Slice Zone field in *Settings*
@@ -1853,6 +1899,7 @@ declare module '@prismicio/client' {
 			SettingsDocument,
 			SettingsDocumentData,
 			SettingsDocumentDataNavigationItem,
+			SettingsDocumentDataFooterLinksItem,
 			SettingsDocumentDataSlicesSlice,
 			AllDocumentTypes,
 			AboutSlice,
