@@ -15,6 +15,7 @@
 	import Card from '$lib/components/ui/card/card.svelte';
 	import Avatar from '$lib/components/icons/Avatar.svelte';
 	import { buttonVariants } from '$lib/components/ui/button';
+	import Rating from '../Rating.svelte';
 
 	let className: string = '';
 	export { className as class };
@@ -67,6 +68,7 @@
 						<h2>
 							<PrismicText field={name} />
 						</h2>
+						<Rating />
 					</div>
 					<p class="px-4 md:px-6 h-[200px] overflow-auto">
 						<PrismicText field={review} />
