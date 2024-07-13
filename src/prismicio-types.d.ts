@@ -365,17 +365,6 @@ interface EducationalDocumentData {
 	subline: prismic.RichTextField;
 
 	/**
-	 * Type field in *Educational*
-	 *
-	 * - **Field Type**: Select
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: educational.type
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/field#select
-	 */
-	type: prismic.SelectField<'about' | 'categories' | 'resources' | 'legal' | 'follow us'>;
-
-	/**
 	 * Sections field in *Educational*
 	 *
 	 * - **Field Type**: Group
