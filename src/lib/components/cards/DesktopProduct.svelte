@@ -11,8 +11,8 @@
 
 	let mounted = new Promise((resolve, reject) => {
 		onMount(() => {
-			console.log("desktop products")
-			resolve(true)
+			console.log('desktop products');
+			resolve(true);
 		});
 	});
 </script>
@@ -20,5 +20,5 @@
 {#await mounted}
 	<SK_DesktopProduct class={className} />
 {:then value}
-<DesktopProductContent class={className} { product } />
+	<DesktopProductContent class={className} {product} />
 {/await}

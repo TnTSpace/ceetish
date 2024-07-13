@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { page } from "$app/stores";
 	import { highlightClasses, sublineClasses } from "$lib/constants";
+	import type { Content } from "@prismicio/client";
 	import { PrismicText, PrismicRichText } from "@prismicio/svelte";
-	import type { SettingsDocument } from "../../../prismicio-types";
 
 
   
-	const settings = $page.data.settings as SettingsDocument
+	const settings = $page.data.settings as Content.SettingsDocument
 	const policies = settings.data.policies
 </script>
 
