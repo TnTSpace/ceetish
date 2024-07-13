@@ -8,9 +8,7 @@
 	import {
 		addPrevNextBtnsClickHandlers,
 		addNavBtnListeners,
-
 		addPlayBtnListeners
-
 	} from './scripts/EmblaCarouselThumbsButton';
 	import Card from '$lib/components/ui/card/card.svelte';
 	import Avatar from '$lib/components/icons/Avatar.svelte';
@@ -27,29 +25,28 @@
 	let prevBtn: HTMLButtonElement;
 	let nextBtn: HTMLButtonElement;
 	let playBtn: HTMLButtonElement;
-	let slideViewport: HTMLElement; 
-	let emblaApi: EmblaCarouselType; 
+	let slideViewport: HTMLElement;
+	let emblaApi: EmblaCarouselType;
 
 	const OPTIONS: EmblaOptionsType = {
 		// loop: true
 	};
 	onMount(() => {
-		const viewportNodeMainCarousel = <HTMLElement>slideViewport; 
+		const viewportNodeMainCarousel = <HTMLElement>slideViewport;
 
 		emblaApi = EmblaCarousel(viewportNodeMainCarousel, OPTIONS, [
 			Autoplay({ playOnInit: false, delay: 6000 })
-		]); 
+		]);
 
-		const removePrevNextBtnClickHandlers = addPrevNextBtnsClickHandlers(emblaApi, prevBtn, nextBtn)
-		const removePlayBtnListeners = addPlayBtnListeners(emblaApi, playBtn)
-		const removeNavBtnListeners = addNavBtnListeners(emblaApi, prevBtn, nextBtn)
+		const removePrevNextBtnClickHandlers = addPrevNextBtnsClickHandlers(emblaApi, prevBtn, nextBtn);
+		const removePlayBtnListeners = addPlayBtnListeners(emblaApi, playBtn);
+		const removeNavBtnListeners = addNavBtnListeners(emblaApi, prevBtn, nextBtn);
 
 		return () => {
 			emblaApi
 				.on('destroy', removePrevNextBtnClickHandlers)
 				.on('destroy', removePlayBtnListeners)
-				.on('destroy', removeNavBtnListeners)
-
+				.on('destroy', removeNavBtnListeners);
 		};
 	});
 </script>
@@ -58,7 +55,9 @@
 	<div bind:this={slideViewport} class="embla__viewport">
 		<div class="embla__container !auto-cols-[95%] md:!auto-cols-[40%]">
 			{#each sliders as { image, name, review }, i}
-				<Card class="embla__slide flex items-center justify-center flex-col gap-6 bg-white dark:bg-primary/10 flex-grow-0 flex-shrink-0 basis-[95%] md:basis-[40%] p-4">
+				<Card
+					class="embla__slide flex flex-shrink-0 flex-grow-0 basis-[95%] flex-col items-center justify-center gap-6 bg-white p-4 dark:bg-primary/10 md:basis-[40%]"
+				>
 					<div class="flex flex-col items-center gap-2">
 						{#if image.dimensions}
 							<PrismicImage loading="lazy" field={image} class="h-[100px] w-[100px] rounded-full" />
@@ -70,16 +69,25 @@
 						</h2>
 						<Rating />
 					</div>
-					<p class="px-4 md:px-6 h-[200px] overflow-auto">
+					<p class="h-[200px] overflow-auto px-4 md:px-6">
 						<PrismicText field={review} />
 					</p>
-				</Card> 
+				</Card>
 			{/each}
 		</div>
 	</div>
 	<div class="embla__controls">
 		<div class="embla__buttons">
-			<button aria-label="previous button" bind:this={prevBtn} class={cn("embla__button embla__button--prev", buttonVariants({ variant: "outline" }), "!rounded-full shadow-custom !bg-white dark:!bg-primary/10")} type="button">
+			<button
+				aria-label="previous button"
+				bind:this={prevBtn}
+				class={cn(
+					'embla__button embla__button--prev',
+					buttonVariants({ variant: 'outline' }),
+					'!rounded-full !bg-white shadow-custom dark:!bg-primary/10'
+				)}
+				type="button"
+			>
 				<svg class="embla__button__svg" viewBox="0 0 532 532">
 					<path
 						fill="currentColor"
@@ -87,7 +95,16 @@
 					></path>
 				</svg>
 			</button>
-			<button aria-label="next button" bind:this={nextBtn} class={cn("embla__button embla__button--next", buttonVariants({ variant: "outline" }), "!rounded-full shadow-custom !bg-white dark:!bg-primary/10")} type="button">
+			<button
+				aria-label="next button"
+				bind:this={nextBtn}
+				class={cn(
+					'embla__button embla__button--next',
+					buttonVariants({ variant: 'outline' }),
+					'!rounded-full !bg-white shadow-custom dark:!bg-primary/10'
+				)}
+				type="button"
+			>
 				<svg class="embla__button__svg" viewBox="0 0 532 532">
 					<path
 						fill="currentColor"
@@ -96,6 +113,15 @@
 				</svg>
 			</button>
 		</div>
-		<button aria-label="play button" bind:this={playBtn} class={cn("embla__play", buttonVariants({ variant: "outline" }), "!rounded-full shadow-custom !bg-white dark:!bg-primary/10")} type="button">Start</button>
+		<button
+			aria-label="play button"
+			bind:this={playBtn}
+			class={cn(
+				'embla__play',
+				buttonVariants({ variant: 'outline' }),
+				'!rounded-full !bg-white shadow-custom dark:!bg-primary/10'
+			)}
+			type="button">Start</button
+		>
 	</div>
 </div>

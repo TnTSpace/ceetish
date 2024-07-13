@@ -24,6 +24,8 @@ export const priceClass = "font-bold text-lg w-fit rounded-lg flex items-center 
 
 export const btnClasses = "relative amazonchip dark:border-none dark:bg-primary/10"
 
+export const sublineClasses = "text-xl md:text-3xl font-medium text-center"
+
 export enum Collection {
   USERS = 'users',
   CART = 'cart'

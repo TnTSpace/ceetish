@@ -267,6 +267,195 @@ export type CategoriesDocument<Lang extends string = string> = prismic.PrismicDo
 >;
 
 /**
+ * Item in *Educational → Sections*
+ */
+export interface EducationalDocumentDataSectionsItem {
+	/**
+	 * Title field in *Educational → Sections*
+	 *
+	 * - **Field Type**: Title
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: educational.sections[].title
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	title: prismic.TitleField;
+
+	/**
+	 * Body field in *Educational → Sections*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: educational.sections[].body
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	body: prismic.RichTextField;
+
+	/**
+	 * Title ID field in *Educational → Sections*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: educational.sections[].title_id
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title_id: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Educational → Reviews*
+ */
+export interface EducationalDocumentDataReviewsItem {
+	/**
+	 * Name field in *Educational → Reviews*
+	 *
+	 * - **Field Type**: Title
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: educational.reviews[].name
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	name: prismic.TitleField;
+
+	/**
+	 * Review field in *Educational → Reviews*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: educational.reviews[].review
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	review: prismic.RichTextField;
+
+	/**
+	 * Image field in *Educational → Reviews*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: educational.reviews[].image
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	image: prismic.ImageField<never>;
+}
+
+type EducationalDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Educational documents
+ */
+interface EducationalDocumentData {
+	/**
+	 * Title field in *Educational*
+	 *
+	 * - **Field Type**: Title
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: educational.title
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	title: prismic.TitleField;
+
+	/**
+	 * Subline field in *Educational*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: educational.subline
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	subline: prismic.RichTextField;
+
+	/**
+	 * Type field in *Educational*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: educational.type
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	type: prismic.SelectField<'about' | 'categories' | 'resources' | 'legal' | 'follow us'>;
+
+	/**
+	 * Sections field in *Educational*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: educational.sections[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	sections: prismic.GroupField<Simplify<EducationalDocumentDataSectionsItem>>;
+
+	/**
+	 * Reviews field in *Educational*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: educational.reviews[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	reviews: prismic.GroupField<Simplify<EducationalDocumentDataReviewsItem>>;
+
+	/**
+	 * Slice Zone field in *Educational*
+	 *
+	 * - **Field Type**: Slice Zone
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: educational.slices[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#slices
+	 */
+	slices: prismic.SliceZone<EducationalDocumentDataSlicesSlice> /**
+	 * Meta Title field in *Educational*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A title of the page used for social media and search engines
+	 * - **API ID Path**: educational.meta_title
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */;
+	meta_title: prismic.KeyTextField;
+
+	/**
+	 * Meta Description field in *Educational*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: A brief summary of the page
+	 * - **API ID Path**: educational.meta_description
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	meta_description: prismic.KeyTextField;
+
+	/**
+	 * Meta Image field in *Educational*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: educational.meta_image
+	 * - **Tab**: SEO & Metadata
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Educational document from Prismic
+ *
+ * - **API ID**: `educational`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type EducationalDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+	Simplify<EducationalDocumentData>,
+	'educational',
+	Lang
+>;
+
+/**
  * Item in *Filters → Categories*
  */
 export interface FiltersDocumentDataCategoriesItem {
@@ -914,6 +1103,7 @@ export type SettingsDocument<Lang extends string = string> = prismic.PrismicDocu
 export type AllDocumentTypes =
 	| CatalogDocument
 	| CategoriesDocument
+	| EducationalDocument
 	| FiltersDocument
 	| PageDocument
 	| PolicyDocument
@@ -1637,6 +1827,11 @@ declare module '@prismicio/client' {
 			CategoriesDocumentDataCategoriesItem,
 			CategoriesDocumentDataColorsItem,
 			CategoriesDocumentDataSizesItem,
+			EducationalDocument,
+			EducationalDocumentData,
+			EducationalDocumentDataSectionsItem,
+			EducationalDocumentDataReviewsItem,
+			EducationalDocumentDataSlicesSlice,
 			FiltersDocument,
 			FiltersDocumentData,
 			FiltersDocumentDataCategoriesItem,
