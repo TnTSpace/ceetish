@@ -30,9 +30,9 @@
 <main>
 	<slot/>
 </main>
-<Footer
+<!-- <Footer
 	settings={$page.data.settings}
-	educationalDocuments={$page.data.educationalDocuments} />
+	educationalDocuments={$page.data.educationalDocuments} /> -->
 
 <FloatingBottomBar />
 <PrismicPreview {repositoryName}></PrismicPreview>
