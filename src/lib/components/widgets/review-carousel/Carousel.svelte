@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Content } from '@prismicio/client';
-	import { PrismicText, PrismicImage } from '@prismicio/svelte';
+	import { PrismicText, PrismicImage, PrismicLink } from '@prismicio/svelte';
 	import { cn } from '$lib/utils';
 	import { onMount } from 'svelte';
 	import EmblaCarousel, { type EmblaOptionsType, type EmblaCarouselType } from 'embla-carousel';
@@ -79,7 +79,7 @@
 	</div>
 	<div class="embla__controls">
 		<div class="embla__buttons">
-			<button bind:this={prevBtn} class={cn("embla__button embla__button--prev", buttonVariants({ variant: "outline" }), "!rounded-full shadow-custom !bg-white dark:!bg-primary/10")} type="button">
+			<button aria-label="previous button" bind:this={prevBtn} class={cn("embla__button embla__button--prev", buttonVariants({ variant: "outline" }), "!rounded-full shadow-custom !bg-white dark:!bg-primary/10")} type="button">
 				<svg class="embla__button__svg" viewBox="0 0 532 532">
 					<path
 						fill="currentColor"
@@ -87,7 +87,7 @@
 					></path>
 				</svg>
 			</button>
-			<button bind:this={nextBtn} class={cn("embla__button embla__button--next", buttonVariants({ variant: "outline" }), "!rounded-full shadow-custom !bg-white dark:!bg-primary/10")} type="button">
+			<button aria-label="next button" bind:this={nextBtn} class={cn("embla__button embla__button--next", buttonVariants({ variant: "outline" }), "!rounded-full shadow-custom !bg-white dark:!bg-primary/10")} type="button">
 				<svg class="embla__button__svg" viewBox="0 0 532 532">
 					<path
 						fill="currentColor"
@@ -96,6 +96,6 @@
 				</svg>
 			</button>
 		</div>
-		<button bind:this={playBtn} class={cn("embla__play", buttonVariants({ variant: "outline" }), "!rounded-full shadow-custom !bg-white dark:!bg-primary/10")} type="button">Start</button>
+		<button aria-label="play button" bind:this={playBtn} class={cn("embla__play", buttonVariants({ variant: "outline" }), "!rounded-full shadow-custom !bg-white dark:!bg-primary/10")} type="button">Start</button>
 	</div>
 </div>

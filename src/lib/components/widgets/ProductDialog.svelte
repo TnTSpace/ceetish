@@ -24,7 +24,7 @@
 
 <Dialog.Root>
 	<Dialog.Trigger class={cn("flex items-center justify-center", className)}> 
-		<Button size="icon" class="bg-pri text-font hover:bg-pri">
+		<Button aria-label={name} size="icon" class="bg-pri text-font hover:bg-pri">
 			<IconPreview class="w-4 h-4" />
 		</Button>
 	</Dialog.Trigger>
