@@ -28,7 +28,7 @@ export const POST: RequestHandler = async ({ request }) => {
     const session = await stripe.checkout.sessions.create({
       line_items: lineItems,
       shipping_address_collection: {
-        
+        allowed_countries: ["GB", "NG", "US"]
       },
       mode: "payment",
       success_url: `${BASE}/success`,
