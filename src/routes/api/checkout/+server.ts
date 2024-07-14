@@ -47,8 +47,6 @@ export const POST: RequestHandler = async ({ request, locals }) => {
       }
     })
 
-    console.log(JSON.stringify(session))
-
     const result = handleResponse("Successful checkout url", "success", {
       url: session.url,
       sessionId: session.id,

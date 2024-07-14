@@ -7,7 +7,6 @@ export const POST: RequestHandler = async ({ request }) => {
   const body = await request.json()
   const docId = body.email
   const data = body.data
-  console.log({ msg: "inside setCart", body })
   await deleteDocument({
     docId,
     collectionId: Collection.CART,
