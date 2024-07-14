@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let rating: number = 4.3
+  export let rating: number = 5
 </script>
 
 <div

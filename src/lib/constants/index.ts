@@ -50,7 +50,8 @@ export const calloutBtnClasses = "bg-white text-font py-2 px-4 w-full text-cente
 export enum Collection {
   USERS = 'users',
   CART = cart,
-  NEWSLETTER = 'newsletter'
+  NEWSLETTER = 'newsletter',
+  CONTACT = 'contact'
 }
 
 export enum Actions {
