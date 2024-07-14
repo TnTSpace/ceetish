@@ -1,49 +1,74 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button/index.js';
+	import { Button } from '$lib/components/ui/button';
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import { Eye as IconPreview } from 'lucide-svelte';
 	import type { Content } from '@prismicio/client';
 
 	import { PrismicRichText, PrismicText } from '@prismicio/svelte';
-	import { Badge } from '../ui/badge'; 
+	import { Badge } from '../ui/badge';
 	import EmblaProduct from './product-pictures/EmblaProduct.svelte';
-	import { badgeClass, priceClass } from '$lib/constants';
+	import { badgeClasses, badgeLinkClasses, priceClass, sublineClasses } from '$lib/constants';
 	import { cn } from '$lib/utils';
+	import { paramify } from '$lib/common';
 
 	export let product: Content.ProductDocument;
 
 	const { data } = product;
-	const { name, category,  images, description, price, details } = data;
+	const { name, category, images, description, price, details } = data;
 
-	const emblaImages = images.map(field => field.image)
-	
-	let className: string = ""
-	export { className as class }
+	const emblaImages = images.map((field) => field.image);
+
+	let className: string = '';
+	export { className as class };
 </script>
 
 <Dialog.Root>
-	<Dialog.Trigger class={cn("flex items-center justify-center", className)}> 
+	<Dialog.Trigger class={cn('flex items-center justify-center', className)}>
 		<Button aria-label={name} size="icon" class="bg-pri text-font hover:bg-pri">
-			<IconPreview class="w-4 h-4" />
+			<IconPreview class="h-4 w-4" />
 		</Button>
 	</Dialog.Trigger>
-	<Dialog.Content class="md:max-w-2xl mx-auto w-[calc(100%-32px)] bg-white/80 dark:bg-primary/10">
+	<Dialog.Content class="mx-auto w-[calc(100%-32px)] bg-white/80 dark:bg-primary/10 md:max-w-2xl">
 		<div class="flex flex-col gap-4">
-			<Dialog.Header>
-				<Dialog.Title>
-					{name}
-				</Dialog.Title>
-			</Dialog.Header>
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-				<EmblaProduct images={emblaImages} />
-				<Badge class={cn(badgeClass, "md:hidden")}>{category}</Badge>
-				<div class="flex flex-col gap-2 h-[120px] md:h-auto overflow-auto">
-					<Badge class={cn(badgeClass, "hidden md:inline-block")}>{category}</Badge>
-          <p class="text-muted-foreground text-sm">
-						<PrismicText field={description} />
-					</p>
-					<p class={priceClass}>${price}</p>
-					<div class="prose dark:prose-invert">
+			<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+				<div>
+					<EmblaProduct images={emblaImages} />
+
+					<div class="md:hidden">
+						<Button
+							variant="ghost"
+							class={badgeLinkClasses}
+							href={`/catalog?category=${paramify(category)}`}
+						>
+							<Badge class={badgeClasses}>{category}</Badge>
+						</Button>
+						<h2 class="font-semibold">{name}</h2>
+						<p class={priceClass}>${price}</p>
+
+						<p class="text-sm text-muted-foreground">
+							<PrismicText field={description} />
+						</p>
+					</div>
+				</div>
+				<div class="flex flex-col gap-4">
+					<div class="hidden md:block">
+						<Button
+							variant="ghost"
+							class={badgeLinkClasses}
+							href={`/catalog?category=${paramify(category)}`}
+						>
+							<Badge class={badgeClasses}>{category}</Badge>
+						</Button>
+						<h2 class="font-semibold">{name}</h2>
+						<p class={priceClass}>${price}</p>
+
+						<p class="text-sm text-muted-foreground">
+							<PrismicText field={description} />
+						</p>
+					</div>
+					<div
+						class="prose hidden h-[243px] flex-col overflow-auto dark:prose-invert md:flex"
+					>
 						<PrismicRichText field={details} />
 					</div>
 				</div>

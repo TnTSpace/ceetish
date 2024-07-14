@@ -17,9 +17,9 @@ export const slugify = (str: string) => {
     .replace(/-+$/, ''); // Remove trailing -
 }
 
-export const paramify = (str: string) => {
-  return str.toLowerCase().trim().replace(/\s+/g, '+') // Convert to lowercase and replace spaces with -
-    .replace(/[^\w\-]+/g, '') // Remove non-word characters except -
+export const paramify = (str: string | null) => {
+  const $str = str as string
+  return $str.toLowerCase().trim().replace(/\s+/g, '+') // Convert to lowercase and replace spaces with -
 }
 
 interface QueryParams {

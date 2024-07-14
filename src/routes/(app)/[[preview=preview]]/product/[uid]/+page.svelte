@@ -5,7 +5,7 @@
 	import Policies from '$lib/components/widgets/Policies.svelte'; 
 	import { PrismicText, PrismicRichText } from '@prismicio/svelte'; 
 	import EmblaProduct from '$lib/components/widgets/product-pictures/EmblaProduct.svelte'; 
-	import { Actions, badgeClass, cartstore, priceClass, userstore, type TAction } from '$lib'
+	import { Actions, badgeClasses, badgeLinkClasses, cartstore, paramify, priceClass, userstore, type TAction } from '$lib'
 	import { Badge } from '$lib/components/ui/badge'; 
 
 	export let data;
@@ -57,7 +57,9 @@
 			<EmblaProduct { images } />
 		</div>
 		<div class="flex flex-col gap-2">
-			<Badge class={badgeClass}>{category}</Badge>
+			<Button variant="ghost" class={badgeLinkClasses} href={`/catalog?category=${paramify(category)}`}>
+				<Badge class={badgeClasses}>{category}</Badge>
+			</Button>
 			<h1 class="font-medium">
 				{name} 
 			</h1>

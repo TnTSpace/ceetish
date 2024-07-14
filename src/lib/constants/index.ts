@@ -40,7 +40,9 @@ export const sublineClasses = "text-xl md:text-3xl font-medium text-center"
 
 export const highlightClasses = "p-4 bg-primary/50  border-l-primary border-l-4 flex flex-col gap-4"
 
-export const badgeClass = "w-fit h-fit overflow-hidden text-ellipsis whitespace-nowrap rounded-full text-xs font-medium capitalize"
+export const badgeClasses = "w-fit h-fit overflow-hidden text-ellipsis whitespace-nowrap rounded-full text-xs font-medium capitalize"
+
+export const badgeLinkClasses = "!p-0 !m-0 flex justify-start text-start w-fit"
 
 export enum Collection {
   USERS = 'users',
