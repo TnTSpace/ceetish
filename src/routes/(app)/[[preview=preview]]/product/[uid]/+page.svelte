@@ -3,15 +3,15 @@
 	import CartCounter from '$lib/components/widgets/CartCounter.svelte';
 	import { setCart } from '$lib/common/cart';
 	import Policies from '$lib/components/widgets/Policies.svelte'; 
-	import { PrismicText, PrismicRichText } from '@prismicio/svelte';
-	import type { Content } from "@prismicio/client"; 
+	import { PrismicText, PrismicRichText } from '@prismicio/svelte'; 
 	import EmblaProduct from '$lib/components/widgets/product-pictures/EmblaProduct.svelte'; 
-	import { Actions, cartstore, userstore, type TAction } from '$lib'
+	import { Actions, badgeClass, cartstore, priceClass, userstore, type TAction } from '$lib'
+	import { Badge } from '$lib/components/ui/badge'; 
 
 	export let data;
 	
 	const product = data.page
-	const { name, category,  description, price, details } = product.data
+	const { name, category,  description, price, details, old_price } = product.data
 
 	$: images = data.page.data.images.map(field => field.image)
  
@@ -57,12 +57,23 @@
 			<EmblaProduct { images } />
 		</div>
 		<div class="flex flex-col gap-2">
+			<Badge class={badgeClass}>{category}</Badge>
 			<h1 class="font-medium">
 				{name} 
 			</h1>
 			<p class="text-muted-foreground">
 				<PrismicText field={description} />
 			</p>
+			<div class="flex items-center gap-1">
+				<p class={priceClass}>
+					£{price?.toFixed(2)}
+				</p>
+				{#if old_price}
+					<p class="text-sm text-muted-foreground line-through">
+						£{old_price?.toFixed(2)}
+					</p>
+				{/if}
+			</div>
 			<div class="flex w-full items-center gap-2 md:w-fit mt-auto">
 				{#if $cartstore && $cartstore[product.uid]}
 					<CartCounter on:action={onAction} {product} />

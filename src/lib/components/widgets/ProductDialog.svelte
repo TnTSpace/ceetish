@@ -4,11 +4,10 @@
 	import { Eye as IconPreview } from 'lucide-svelte';
 	import type { Content } from '@prismicio/client';
 
-	import { PrismicImage, PrismicRichText, PrismicText } from '@prismicio/svelte';
-	import { Badge } from '../ui/badge';
-	import { userstore } from '$lib/stores';
+	import { PrismicRichText, PrismicText } from '@prismicio/svelte';
+	import { Badge } from '../ui/badge'; 
 	import EmblaProduct from './product-pictures/EmblaProduct.svelte';
-	import { priceClass } from '$lib/constants';
+	import { badgeClass, priceClass } from '$lib/constants';
 	import { cn } from '$lib/utils';
 
 	export let product: Content.ProductDocument;
@@ -37,9 +36,9 @@
 			</Dialog.Header>
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 				<EmblaProduct images={emblaImages} />
-				<Badge class="md:hidden w-fit h-fit overflow-hidden text-ellipsis whitespace-nowrap rounded-full text-xs font-medium capitalize">{category}</Badge>
+				<Badge class={cn(badgeClass, "md:hidden")}>{category}</Badge>
 				<div class="flex flex-col gap-2 h-[120px] md:h-auto overflow-auto">
-					<Badge class="hidden md:inline-block w-fit h-fit overflow-hidden text-ellipsis whitespace-nowrap rounded-full text-xs font-medium capitalize">{category}</Badge>
+					<Badge class={cn(badgeClass, "hidden md:inline-block")}>{category}</Badge>
           <p class="text-muted-foreground text-sm">
 						<PrismicText field={description} />
 					</p>
