@@ -23,4 +23,4 @@
 			<Skeleton class="hidden h-9 w-9 md:flex" />
 		</div>
 	</nav>
-</header>
+</header> 
