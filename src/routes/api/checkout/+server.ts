@@ -5,9 +5,8 @@ import { BASE } from '$env/static/private';
 import { handleResponse } from '$lib/firebase/server';
 import { json } from '@sveltejs/kit';
 
-export const POST: RequestHandler = async ({ request }) => {
+export const POST: RequestHandler = async ({ request, locals }) => {
   const data = await request.json() as iPayload
-
 
   try {
 
@@ -40,7 +39,13 @@ export const POST: RequestHandler = async ({ request }) => {
 
     console.log(JSON.stringify(session))
 
-    const result = handleResponse("Successful checkout url", "success", { url: session.url })
+    const result = handleResponse("Successful checkout url", "success", {
+      url: session.url,
+      sessionId: session.id,
+      paymentStatus: session.payment_status,
+      customerId: session.customer,
+      paymentIntent: session.payment_intent
+    })
     return json(result)
   } catch (error: any) {
     const result = handleResponse(error.message, "error")

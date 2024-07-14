@@ -1332,16 +1332,6 @@ export interface BentoSliceDefaultPrimaryCategoriesItem {
 	name: prismic.TitleField;
 
 	/**
-	 * Image field in *Bento → Default → Primary → Categories*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: bento.default.primary.categories[].image
-	 * - **Documentation**: https://prismic.io/docs/field#image
-	 */
-	image: prismic.ImageField<never>;
-
-	/**
 	 * Link field in *Bento → Default → Primary → Categories*
 	 *
 	 * - **Field Type**: Link
@@ -1350,6 +1340,26 @@ export interface BentoSliceDefaultPrimaryCategoriesItem {
 	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
 	 */
 	link: prismic.LinkField;
+
+	/**
+	 * Rectangle Image field in *Bento → Default → Primary → Categories*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: bento.default.primary.categories[].rectangle_image
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	rectangle_image: prismic.ImageField<never>;
+
+	/**
+	 * Square Image field in *Bento → Default → Primary → Categories*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: bento.default.primary.categories[].square_image
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	square_image: prismic.ImageField<never>;
 }
 
 /**

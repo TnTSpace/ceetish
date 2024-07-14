@@ -14,7 +14,8 @@
 				<h2 class="p-4 bg-black/70 text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[1] font-semibold w-fit whitespace-nowrap">
 					<PrismicText field={category.name} />
 				</h2>
-				<PrismicImage class="object-cover w-full absolute top-0 left-1/2 -translate-x-1/2" field={category.image} />
+				<PrismicImage class="object-cover sm:hidden h-full absolute top-0 left-1/2 -translate-x-1/2" field={category.rectangle_image} />
+				<PrismicImage class="object-cover hidden sm:block h-full absolute top-0 left-1/2 -translate-x-1/2" field={category.square_image} />
 			</div>
 		{/each}
 	</div>

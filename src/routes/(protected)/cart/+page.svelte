@@ -24,8 +24,6 @@
 			products
 		};
 
-		console.log({ json });
-
 		const promise = fetch('/api/checkout', {
 			method: 'post',
 			headers: {
@@ -43,11 +41,14 @@
 		const result = (await response.json()) as iStatus;
 
 		if (result.status === 'success') {
-			location.href = result?.data?.url;
-			if ($userstore) {
-				await setCart($userstore.emailAddresses[0].emailAddress, $cartstore);
-			}
 			localStorage.removeItem(Constants.CART);
+
+			if ($userstore) {
+				console.log("updating firebase")
+				await setCart($userstore.emailAddresses[0].emailAddress, {});
+			}
+			location.href = result?.data?.url;
+			console.log({ data: result.data });
 		} else {
 			console.log(result.message);
 		}

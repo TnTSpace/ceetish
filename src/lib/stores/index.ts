@@ -1,4 +1,4 @@
-import { browser } from "$app/environment";
+import { browser } from "$app/environment"; 
 import type { iFilter, iCart, iUser, iCategoryLink } from "$lib/interfaces";
 import { writable } from "svelte/store";
 
@@ -11,7 +11,7 @@ export const initialFilters = {
 
 enum Constants {
   FILTERS = "filters",
-  CART = "cart",
+  CART = "ceetishcart",
   CATEGORIES = "categories"
 }
 

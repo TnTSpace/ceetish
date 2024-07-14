@@ -27,20 +27,28 @@
                   "single": "heading2"
                 }
               },
-              "image": {
-                "type": "Image",
-                "config": {
-                  "label": "Image",
-                  "constraint": {},
-                  "thumbnails": []
-                }
-              },
               "link": {
                 "type": "Link",
                 "config": {
                   "label": "Link",
                   "placeholder": "",
                   "select": null
+                }
+              },
+              "rectangle_image": {
+                "type": "Image",
+                "config": {
+                  "label": "Rectangle Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "square_image": {
+                "type": "Image",
+                "config": {
+                  "label": "Square Image",
+                  "constraint": {},
+                  "thumbnails": []
                 }
               }
             }
