@@ -168,7 +168,7 @@
 
 			<div class="flex w-full items-center gap-2 md:w-fit">
 				{#if $cartstore && $cartstore[product.uid]}
-					<CartCounter on:action={onAction} {product} />
+					<CartCounter on:action={onAction} {product} { in_stock } />
 				{:else}
 					<Button disabled on:click={addToCart} class="w-fit">Out of stock</Button>
 				{/if}
