@@ -6,7 +6,7 @@
 <header class="sticky left-0 top-0 z-[3] bg-white dark:bg-secondary">
 	<nav
 		aria-label="Main"
-		class="mx-auto flex items-center justify-between px-2 py-2 font-medium center"
+		class="mx-auto flex items-center justify-between px-2 h-14 font-medium center"
 	>
 		<div class="flex items-center gap-4">
       <Skeleton class="w-[108px] h-10" />
