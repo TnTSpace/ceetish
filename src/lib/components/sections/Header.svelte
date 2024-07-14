@@ -10,7 +10,7 @@
 	let mounted = new Promise((resolve) => onMount(() => resolve(true)));
 </script>
 
-{#await mounted}
+{#await mounted} 
 	<SK_Header />
 {:then value}
 	<HeaderContent {settings} />
