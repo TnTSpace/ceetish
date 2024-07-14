@@ -44,7 +44,7 @@
 			localStorage.removeItem(Constants.CART);
 
 			if ($userstore) {
-				console.log("updating firebase")
+				console.log('updating firebase');
 				await setCart($userstore.emailAddresses[0].emailAddress, {});
 			}
 			location.href = result?.data?.url;
@@ -93,12 +93,14 @@
 					<p class="font-bold">£{subtotal.toFixed(2)}</p>
 				</div>
 				<hr class="dark:opacity-60" />
-				<form on:submit={onSubmit} class="w-full">
-					<input name="amount" type="text" hidden bind:value={subtotal} />
-					<Button type="submit" class="w-full">
-						Checkout (£{subtotal.toFixed(2)})
-					</Button>
-				</form>
+				{#if products.length}
+					<form on:submit={onSubmit} class="w-full">
+						<input name="amount" type="text" hidden bind:value={subtotal} />
+						<Button type="submit" class="w-full">
+							Checkout (£{subtotal.toFixed(2)})
+						</Button>
+					</form>
+				{/if}
 			</div>
 		</div>
 		{#key subtotal}
@@ -118,12 +120,14 @@
 					<p class="font-bold">£{subtotal.toFixed(2)}</p>
 				</div>
 				<hr class="dark:opacity-60" />
-				<form on:submit={onSubmit} class="w-full">
-					<input name="amount" type="text" hidden bind:value={subtotal} />
-					<Button type="submit" class="w-full">
-						Checkout (£{subtotal.toFixed(2)})
-					</Button>
-				</form>
+				{#if products.length}
+					<form on:submit={onSubmit} class="w-full">
+						<input name="amount" type="text" hidden bind:value={subtotal} />
+						<Button type="submit" class="w-full">
+							Checkout (£{subtotal.toFixed(2)})
+						</Button>
+					</form>
+				{/if}
 			</div>
 		{/key}
 	</div>
