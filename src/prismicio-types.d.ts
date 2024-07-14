@@ -554,6 +554,7 @@ export type FiltersDocument<Lang extends string = string> = prismic.PrismicDocum
 >;
 
 type PageDocumentDataSlicesSlice =
+	| BentoSlice
 	| ReviewsSlice
 	| ProductfloorSlice
 	| AboutSlice
@@ -1316,6 +1317,83 @@ type BannerSliceVariation = BannerSliceDefault;
 export type BannerSlice = prismic.SharedSlice<'banner', BannerSliceVariation>;
 
 /**
+ * Item in *Bento → Default → Primary → Categories*
+ */
+export interface BentoSliceDefaultPrimaryCategoriesItem {
+	/**
+	 * Name field in *Bento → Default → Primary → Categories*
+	 *
+	 * - **Field Type**: Title
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: bento.default.primary.categories[].name
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	name: prismic.TitleField;
+
+	/**
+	 * Image field in *Bento → Default → Primary → Categories*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: bento.default.primary.categories[].image
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	image: prismic.ImageField<never>;
+
+	/**
+	 * Link field in *Bento → Default → Primary → Categories*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: bento.default.primary.categories[].link
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	link: prismic.LinkField;
+}
+
+/**
+ * Primary content in *Bento → Default → Primary*
+ */
+export interface BentoSliceDefaultPrimary {
+	/**
+	 * Categories field in *Bento → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: bento.default.primary.categories[]
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	categories: prismic.GroupField<Simplify<BentoSliceDefaultPrimaryCategoriesItem>>;
+}
+
+/**
+ * Default variation for Bento Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BentoSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<BentoSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *Bento*
+ */
+type BentoSliceVariation = BentoSliceDefault;
+
+/**
+ * Bento Shared Slice
+ *
+ * - **API ID**: `bento`
+ * - **Description**: Bento
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BentoSlice = prismic.SharedSlice<'bento', BentoSliceVariation>;
+
+/**
  * Item in *Detail → Default → Primary → Lengths*
  */
 export interface DetailSliceDefaultPrimaryLengthsItem {
@@ -1936,6 +2014,11 @@ declare module '@prismicio/client' {
 			BannerSliceDefaultPrimary,
 			BannerSliceVariation,
 			BannerSliceDefault,
+			BentoSlice,
+			BentoSliceDefaultPrimaryCategoriesItem,
+			BentoSliceDefaultPrimary,
+			BentoSliceVariation,
+			BentoSliceDefault,
 			DetailSlice,
 			DetailSliceDefaultPrimaryLengthsItem,
 			DetailSliceDefaultPrimaryImagesItem,
