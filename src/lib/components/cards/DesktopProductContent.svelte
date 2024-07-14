@@ -162,8 +162,7 @@
 		</div>
 
 		<div
-			class="mx-auto flex w-full items-center justify-between gap-2 border-t p-2 dark:border-primary/20"
-		>
+			class="mx-auto flex w-full items-center justify-between gap-2 border-t p-2 dark:border-primary/20">
 			<ProductDialog {product} class="hidden md:flex" />
 
 			<div class="flex w-full items-center gap-2 md:w-fit">
