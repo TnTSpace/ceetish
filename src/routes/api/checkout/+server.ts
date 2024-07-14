@@ -22,12 +22,22 @@ export const POST: RequestHandler = async ({ request, locals }) => {
         quantity: item.count
       }
     })
-
+    
     // Create a Session with Stripe
     const session = await stripe.checkout.sessions.create({
       line_items: lineItems,
       shipping_address_collection: {
-        allowed_countries: ["GB", "NG", "US"]
+        allowed_countries: [
+          "AL", "AD", "AM", "AT", "AZ", "BY",
+          "BE", "BA", "BG", "HR", "CY", "CZ",
+          "DK", "EE", "FI", "FR", "GE", "DE",
+          "GR", "HU", "IS", "IE", "IT", "KZ",
+          "XK", "LV", "LI", "LT", "LU", "MT",
+          "MD", "MC", "ME", "NL", "MK", "NO",
+          "PL", "PT", "RO", "RU", "SM", "RS",
+          "SK", "SI", "ES", "SE", "CH", "TR",
+          "UA", "GB", "VA"
+        ]
       },
       mode: "payment",
       success_url: `${BASE}/success`,
