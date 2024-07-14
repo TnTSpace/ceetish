@@ -22,7 +22,8 @@ export const redirectHandler: Handle = async ({ event, resolve }) => {
 export const handle: Handle = sequence(
   handleClerk(CLERK_SECRET_KEY, {
     debug: true,
-    protectedPaths: ['/cart', '/success', '/cancel', '/orders'],
+    // protectedPaths: ['/cart', '/success', '/cancel', '/orders'],
+    protectedPaths: [],
     signInUrl: '/sign-in',
   }),
   redirectHandler
