@@ -13,6 +13,34 @@
 						}
 					}
 				]
+			},
+			"channels": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"name",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "mighty",
+									"type": "Text"
+								}
+							],
+							[
+								"url",
+								{
+									"__TYPE__": "LinkContent",
+									"value": {
+										"__TYPE__": "ExternalLink",
+										"url": "https://prismic.io"
+									}
+								}
+							]
+						]
+					}
+				]
 			}
 		},
 		"items": [

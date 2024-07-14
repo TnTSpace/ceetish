@@ -1977,6 +1977,31 @@ type ReviewsSliceVariation = ReviewsSliceDefault;
 export type ReviewsSlice = prismic.SharedSlice<'reviews', ReviewsSliceVariation>;
 
 /**
+ * Item in *RichText → Default → Primary → Channels*
+ */
+export interface RichTextSliceDefaultPrimaryChannelsItem {
+	/**
+	 * Name field in *RichText → Default → Primary → Channels*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: rich_text.default.primary.channels[].name
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	name: prismic.KeyTextField;
+
+	/**
+	 * URL field in *RichText → Default → Primary → Channels*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: rich_text.default.primary.channels[].url
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	url: prismic.LinkField;
+}
+
+/**
  * Primary content in *RichText → Default → Primary*
  */
 export interface RichTextSliceDefaultPrimary {
@@ -1989,6 +2014,16 @@ export interface RichTextSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
 	 */
 	content: prismic.RichTextField;
+
+	/**
+	 * Channels field in *RichText → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: rich_text.default.primary.channels[]
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	channels: prismic.GroupField<Simplify<RichTextSliceDefaultPrimaryChannelsItem>>;
 }
 
 /**
@@ -2113,6 +2148,7 @@ declare module '@prismicio/client' {
 			ReviewsSliceVariation,
 			ReviewsSliceDefault,
 			RichTextSlice,
+			RichTextSliceDefaultPrimaryChannelsItem,
 			RichTextSliceDefaultPrimary,
 			RichTextSliceVariation,
 			RichTextSliceDefault
