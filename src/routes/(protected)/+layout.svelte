@@ -2,6 +2,7 @@
 	import Header from '$lib/components/sections/Header.svelte'; 
 	import { page } from '$app/stores'; 
 	import FloatingBottomBar from '$lib/components/sections/FloatingBottomBar.svelte';
+	import Footer from '$lib/components/sections/Footer.svelte';
 
 </script>
 
@@ -19,4 +20,6 @@
 	<slot/>
 </main>
 
+<Footer
+	settings={$page.data.settings} />
 <FloatingBottomBar />

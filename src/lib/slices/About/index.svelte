@@ -9,7 +9,7 @@
 	export let slice: Content.AboutSlice;
 </script>
 
-<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} class="center md:p-0">
+<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} class="center md:px-0">
 	<div class={highlightClasses}>
 		<div class="flex items-center gap-2">
 			<LogoIcon />

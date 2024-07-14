@@ -8,7 +8,7 @@
 </script>
 
 <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
-	<div class="overflow-hidden py-0 center md:p-0 flex flex-col gap-4">
+	<div class="overflow-hidden py-0 center md:px-0 flex flex-col gap-4">
 		<h2 class={sublineClasses}>
 			<PrismicText field={slice.primary.title} />
 		</h2>

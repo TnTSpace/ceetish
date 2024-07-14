@@ -6,7 +6,7 @@
 </script>
 
 <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
-	<div class="py-4 center md:p-0">
+	<div class="py-4 center md:px-0">
 		<Embla {slice} />
 	</div>
 </section>

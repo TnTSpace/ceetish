@@ -12,7 +12,7 @@
 </script>
 
 <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
-	<div class="center md:p-0">
+	<div class="center md:px-0">
 		<div class={cn(highlightClasses, "grid grid-cols-1 md:grid-cols-[3fr_1fr] items-center")}>
 			<h2 class={cn(sublineClasses, "text-start md:!text-5xl")}>
 				<PrismicText field={slice.primary.title} />

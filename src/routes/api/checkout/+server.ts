@@ -38,6 +38,8 @@ export const POST: RequestHandler = async ({ request }) => {
       }
     })
 
+    console.log(JSON.stringify(session))
+
     const result = handleResponse("Successful checkout url", "success", { url: session.url })
     return json(result)
   } catch (error: any) {
