@@ -5,6 +5,7 @@ import Banner from './Banner/index.svelte';
 import Bento from './Bento/index.svelte';
 import Detail from './Detail/index.svelte';
 import Hero from './Hero/index.svelte';
+import Newsletter from './Newsletter/index.svelte';
 import Policies from './Policies/index.svelte';
 import Productfloor from './Productfloor/index.svelte';
 import Reviews from './Reviews/index.svelte';
@@ -16,6 +17,7 @@ export const components = {
 	bento: Bento,
 	detail: Detail,
 	hero: Hero,
+	newsletter: Newsletter,
 	policies: Policies,
 	productfloor: Productfloor,
 	reviews: Reviews,

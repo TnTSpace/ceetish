@@ -554,6 +554,7 @@ export type FiltersDocument<Lang extends string = string> = prismic.PrismicDocum
 >;
 
 type PageDocumentDataSlicesSlice =
+	| NewsletterSlice
 	| BentoSlice
 	| ReviewsSlice
 	| ProductfloorSlice
@@ -1688,6 +1689,58 @@ type HeroSliceVariation = HeroSliceDefault;
 export type HeroSlice = prismic.SharedSlice<'hero', HeroSliceVariation>;
 
 /**
+ * Primary content in *Newsletter → Default → Primary*
+ */
+export interface NewsletterSliceDefaultPrimary {
+	/**
+	 * Title field in *Newsletter → Default → Primary*
+	 *
+	 * - **Field Type**: Title
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: newsletter.default.primary.title
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	title: prismic.TitleField;
+
+	/**
+	 * Button Label field in *Newsletter → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: newsletter.default.primary.button_label
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	button_label: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for Newsletter Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NewsletterSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<NewsletterSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *Newsletter*
+ */
+type NewsletterSliceVariation = NewsletterSliceDefault;
+
+/**
+ * Newsletter Shared Slice
+ *
+ * - **API ID**: `newsletter`
+ * - **Description**: Newsletter
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NewsletterSlice = prismic.SharedSlice<'newsletter', NewsletterSliceVariation>;
+
+/**
  * Primary content in *Policies → Default → Primary*
  */
 export interface PoliciesSliceDefaultPrimary {
@@ -2031,6 +2084,10 @@ declare module '@prismicio/client' {
 			HeroSliceDefaultPrimary,
 			HeroSliceVariation,
 			HeroSliceDefault,
+			NewsletterSlice,
+			NewsletterSliceDefaultPrimary,
+			NewsletterSliceVariation,
+			NewsletterSliceDefault,
 			PoliciesSlice,
 			PoliciesSliceDefaultPrimary,
 			PoliciesSliceVariation,

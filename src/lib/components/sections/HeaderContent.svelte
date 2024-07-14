@@ -37,19 +37,12 @@
 
 	$: count = $cartstore ? getTotalCartItems($cartstore) : 0;
 
-	let mounted = new Promise((resolve, reject) => {
-		onMount(() => {
-			setTimeout(() => {
-				resolve(true);
-			}, 2000);
-		});
-	});
 </script>
 
 <header class="sticky left-0 top-0 z-[3] bg-white dark:bg-secondary">
 	<nav
 		aria-label="Main"
-		class="mx-auto flex items-center justify-between px-2 h-14 font-medium center"
+		class="mx-auto flex items-center justify-between px-2 h-14 font-medium center md:px-0"
 	>
 		<Logo {srTitle} on:click={close} class="z-50" />
 

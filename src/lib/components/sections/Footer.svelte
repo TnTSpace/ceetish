@@ -19,7 +19,7 @@
 <footer class="flex flex-col items-center gap-4 bg-white py-8 dark:bg-secondary">
 	<div
 		aria-label="Footer"
-		class="grid w-full grid-cols-1 gap-4 center sm:grid-cols-2 md:grid-cols-4">
+		class="grid w-full grid-cols-1 gap-4 center md:px-0 sm:grid-cols-2 md:grid-cols-4">
 		{#each sections as section, i}
 			<div>
 				<h3 class="font-medium">

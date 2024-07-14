@@ -44,6 +44,8 @@ export const badgeClasses = "w-fit h-fit overflow-hidden text-ellipsis whitespac
 
 export const badgeLinkClasses = "!p-0 !m-0 flex justify-start text-start w-fit"
 
+export const calloutBtnClasses = "bg-white text-font py-2 px-4 w-full text-center md:w-fit rounded-lg" 
+
 export enum Collection {
   USERS = 'users',
   CART = 'cart'
