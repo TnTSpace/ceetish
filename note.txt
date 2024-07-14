@@ -8,10 +8,8 @@ Sliders
 - Your favorite premium hairline: https://www.ceetish.com/category/hair-extensions
 - Bring out the best in you: https://www.ceetish.com/category/hair-extensions
 
-ToDo
-- Hookup add to carts to firebase instead of localstorage
-- Add all products to the platform
-- Educational pages
+ToDo 
+- Add all products to the platform 
 - Once a successful purchase is made, clear out localstorage and firebase storage
 - build the success page after successful stripe payment
 - build the error page after error stripe payment or cancelled stripe payment

@@ -18,7 +18,7 @@
 	export { className as class };
 
 	const { data, uid } = product;
-	const { name, category, images, price, description, old_price } = data;
+	const { name, category, images, price, description, old_price, in_stock } = data;
 
 	$: loading = false;
 
@@ -103,7 +103,7 @@
 		<div class="flex w-full items-center justify-between">
 			<ProductDialog {product} />
 
-			<div class="flex w-full items-center gap-2 md:w-fit">
+			<div class="flex w-full items-center justify-end gap-2 md:w-fit">
 				{#if $cartstore && $cartstore[product.uid]}
 					<CartCounter on:action={onAction} {product} />
 				{:else}
