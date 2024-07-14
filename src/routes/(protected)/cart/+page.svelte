@@ -72,12 +72,12 @@
 			<h2 class="uppercase font-semibold text-sm">cart summary</h2>
 			<div class="rounded-lg p-4 shadow flex flex-col gap-4 bg-white dark:bg-secondary">
 				{#each products as item, i}
-					<div class="flex items-center justify-between">
-						<div class="capitalize font-semibold text-sm flex items-center gap-1">
+					<div class="flex items-start justify-between gap-4">
+						<div class="capitalize font-semibold text-sm flex items-start gap-1">
+							<span class="lowercase">(x{item.count})</span>
 							<p>
 								{item.document.data.name}
 							</p>
-							<span class="lowercase">x{item.count}</span>
 						</div>
 						<p class="font-bold">£{getPrice(item).toFixed(2)}</p>
 					</div>
@@ -101,10 +101,10 @@
 				class="flex flex-col gap-4 lg:hidden rounded-lg p-4 shadow bg-white dark:bg-secondary"
 			>
 				{#each products as item, i}
-					<div class="flex items-center justify-between">
-						<div class="capitalize font-semibold text-sm flex items-center gap-1">
+					<div class="flex items-start justify-between">
+						<div class="capitalize font-semibold text-sm flex items-start gap-4">
+							<span class="lowercase">(x{item.count})</span>
 							<p>{item.document.data.name}</p>
-							<span class="lowercase">x{item.count}</span>
 						</div>
 						<p class="font-bold">£{getPrice(item).toFixed(2)}</p>
 					</div>

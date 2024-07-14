@@ -9,6 +9,8 @@
 	import { Actions, priceClass, sublineClass } from '$lib/constants';
 	import CartCounter from '../widgets/CartCounter.svelte';
 	import { setCart } from '$lib/common/cart';
+	import { ShoppingCart } from 'lucide-svelte';
+	import SpinLoader from '../icons/SpinLoader.svelte';
 
 	export let product: Content.ProductDocument;
 
@@ -17,6 +19,8 @@
 
 	const { data } = product;
 	const { name, images, price, description, old_price } = data;
+
+	$: loading = false;
 
 	const addToCart = async () => {
 		const exists = $cartstore[product.uid];
@@ -31,6 +35,13 @@
 		if ($userstore) {
 			await setCart($userstore.emailAddresses[0].emailAddress, $cartstore);
 		}
+	};
+
+	const cart = async () => {
+		loading = true;
+		await addToCart();
+		location.href = '/cart';
+		loading = false;
 	};
 
 	const removeFromCart = async () => {
@@ -96,8 +107,18 @@
 			{#if $cartstore && $cartstore[product.uid]}
 				<CartCounter on:action={onAction} {product} />
 			{:else}
-				<Button on:click={addToCart} class="w-full">Add to Cart</Button>
+				<Button on:click={addToCart} class="w-fit">Add to Cart</Button>
 			{/if}
+			<Button
+				on:click={cart}
+				size="icon"
+				class={cn(loading ? 'pointer-events-none' : 'pointer-events-auto')}>
+				{#if loading}
+					<SpinLoader />
+				{:else}
+					<ShoppingCart class="h-4 w-4" />
+				{/if}
+			</Button>
 		</div>
 	</div>
 </div>
