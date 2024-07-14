@@ -7,9 +7,7 @@
 	export let settings: SettingsDocument<string>;
 
 
-	let mounted = new Promise((resolve, reject) => {
-		onMount(() => resolve(true));
-	});
+	let mounted = new Promise((resolve) => onMount(() => resolve(true)));
 </script>
 
 {#await mounted}
