@@ -1,4 +1,5 @@
 <script lang="ts">
+	import SpinLoader from '$lib/components/icons/SpinLoader.svelte';
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import { calloutBtnClasses } from '$lib/constants';
@@ -9,11 +10,15 @@
 
 	export let buttonLabel: KeyTextField;
 
+	$: disabled = false;
+
 	const onSubmit = async (evt: SubmitEvent) => {
 		evt.preventDefault();
 		const form = evt.target as HTMLFormElement;
 		const formData = new FormData(form);
 		const entries = Object.fromEntries(formData.entries());
+
+		disabled = true;
 
 		try {
 			const promise = fetch('/api/newsletter', {
@@ -33,17 +38,25 @@
 			const result = (await response.json()) as iStatus;
 
 			if (result.status === 'success') {
-        toast.success("Successfully")
+				toast.success('Successfully');
 			} else {
-        toast.error(result.message)
+				toast.error(result.message);
 			}
+			disabled = false;
 		} catch (error: any) {
-      toast.error(error.message)
-    }
+			toast.error(error.message);
+			disabled = false;
+		}
 	};
 </script>
 
 <form class="flex flex-col gap-4" on:submit={onSubmit}>
 	<Input placeholder="Enter your email address" name="email" required class="bg-white text-font" />
-	<Button type="submit" class={cn(calloutBtnClasses, '!w-full')}>{buttonLabel}</Button>
+	<Button type="submit" class={cn(calloutBtnClasses, '!w-full')}>
+		{#if disabled}
+			<SpinLoader />
+		{:else}
+			{buttonLabel}
+		{/if}
+	</Button>
 </form>
