@@ -14,9 +14,9 @@ export const POST: RequestHandler = async ({ request, locals }) => {
       const images = item.document.data.images.map(field => (field.image.url as string))
       const name = item.document.data.name as string
       const description = `
-      ${item.document.data.description} ${
+      ${
         item.document.data.selected_size 
-        ? `(${item.document.data.selected_size })`
+        ? `${item.document.data.selected_size }`
         : ''
       }
       `
