@@ -84,6 +84,7 @@
 		product.data.old_price = old_price
 		product.data.price = price
 		product.data.selected_size = detail
+		$cartstore[product.uid].document = product
 	}
 	
 	const { old_price, price } = getPrices(selected_size as string)
