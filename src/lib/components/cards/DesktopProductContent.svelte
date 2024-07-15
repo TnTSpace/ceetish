@@ -1,16 +1,18 @@
 <script lang="ts">
 	import { PrismicImage, PrismicText } from '@prismicio/svelte';
-	import type { Content } from '@prismicio/client';
+	import type { Content, NumberField } from '@prismicio/client';
 	import { cn } from '$lib/utils';
 	import { Button } from '../ui/button';
 	import ProductDialog from '../widgets/ProductDialog.svelte';
 	import { cartstore, userstore } from '$lib/stores';
 	import type { TAction } from '$lib/interfaces';
-	import { Actions, priceClass, sublineClass } from '$lib/constants';
+	import { Actions, badgeClasses, priceClass, sublineClass } from '$lib/constants';
 	import CartCounter from '../widgets/CartCounter.svelte';
 	import { setCart } from '$lib/common/cart';
 	import { ShoppingCart } from 'lucide-svelte';
 	import SpinLoader from '../icons/SpinLoader.svelte';
+	import Select from '../widgets/Select.svelte';
+	import { Badge } from '../ui/badge';
 
 	export let product: Content.ProductDocument;
 
@@ -18,11 +20,22 @@
 	export { className as class };
 
 	const { data } = product;
-	const { name, images, price, description, old_price, in_stock } = data;
+	let { name, images, description, in_stock, size_map, category } = data;
 
-	console.log({ in_stock })
+	const initial = size_map[0];
 
 	$: loading = false;
+	$: product = product;
+
+	product.data.price = product.data.price ? product.data.price : (initial?.price as NumberField);
+	product.data.old_price = product.data.old_price
+		? product.data.old_price
+		: (initial?.old_price as NumberField);
+
+	const sizes = size_map.map((size) => ({
+		label: size.size as string,
+		value: size.size as string
+	}));
 
 	const addToCart = async () => {
 		const exists = $cartstore[product.uid];
@@ -64,6 +77,13 @@
 		const detail = evt.detail as TAction;
 		detail === Actions.ADD ? addToCart() : removeFromCart();
 	};
+	
+	const onSelected = (evt: CustomEvent) => {
+		const detail = evt.detail as string
+		const found = size_map.find(item => item.size?.toString().toLowerCase() === detail.toLowerCase())
+		product.data.old_price = found?.old_price as number
+		product.data.price = found?.price as number
+	}
 </script>
 
 {#if in_stock}
@@ -81,7 +101,7 @@
 				/>
 			</a>
 
-			<div aria-label="details" class="p-4 pb-0">
+			<div aria-label="details" class="p-2 pb-0">
 				<h3 class="overflow-hidden oneline md:text-ellipsis md:whitespace-nowrap">
 					{name}
 				</h3>
@@ -90,16 +110,28 @@
 				</p>
 				<div class="flex items-center gap-1">
 					<p class={priceClass}>
-						£{price?.toFixed(2)}
+						£{product.data.price?.toFixed(2)}
 					</p>
-					{#if old_price}
+					{#if product.data.old_price}
 						<p class="text-sm text-muted-foreground line-through">
-							£{old_price?.toFixed(2)}
+							£{product.data.old_price?.toFixed(2)}
 						</p>
 					{/if}
 				</div>
 			</div>
 		</div>
+
+
+		<hr class="dark:border-primary/20" />
+		{#if size_map.length}
+			<div class="px-2">
+				<Select label="Size" list={sizes} on:selected={onSelected} selected={(initial?.size)} />
+			</div>
+		{:else}
+			<div class="h-9 px-2 flex items-center">
+				<Badge class={badgeClasses}>{category}</Badge>
+			</div>
+		{/if}
 
 		<div
 			class="mx-auto flex w-full items-center justify-between gap-2 border-t p-2 dark:border-primary/20"
@@ -141,7 +173,7 @@
 				/>
 			</a>
 
-			<div aria-label="details" class="p-4 pb-0">
+			<div aria-label="details" class="p-2 pb-0">
 				<h3 class="overflow-hidden oneline md:text-ellipsis md:whitespace-nowrap">
 					{name}
 				</h3>
@@ -150,24 +182,33 @@
 				</p>
 				<div class="flex items-center gap-1">
 					<p class={priceClass}>
-						£{price?.toFixed(2)}
+						£{product.data.price?.toFixed(2)}
 					</p>
-					{#if old_price}
+					{#if product.data.old_price}
 						<p class="text-sm text-muted-foreground line-through">
-							£{old_price?.toFixed(2)}
+							£{product.data.old_price?.toFixed(2)}
 						</p>
 					{/if}
 				</div>
 			</div>
 		</div>
 
+		<hr class="dark:border-primary/20" />
+		{#if size_map.length}
+			<div class="px-2">
+				<Select label="Size" list={sizes} on:selected={onSelected} selected={(initial?.size)} />
+			</div>
+		{:else}
+			<Badge class={badgeClasses}>{category}</Badge>
+		{/if}
 		<div
-			class="mx-auto flex w-full items-center justify-between gap-2 border-t p-2 dark:border-primary/20">
+			class="mx-auto flex w-full items-center justify-between gap-2 border-t p-2 dark:border-primary/20"
+		>
 			<ProductDialog {product} class="hidden md:flex" />
 
 			<div class="flex w-full items-center gap-2 md:w-fit">
 				{#if $cartstore && $cartstore[product.uid]}
-					<CartCounter on:action={onAction} {product} { in_stock } />
+					<CartCounter on:action={onAction} {product} {in_stock} />
 				{:else}
 					<Button disabled on:click={addToCart} class="w-fit">Out of stock</Button>
 				{/if}

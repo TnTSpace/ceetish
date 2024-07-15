@@ -8,8 +8,6 @@
 	import { getCart } from '$lib/common/cart';
 	
 	$: $userstore && getCart($userstore.emailAddresses[0].emailAddress, cartstore)
-
-	$: console.log({ cartstore: $cartstore })
 	
 </script>
 

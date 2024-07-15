@@ -10,10 +10,7 @@
 	export { className as class };
 
 	let mounted = new Promise((resolve, reject) => {
-		onMount(() => {
-			console.log('desktop products');
-			resolve(true);
-		});
+		onMount(() => resolve(true));
 	});
 </script>
 

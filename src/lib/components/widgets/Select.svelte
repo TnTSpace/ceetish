@@ -1,24 +1,34 @@
 <script lang="ts">
 	import { cn } from '$lib/utils.js';
 	import type { Selected } from 'bits-ui';
+	import { createEventDispatcher } from 'svelte';
 
 	export let list: Selected<unknown>[]
 	export let label: string;
+	export let selected: string | null = null
 	const placeholder = `Select ${label}`
 	const name = label
+	const dispatch = createEventDispatcher()
 
 	let className: string = ""
 	export { className as class }
 
-	$: value = null;
+	const onChange = (evt: Event) => {
+		const target = evt.target as HTMLSelectElement
+		const value = target.value
+		dispatch('selected', value)
+	}
+
+	$: value = selected;
 </script>
 <div class="relative">
 	<select
 		class={cn(
-			'country-select !h-10 w-full',
-			'flex h-10 items-center justify-between rounded-md border border-input bg-background px-3 py-2 pr-8 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1', className
+			'country-select w-full',
+			'flex h-9 items-center justify-between rounded-md border border-input bg-background px-3 py-2 pr-8 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1', className
 		)}
 		aria-label={label}
+		on:change={onChange}
 		name={name.toLowerCase()}
     required
 		bind:value>

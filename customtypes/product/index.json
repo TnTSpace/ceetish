@@ -92,6 +92,36 @@
 					}
 				}
 			},
+			"size_map": {
+				"type": "Group",
+				"config": {
+					"label": "Size Map",
+					"repeat": true,
+					"fields": {
+						"size": {
+							"type": "Text",
+							"config": {
+								"label": "Size",
+								"placeholder": ""
+							}
+						},
+						"price": {
+							"type": "Number",
+							"config": {
+								"label": "Price",
+								"placeholder": ""
+							}
+						},
+						"old_price": {
+							"type": "Number",
+							"config": {
+								"label": "Old Price",
+								"placeholder": ""
+							}
+						}
+					}
+				}
+			},
 			"search_metadata": {
 				"type": "StructuredText",
 				"config": {

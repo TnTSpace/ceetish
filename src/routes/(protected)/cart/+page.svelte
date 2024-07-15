@@ -9,7 +9,6 @@
 
 	$: products = $cartstore ? Object.keys($cartstore).map((key) => $cartstore[key]) : [];
 	$: subtotal = $cartstore ? getTotalCartPrice($cartstore) : 0;
-	$: console.log({ products });
 
 	const onSubmit = async (evt: SubmitEvent) => {
 		evt.preventDefault();
@@ -43,14 +42,13 @@
 		if (result.status === 'success') {
 			localStorage.removeItem(Constants.CART);
 
-			if ($userstore) {
-				console.log('updating firebase');
+			if ($userstore) { 
 				await setCart($userstore.emailAddresses[0].emailAddress, {});
 			}
-			location.href = result?.data?.url;
-			console.log({ data: result.data });
+			toast.success(result.message)
+			location.href = result?.data?.url; 
 		} else {
-			console.log(result.message);
+			toast.error(result.message)
 		}
 	};
 </script>

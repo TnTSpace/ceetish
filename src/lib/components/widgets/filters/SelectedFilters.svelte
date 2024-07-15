@@ -17,7 +17,6 @@
   let params: iKeyVal[] = []
 
   $: params = params
-  $: console.log({ params })
 
   const removeParam = (key: string) => {
     $page.url.searchParams.delete(key)

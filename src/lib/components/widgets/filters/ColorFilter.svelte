@@ -41,7 +41,6 @@
 				el.setAttribute('style', `background-color:${el.style.backgroundColor};outline: 3px solid ${color}`);
 			}
 		});
-		console.log({ from: 'onMount', colorList });
 	});
 
 	const onInput = (evt: Event) => {

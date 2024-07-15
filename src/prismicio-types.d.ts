@@ -752,6 +752,41 @@ export interface ProductDocumentDataSizesItem {
 }
 
 /**
+ * Item in *Product → Size Map*
+ */
+export interface ProductDocumentDataSizeMapItem {
+	/**
+	 * Size field in *Product → Size Map*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: product.size_map[].size
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	size: prismic.KeyTextField;
+
+	/**
+	 * Price field in *Product → Size Map*
+	 *
+	 * - **Field Type**: Number
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: product.size_map[].price
+	 * - **Documentation**: https://prismic.io/docs/field#number
+	 */
+	price: prismic.NumberField;
+
+	/**
+	 * Old Price field in *Product → Size Map*
+	 *
+	 * - **Field Type**: Number
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: product.size_map[].old_price
+	 * - **Documentation**: https://prismic.io/docs/field#number
+	 */
+	old_price: prismic.NumberField;
+}
+
+/**
  * Item in *Product → Images*
  */
 export interface ProductDocumentDataImagesItem {
@@ -875,6 +910,17 @@ interface ProductDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/field#group
 	 */
 	sizes: prismic.GroupField<Simplify<ProductDocumentDataSizesItem>>;
+
+	/**
+	 * Size Map field in *Product*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: product.size_map[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	size_map: prismic.GroupField<Simplify<ProductDocumentDataSizeMapItem>>;
 
 	/**
 	 * Search Metadata field in *Product*
@@ -2094,6 +2140,7 @@ declare module '@prismicio/client' {
 			ProductDocumentData,
 			ProductDocumentDataColorsItem,
 			ProductDocumentDataSizesItem,
+			ProductDocumentDataSizeMapItem,
 			ProductDocumentDataImagesItem,
 			ProductDocumentDataPoliciesItem,
 			ProductDocumentDataSlicesSlice,
