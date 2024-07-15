@@ -122,6 +122,13 @@
 					}
 				}
 			},
+			"selected_size": {
+				"type": "Text",
+				"config": {
+					"label": "Selected Size",
+					"placeholder": ""
+				}
+			},
 			"search_metadata": {
 				"type": "StructuredText",
 				"config": {

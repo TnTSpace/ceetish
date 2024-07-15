@@ -19,15 +19,10 @@
 	export { className as class };
 
 	const { data } = product;
-	let { name, images, description, in_stock, size_map } = data;
-
-	const initial = size_map[0]
+	let { name, images, description, in_stock, size_map, selected_size } = data;
 
 	$: loading = false;
 	$: product = product
-
-	product.data.price = product.data.price ? product.data.price : (initial?.price as NumberField) 
-	product.data.old_price = product.data.old_price ? product.data.old_price : (initial?.old_price as NumberField)
 
 	const sizes = size_map.map((size) => ({
 		label: size.size as string,
@@ -75,12 +70,24 @@
 		detail === Actions.ADD ? addToCart() : removeFromCart();
 	};
 
+	const getPrices = (size: string) => {
+		const found = size_map.find(item => item.size?.toString().toLowerCase() === size.toLowerCase())
+		const old_price = found?.old_price as number
+		const price = found?.price as number
+		return { old_price, price }
+	}
+
 	const onSelected = (evt: CustomEvent) => {
 		const detail = evt.detail as string
-		const found = size_map.find(item => item.size?.toString().toLowerCase() === detail.toLowerCase())
-		product.data.old_price = found?.old_price as number
-		product.data.price = found?.price as number
+		const { old_price, price } = getPrices(detail)
+		product.data.old_price = old_price
+		product.data.price = price
+		product.data.selected_size = detail
 	}
+
+	const { old_price, price } = getPrices(selected_size as string)
+	product.data.old_price = selected_size ? old_price : product.data.old_price
+	product.data.price = selected_size ? price : product.data.price
 </script>
 
 {#if in_stock}
@@ -120,7 +127,7 @@
 		</div>
 		<hr class="dark:border-primary/20" />
 		{#if size_map.length}
-			<Select label="Size" list={sizes} on:selected={onSelected} selected={(initial?.size)} />
+			<Select label="Size" list={sizes} on:selected={onSelected} selected={product.data.selected_size} />
 			<hr class="dark:border-primary/20" />
 		{/if}
 		<div aria-label="details" class="flex flex-col gap-2">
@@ -172,7 +179,7 @@
 					</p>
 				</div>
 				{#if size_map.length}
-					<Select label="Size" list={sizes} />
+					<Select label="Size" list={sizes} on:selected={onSelected} selected={product.data.selected_size} />
 				{/if}
 				<div class="flex items-center gap-1">
 					<p class={priceClass}>

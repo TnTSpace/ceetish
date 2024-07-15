@@ -923,6 +923,17 @@ interface ProductDocumentData {
 	size_map: prismic.GroupField<Simplify<ProductDocumentDataSizeMapItem>>;
 
 	/**
+	 * Selected Size field in *Product*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: product.selected_size
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	selected_size: prismic.KeyTextField;
+
+	/**
 	 * Search Metadata field in *Product*
 	 *
 	 * - **Field Type**: Rich Text
