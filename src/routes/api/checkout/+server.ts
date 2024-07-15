@@ -23,7 +23,7 @@ export const POST: RequestHandler = async ({ request, locals }) => {
       return {
         price_data: {
           currency: "GBP",
-          product_data: { name, images },
+          product_data: { name, images, description },
           unit_amount: getPrice(item) * 100
         },
         quantity: item.count
