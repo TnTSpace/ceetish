@@ -1,17 +1,19 @@
 <script lang="ts">
 	import { PrismicImage, PrismicText } from '@prismicio/svelte';
-	import type { Content, NumberField } from '@prismicio/client';
+	import type { Content } from '@prismicio/client';
 	import { cn } from '$lib/utils';
 	import { Button } from '../ui/button';
 	import ProductDialog from '../widgets/ProductDialog.svelte';
 	import { cartstore, userstore } from '$lib/stores';
 	import type { iCart, TAction } from '$lib/interfaces';
-	import { Actions, priceClass } from '$lib/constants';
+	import { Actions, badgeClasses, priceClass } from '$lib/constants';
 	import CartCounter from '../widgets/CartCounter.svelte';
 	import { setCart } from '$lib/common/cart';
 	import { ShoppingCart } from 'lucide-svelte';
 	import SpinLoader from '../icons/SpinLoader.svelte';
 	import Select from '../widgets/Select.svelte';
+	import { Badge } from '../ui/badge';
+
 
 	export let product: Content.ProductDocument;
 
@@ -19,7 +21,7 @@
 	export { className as class };
 
 	const { data } = product;
-	let { name, images, description, in_stock, size_map, selected_size } = data;
+	let { name, images, description, in_stock, size_map, selected_size, category } = data;
 
 	$: loading = false;
 	$: product = product
@@ -137,8 +139,12 @@
 		<hr class="dark:border-primary/20" />
 		{#if size_map.length}
 			<Select label="Size" list={sizes} on:selected={onSelected} selected={product.data.selected_size} />
-			<hr class="dark:border-primary/20" />
+		{:else} 
+			<div class="h-9 px-2 flex items-center">
+				<Badge class={badgeClasses}>{category}</Badge>
+			</div>
 		{/if}
+		<hr class="dark:border-primary/20" />
 		<div aria-label="details" class="flex flex-col gap-2">
 			<div class="flex w-full items-center justify-between">
 				<ProductDialog {product} />
@@ -189,6 +195,10 @@
 				</div>
 				{#if size_map.length}
 					<Select label="Size" list={sizes} on:selected={onSelected} selected={product.data.selected_size} />
+				{:else} 
+					<div class="h-9 px-2 flex items-center">
+						<Badge class={badgeClasses}>{category}</Badge>
+					</div>
 				{/if}
 				<div class="flex items-center gap-1">
 					<p class={priceClass}>
