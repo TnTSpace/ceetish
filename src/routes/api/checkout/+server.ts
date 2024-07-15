@@ -5,8 +5,10 @@ import { BASE } from '$env/static/private';
 import { handleResponse } from '$lib/firebase/server';
 import { json } from '@sveltejs/kit';
 
-export const POST: RequestHandler = async ({ request, locals }) => {
+export const POST: RequestHandler = async ({ request }) => {
   const data = await request.json() as iPayload
+
+  console.log({ products: data.products.map(product => ({ qty: product.count, price: product.document.data.price, name: product.document.data.name })) })
 
   try {
 
@@ -24,7 +26,7 @@ export const POST: RequestHandler = async ({ request, locals }) => {
         price_data: {
           currency: "GBP",
           product_data: { name, images, description },
-          unit_amount: getPrice(item) * 100
+          unit_amount: (item.document.data.price as number) * 100
         },
         quantity: item.count
       }
