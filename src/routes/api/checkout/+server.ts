@@ -13,6 +13,13 @@ export const POST: RequestHandler = async ({ request, locals }) => {
     const lineItems = data.products.map(item => {
       const images = item.document.data.images.map(field => (field.image.url as string))
       const name = item.document.data.name as string
+      const description = `
+      ${item.document.data.description} ${
+        item.document.data.selected_size 
+        ? `(${item.document.data.selected_size })`
+        : ''
+      }
+      `
       return {
         price_data: {
           currency: "GBP",
