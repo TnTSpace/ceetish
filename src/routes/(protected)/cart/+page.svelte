@@ -64,11 +64,13 @@
 		<div class="grid h-min grid-cols-1 gap-4">
 			<h2 class="text-sm font-semibold uppercase">cart details</h2>
 			<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-				{#each products as item, i}
-					<MobileProduct product={item.document} />
-				{:else}
-					<p>No products found</p>
-				{/each}
+				{#key products}
+					{#each products as item, i}
+						<MobileProduct product={item.document} />
+					{:else}
+						<p>No products found</p>
+					{/each}
+				{/key}
 			</div>
 		</div>
 		<div class="hidden gap-4 lg:flex lg:flex-col">

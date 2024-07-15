@@ -5,7 +5,7 @@
 	import { Button } from '../ui/button';
 	import ProductDialog from '../widgets/ProductDialog.svelte';
 	import { cartstore, userstore } from '$lib/stores';
-	import type { TAction } from '$lib/interfaces';
+	import type { iCart, TAction } from '$lib/interfaces';
 	import { Actions, priceClass } from '$lib/constants';
 	import CartCounter from '../widgets/CartCounter.svelte';
 	import { setCart } from '$lib/common/cart';
@@ -52,11 +52,18 @@
 		loading = false;
 	};
 
+	// const filterObjectAndExclude = (key: string, object: iCart) => {
+	// 	const { [key]: _, ...rest } = object;
+	// 	return rest
+	// }
+
 	const removeFromCart = async () => {
 		const cartProduct = $cartstore[product.uid];
 		const count = cartProduct.count - 1;
 		if (count === 0) {
 			delete $cartstore[product.uid];
+			
+			// $cartstore = filterObjectAndExclude(product.uid, $cartstore)
 		} else {
 			$cartstore[product.uid] = { ...cartProduct, count };
 		}
