@@ -41,6 +41,11 @@ export const sublineClasses = "text-xl md:text-3xl font-medium text-center"
 
 export const highlightClasses = "p-4 bg-primary/50 py-4 border-l-primary border-l-4 flex flex-col gap-4"
 
+export const highlightBlueClasses = "p-4 bg-blue-500/50 py-4 border-l-blue-500 border-l-4 flex flex-col gap-4"
+export const highlightGreenClasses = "p-4 bg-green-500/50 py-4 border-l-green-500 border-l-4 flex flex-col gap-4"
+export const highlightYellowClasses = "p-4 bg-yellow-500/50 py-4 border-l-yellow-500 border-l-4 flex flex-col gap-4"
+export const highlightPurpleClasses = "p-4 bg-purple-500/50 py-4 border-l-purple-500 border-l-4 flex flex-col gap-4"
+
 export const badgeClasses = "w-fit h-fit overflow-hidden text-ellipsis whitespace-nowrap rounded-full text-xs font-medium capitalize"
 
 export const badgeLinkClasses = "!p-0 !m-0 flex justify-start text-start w-fit"

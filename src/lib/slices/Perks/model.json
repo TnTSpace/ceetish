@@ -1,0 +1,50 @@
+{
+  "id": "perks",
+  "type": "SharedSlice",
+  "name": "Perks",
+  "description": "Perks",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "perks": {
+          "type": "Group",
+          "config": {
+            "label": "Perks",
+            "repeat": true,
+            "fields": {
+              "name": {
+                "type": "Select",
+                "config": {
+                  "label": "Name",
+                  "placeholder": "",
+                  "options": [
+                    "Free Shipping",
+                    "Next Day Delivery",
+                    "Great Customer Service",
+                    "Best Price Guarantee"
+                  ]
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Description",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "single": "paragraph"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

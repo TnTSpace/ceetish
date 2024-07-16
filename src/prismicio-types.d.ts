@@ -563,6 +563,7 @@ export type FiltersDocument<Lang extends string = string> = prismic.PrismicDocum
 >;
 
 type PageDocumentDataSlicesSlice =
+	| PerksSlice
 	| NewsletterSlice
 	| BentoSlice
 	| ReviewsSlice
@@ -1817,6 +1818,75 @@ type NewsletterSliceVariation = NewsletterSliceDefault;
 export type NewsletterSlice = prismic.SharedSlice<'newsletter', NewsletterSliceVariation>;
 
 /**
+ * Item in *Perks → Default → Primary → Perks*
+ */
+export interface PerksSliceDefaultPrimaryPerksItem {
+	/**
+	 * Name field in *Perks → Default → Primary → Perks*
+	 *
+	 * - **Field Type**: Select
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: perks.default.primary.perks[].name
+	 * - **Documentation**: https://prismic.io/docs/field#select
+	 */
+	name: prismic.SelectField<
+		'Free Shipping' | 'Next Day Delivery' | 'Great Customer Service' | 'Best Price Guarantee'
+	>;
+
+	/**
+	 * Description field in *Perks → Default → Primary → Perks*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: perks.default.primary.perks[].description
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	description: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *Perks → Default → Primary*
+ */
+export interface PerksSliceDefaultPrimary {
+	/**
+	 * Perks field in *Perks → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: perks.default.primary.perks[]
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	perks: prismic.GroupField<Simplify<PerksSliceDefaultPrimaryPerksItem>>;
+}
+
+/**
+ * Default variation for Perks Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PerksSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<PerksSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *Perks*
+ */
+type PerksSliceVariation = PerksSliceDefault;
+
+/**
+ * Perks Shared Slice
+ *
+ * - **API ID**: `perks`
+ * - **Description**: Perks
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PerksSlice = prismic.SharedSlice<'perks', PerksSliceVariation>;
+
+/**
  * Primary content in *Policies → Default → Primary*
  */
 export interface PoliciesSliceDefaultPrimary {
@@ -2200,6 +2270,11 @@ declare module '@prismicio/client' {
 			NewsletterSliceDefaultPrimary,
 			NewsletterSliceVariation,
 			NewsletterSliceDefault,
+			PerksSlice,
+			PerksSliceDefaultPrimaryPerksItem,
+			PerksSliceDefaultPrimary,
+			PerksSliceVariation,
+			PerksSliceDefault,
 			PoliciesSlice,
 			PoliciesSliceDefaultPrimary,
 			PoliciesSliceVariation,

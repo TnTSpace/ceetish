@@ -10,6 +10,7 @@
 		addToggleThumbBtnsActive
 	} from './scripts/EmblaCarouselThumbsButton';
 	import Button from '$lib/components/ui/button/button.svelte';
+	import Autoplay from 'embla-carousel-autoplay';
 
 	let className: string = '';
 	export { className as class };
@@ -31,21 +32,23 @@
 		const viewportNodeMainCarousel = <HTMLElement>slideViewport;
 		const viewportNodeThumbCarousel = <HTMLElement>thumbViewport;
 
-		emblaApiMain = EmblaCarousel(viewportNodeMainCarousel, OPTIONS);
-		emblaApiThumb = EmblaCarousel(viewportNodeThumbCarousel, OPTIONS_THUMBS);
+		emblaApiMain = EmblaCarousel(viewportNodeMainCarousel, OPTIONS, [
+			Autoplay({ playOnInit: true, delay: 3000 })
+		]);
+		// emblaApiThumb = EmblaCarousel(viewportNodeThumbCarousel, OPTIONS_THUMBS);
 
-		const removeThumbBtnsClickHandlers = addThumbBtnsClickHandlers(emblaApiMain, emblaApiThumb);
-		const removeToggleThumbBtnsActive = addToggleThumbBtnsActive(emblaApiMain, emblaApiThumb);
+		// const removeThumbBtnsClickHandlers = addThumbBtnsClickHandlers(emblaApiMain, emblaApiThumb);
+		// const removeToggleThumbBtnsActive = addToggleThumbBtnsActive(emblaApiMain, emblaApiThumb);
 
-		return () => {
-			emblaApiMain
-				.on('destroy', removeThumbBtnsClickHandlers)
-				.on('destroy', removeToggleThumbBtnsActive);
+		// return () => {
+		// 	emblaApiMain
+		// 		.on('destroy', removeThumbBtnsClickHandlers)
+		// 		.on('destroy', removeToggleThumbBtnsActive);
 
-			emblaApiThumb
-				.on('destroy', removeThumbBtnsClickHandlers)
-				.on('destroy', removeToggleThumbBtnsActive);
-		};
+		// 	emblaApiThumb
+		// 		.on('destroy', removeThumbBtnsClickHandlers)
+		// 		.on('destroy', removeToggleThumbBtnsActive);
+		// };
 	});
 </script>
 
@@ -75,7 +78,7 @@
 			{/each}
 		</div>
 	</div>
-	<div class="embla-thumbs">
+	<!-- <div class="embla-thumbs">
 		<div bind:this={thumbViewport} class="embla-thumbs__viewport">
 			<div class="embla-thumbs__container">
 				{#each sliders as slider, i}
@@ -92,5 +95,5 @@
 				{/each}
 			</div>
 		</div>
-	</div>
+	</div> -->
 </div>
