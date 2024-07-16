@@ -12,7 +12,7 @@
 </script>
 
 <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
-	<div class="center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+	<div class="center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:px-0">
 		{#each slice.primary.perks as perk, i}
 			<div class={classes[i]}>
 				<div class="flex items-center gap-2">
