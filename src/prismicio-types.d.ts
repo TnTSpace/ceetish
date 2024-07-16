@@ -31,7 +31,7 @@ export interface CatalogDocumentDataColorsItem {
 	 * - **API ID Path**: catalog.colors[].color
 	 * - **Documentation**: https://prismic.io/docs/field#select
 	 */
-	color: prismic.SelectField<'gold' | 'silver' | 'brown' | 'pink' | 'black'>;
+	color: prismic.SelectField<'gold' | 'silver' | 'brown' | 'pink' | 'black' | 'maroon'>;
 }
 
 /**
@@ -46,7 +46,16 @@ export interface CatalogDocumentDataSizesItem {
 	 * - **API ID Path**: catalog.sizes[].size
 	 * - **Documentation**: https://prismic.io/docs/field#select
 	 */
-	size: prismic.SelectField<'14 inches' | '16 inches' | '22 inches' | '12 inches' | '10 inches'>;
+	size: prismic.SelectField<
+		| '14 inches'
+		| '16 inches'
+		| '22 inches'
+		| '12 inches'
+		| '10 inches'
+		| '26 inches'
+		| '28 inches'
+		| '20 inches'
+	>;
 }
 
 type CatalogDocumentDataSlicesSlice = never;
@@ -195,7 +204,7 @@ export interface CategoriesDocumentDataColorsItem {
 	 * - **API ID Path**: categories.colors[].color
 	 * - **Documentation**: https://prismic.io/docs/field#select
 	 */
-	color: prismic.SelectField<'gold' | 'silver'>;
+	color: prismic.SelectField<'gold' | 'silver' | 'black' | 'pink' | 'brown' | 'maroon'>;
 }
 
 /**
@@ -471,7 +480,7 @@ export interface FiltersDocumentDataColorsItem {
 	 * - **API ID Path**: filters.colors[].color
 	 * - **Documentation**: https://prismic.io/docs/field#select
 	 */
-	color: prismic.SelectField<'gold' | 'silver' | 'pink' | 'brown'>;
+	color: prismic.SelectField<'gold' | 'silver' | 'pink' | 'brown' | 'maroon'>;
 }
 
 /**
@@ -733,7 +742,7 @@ export interface ProductDocumentDataColorsItem {
 	 * - **API ID Path**: product.colors[].color
 	 * - **Documentation**: https://prismic.io/docs/field#select
 	 */
-	color: prismic.SelectField<'gold' | 'silver' | 'pink' | 'brown' | 'black'>;
+	color: prismic.SelectField<'gold' | 'silver' | 'pink' | 'brown' | 'black' | 'maroon'>;
 }
 
 /**

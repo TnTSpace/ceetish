@@ -1,18 +1,17 @@
 import type { RequestHandler } from './$types';
 import { stripe } from '$lib/server/stripe';
-import { getPrice, type iPayload } from '$lib';
+import { getPrice, type iCartValue, type iPayload } from '$lib';
 import { BASE } from '$env/static/private';
 import { handleResponse } from '$lib/firebase/server';
 import { json } from '@sveltejs/kit';
 
 export const POST: RequestHandler = async ({ request }) => {
-  const data = await request.json() as iPayload
-
-  console.log({ products: data.products.map(product => ({ qty: product.count, price: product.document.data.price, name: product.document.data.name })) })
+  // const data = await request.json() as iPayload
+  const data = await request.json() as iCartValue[]
 
   try {
 
-    const lineItems = data.products.map(item => {
+    const lineItems = data.map(item => {
       const images = item.document.data.images.map(field => (field.image.url as string))
       const name = item.document.data.name as string
       const description = `

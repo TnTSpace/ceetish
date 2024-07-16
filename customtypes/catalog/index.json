@@ -50,7 +50,7 @@
 							"config": {
 								"label": "Color",
 								"placeholder": "",
-								"options": ["gold", "silver", "brown", "pink", "black"]
+								"options": ["gold", "silver", "brown", "pink", "black", "maroon"]
 							}
 						}
 					}
@@ -67,7 +67,16 @@
 							"config": {
 								"label": "Size",
 								"placeholder": "",
-								"options": ["14 inches", "16 inches", "22 inches", "12 inches", "10 inches"]
+								"options": [
+									"14 inches",
+									"16 inches",
+									"22 inches",
+									"12 inches",
+									"10 inches",
+									"26 inches",
+									"28 inches",
+									"20 inches"
+								]
 							}
 						}
 					}

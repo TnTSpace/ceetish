@@ -5,7 +5,7 @@
 	import { Button } from '../ui/button';
 	import ProductDialog from '../widgets/ProductDialog.svelte';
 	import { cartstore, userstore } from '$lib/stores';
-	import type { TAction } from '$lib/interfaces';
+	import type { iCartValue, iStatus, TAction } from '$lib/interfaces';
 	import { Actions, badgeClasses, priceClass, sublineClass } from '$lib/constants';
 	import CartCounter from '../widgets/CartCounter.svelte';
 	import { setCart } from '$lib/common/cart';
@@ -13,6 +13,7 @@
 	import SpinLoader from '../icons/SpinLoader.svelte';
 	import Select from '../widgets/Select.svelte';
 	import { Badge } from '../ui/badge';
+	import toast from 'svelte-french-toast';
 
 	export let product: Content.ProductDocument;
 
@@ -44,13 +45,21 @@
 			await setCart($userstore.emailAddresses[0].emailAddress, $cartstore);
 		}
 
-		console.log({ cartstore: $cartstore })
+		console.log({ cartstore: $cartstore });
 	};
 
 	const cart = async () => {
 		loading = true;
-		await addToCart();
-		location.href = '/cart';
+		const cartValue: iCartValue[] = [{ count: 1, document: product }];
+
+		const response = await fetch('/api/checkout', {
+			method: 'post',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(cartValue)
+		});
+		const result = (await response.json()) as iStatus;
+
+		result.status === 'success' ? (location.href = result?.data?.url) : toast.error(result.message);
 		loading = false;
 	};
 
@@ -74,24 +83,26 @@
 	};
 
 	const getPrices = (size: string) => {
-		const found = size_map.find(item => item.size?.toString().toLowerCase() === size.toLowerCase())
-		const old_price = found?.old_price as number
-		const price = found?.price as number
-		return { old_price, price }
-	}
-	
+		const found = size_map.find(
+			(item) => item.size?.toString().toLowerCase() === size.toLowerCase()
+		);
+		const old_price = found?.old_price as number;
+		const price = found?.price as number;
+		return { old_price, price };
+	};
+
 	const onSelected = (evt: CustomEvent) => {
-		const detail = evt.detail as string
-		const { old_price, price } = getPrices(detail)
-		product.data.old_price = old_price
-		product.data.price = price
-		product.data.selected_size = detail
-		$cartstore[product.uid].document = product
-	}
-	
-	const { old_price, price } = getPrices(selected_size as string)
-	product.data.old_price = selected_size ? old_price : product.data.old_price
-	product.data.price = selected_size ? price : product.data.price
+		const detail = evt.detail as string;
+		const { old_price, price } = getPrices(detail);
+		product.data.old_price = old_price;
+		product.data.price = price;
+		product.data.selected_size = detail;
+		$cartstore[product.uid].document = product;
+	};
+
+	const { old_price, price } = getPrices(selected_size as string);
+	product.data.old_price = selected_size ? old_price : product.data.old_price;
+	product.data.price = selected_size ? price : product.data.price;
 </script>
 
 {#if in_stock}
@@ -129,14 +140,18 @@
 			</div>
 		</div>
 
-
 		<hr class="dark:border-primary/20" />
 		{#if size_map.length}
 			<div class="px-2">
-				<Select label="Size" list={sizes} on:selected={onSelected} selected={(product.data.selected_size)} />
+				<Select
+					label="Size"
+					list={sizes}
+					on:selected={onSelected}
+					selected={product.data.selected_size}
+				/>
 			</div>
 		{:else}
-			<div class="h-9 px-2 flex items-center">
+			<div class="flex h-9 items-center px-2">
 				<Badge class={badgeClasses}>{category}</Badge>
 			</div>
 		{/if}
@@ -204,10 +219,17 @@
 		<hr class="dark:border-primary/20" />
 		{#if size_map.length}
 			<div class="px-2">
-				<Select label="Size" list={sizes} on:selected={onSelected} selected={(product.data.selected_size)} />
+				<Select
+					label="Size"
+					list={sizes}
+					on:selected={onSelected}
+					selected={product.data.selected_size}
+				/>
 			</div>
 		{:else}
-			<Badge class={badgeClasses}>{category}</Badge>
+			<div class="flex h-9 items-center px-2">
+				<Badge class={badgeClasses}>{category}</Badge>
+			</div>
 		{/if}
 		<div
 			class="mx-auto flex w-full items-center justify-between gap-2 border-t p-2 dark:border-primary/20"

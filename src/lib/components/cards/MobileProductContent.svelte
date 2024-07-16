@@ -5,7 +5,7 @@
 	import { Button } from '../ui/button';
 	import ProductDialog from '../widgets/ProductDialog.svelte';
 	import { cartstore, userstore } from '$lib/stores';
-	import type { iCart, TAction } from '$lib/interfaces';
+	import type { iCart, iCartValue, iStatus, TAction } from '$lib/interfaces';
 	import { Actions, badgeClasses, priceClass } from '$lib/constants';
 	import CartCounter from '../widgets/CartCounter.svelte';
 	import { setCart } from '$lib/common/cart';
@@ -13,7 +13,7 @@
 	import SpinLoader from '../icons/SpinLoader.svelte';
 	import Select from '../widgets/Select.svelte';
 	import { Badge } from '../ui/badge';
-
+	import toast from 'svelte-french-toast';
 
 	export let product: Content.ProductDocument;
 
@@ -24,7 +24,7 @@
 	let { name, images, description, in_stock, size_map, selected_size, category } = data;
 
 	$: loading = false;
-	$: product = product
+	$: product = product;
 
 	const sizes = size_map.map((size) => ({
 		label: size.size as string,
@@ -44,27 +44,30 @@
 		if ($userstore) {
 			await setCart($userstore.emailAddresses[0].emailAddress, $cartstore);
 		}
-		console.log({ cartstore: $cartstore })
+		console.log({ cartstore: $cartstore });
 	};
 
 	const cart = async () => {
 		loading = true;
-		await addToCart();
-		location.href = '/cart';
+		const cartValue: iCartValue[] = [{ count: 1, document: product }];
+
+		const response = await fetch('/api/checkout', {
+			method: 'post',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(cartValue)
+		});
+		const result = (await response.json()) as iStatus;
+
+		result.status === 'success' ? (location.href = result?.data?.url) : toast.error(result.message);
 		loading = false;
 	};
-
-	// const filterObjectAndExclude = (key: string, object: iCart) => {
-	// 	const { [key]: _, ...rest } = object;
-	// 	return rest
-	// }
 
 	const removeFromCart = async () => {
 		const cartProduct = $cartstore[product.uid];
 		const count = cartProduct.count - 1;
 		if (count === 0) {
 			delete $cartstore[product.uid];
-			
+
 			// $cartstore = filterObjectAndExclude(product.uid, $cartstore)
 		} else {
 			$cartstore[product.uid] = { ...cartProduct, count };
@@ -81,24 +84,26 @@
 	};
 
 	const getPrices = (size: string) => {
-		const found = size_map.find(item => item.size?.toString().toLowerCase() === size.toLowerCase())
-		const old_price = found?.old_price as number
-		const price = found?.price as number
-		return { old_price, price }
-	}
+		const found = size_map.find(
+			(item) => item.size?.toString().toLowerCase() === size.toLowerCase()
+		);
+		const old_price = found?.old_price as number;
+		const price = found?.price as number;
+		return { old_price, price };
+	};
 
 	const onSelected = (evt: CustomEvent) => {
-		const detail = evt.detail as string
-		const { old_price, price } = getPrices(detail)
-		product.data.old_price = old_price
-		product.data.price = price
-		product.data.selected_size = detail
-		$cartstore[product.uid].document = product
-	}
+		const detail = evt.detail as string;
+		const { old_price, price } = getPrices(detail);
+		product.data.old_price = old_price;
+		product.data.price = price;
+		product.data.selected_size = detail;
+		$cartstore[product.uid].document = product;
+	};
 
-	const { old_price, price } = getPrices(selected_size as string)
-	product.data.old_price = selected_size ? old_price : product.data.old_price
-	product.data.price = selected_size ? price : product.data.price
+	const { old_price, price } = getPrices(selected_size as string);
+	product.data.old_price = selected_size ? old_price : product.data.old_price;
+	product.data.price = selected_size ? price : product.data.price;
 </script>
 
 {#if in_stock}
@@ -138,9 +143,14 @@
 		</div>
 		<hr class="dark:border-primary/20" />
 		{#if size_map.length}
-			<Select label="Size" list={sizes} on:selected={onSelected} selected={product.data.selected_size} />
-		{:else} 
-			<div class="h-9 px-2 flex items-center">
+			<Select
+				label="Size"
+				list={sizes}
+				on:selected={onSelected}
+				selected={product.data.selected_size}
+			/>
+		{:else}
+			<div class="flex h-9 items-center px-2">
 				<Badge class={badgeClasses}>{category}</Badge>
 			</div>
 		{/if}
@@ -194,9 +204,14 @@
 					</p>
 				</div>
 				{#if size_map.length}
-					<Select label="Size" list={sizes} on:selected={onSelected} selected={product.data.selected_size} />
-				{:else} 
-					<div class="h-9 px-2 flex items-center">
+					<Select
+						label="Size"
+						list={sizes}
+						on:selected={onSelected}
+						selected={product.data.selected_size}
+					/>
+				{:else}
+					<div class="flex h-9 items-center px-2">
 						<Badge class={badgeClasses}>{category}</Badge>
 					</div>
 				{/if}

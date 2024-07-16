@@ -12,23 +12,23 @@
 
 	const onSubmit = async (evt: SubmitEvent) => {
 		evt.preventDefault();
-		const form = evt.target as HTMLFormElement;
-		const formData = new FormData(form);
-		const entries = Object.fromEntries(formData.entries());
+		// const form = evt.target as HTMLFormElement;
+		// const formData = new FormData(form);
+		// const entries = Object.fromEntries(formData.entries());
 
-		const json: iPayload = {
-			amount: entries.amount as string,
-			email: $userstore?.emailAddresses[0] as unknown as string,
-			fullName: $userstore?.fullName as string,
-			products
-		};
+		// const json: iPayload = {
+		// 	amount: entries.amount as string,
+		// 	email: $userstore?.emailAddresses[0] as unknown as string,
+		// 	fullName: $userstore?.fullName as string,
+		// 	products
+		// };
 
 		const promise = fetch('/api/checkout', {
 			method: 'post',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify(json)
+			body: JSON.stringify(products)
 		});
 
 		const response = await toast.promise(promise, {

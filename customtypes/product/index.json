@@ -70,7 +70,7 @@
 							"config": {
 								"label": "Color",
 								"placeholder": "",
-								"options": ["gold", "silver", "pink", "brown", "black"]
+								"options": ["gold", "silver", "pink", "brown", "black", "maroon"]
 							}
 						}
 					}
