@@ -114,7 +114,7 @@
 		)}
 	>
 		<div class="grid grid-cols-[1fr_2fr] gap-2">
-			<a class="relative aspect-square w-full overflow-hidden" href={`/product/{product.uid`}>
+			<a class="relative aspect-square w-full overflow-hidden" href={`/product/${product.uid}`}>
 				<PrismicImage
 					field={images[0]?.image}
 					class="absolute left-1/2 top-1/2 aspect-auto h-full -translate-x-1/2 -translate-y-1/2 rounded-md object-cover"
@@ -188,7 +188,7 @@
 		)}
 	>
 		<div class="grid grid-cols-[1fr_2fr] gap-2">
-			<a class="relative aspect-square w-full overflow-hidden" href={`/product/{product.uid}`}>
+			<a class="relative aspect-square w-full overflow-hidden" href={`/product/${product.uid}`}>
 				<PrismicImage
 					field={images[0]?.image}
 					class="absolute left-1/2 top-1/2 aspect-auto h-full -translate-x-1/2 -translate-y-1/2 rounded-md object-cover"
