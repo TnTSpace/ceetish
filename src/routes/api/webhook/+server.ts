@@ -12,7 +12,7 @@ export const GET: RequestHandler = async () => {
 };
 
 export const POST = async ({ request }) => {
-  const payload = await request.text();
+  const payload = await request.json()
   const sig = request.headers.get('stripe-signature') as string
   const endpointSecret = STRIPE_WEBHOOK_SECRET;
 
