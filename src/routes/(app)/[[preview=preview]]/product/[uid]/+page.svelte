@@ -25,8 +25,7 @@
 	export let data;
 
 	const product = data.page;
-	const { name, category, description, details, in_stock, size_map, selected_size } =
-		product.data;
+	const { name, category, description, details, in_stock, size_map, selected_size } = product.data;
 
 	$: images = data.page.data.images.map((field) => field.image);
 	$: loading = false;
@@ -130,16 +129,16 @@
 					</p>
 				{/if}
 			</div>
-			<hr class="dark:border-primary/20" />
 			{#if size_map.length}
+				<hr class="dark:border-primary/20" />
 				<Select
 					label="Size"
 					list={sizes}
 					on:selected={onSelected}
 					selected={product.data.selected_size}
 				/>
+				<hr class="dark:border-primary/20" />
 			{/if}
-			<hr class="dark:border-primary/20" />
 			{#if in_stock}
 				<div class="mt-auto flex w-full items-center gap-2 md:w-fit">
 					{#if $cartstore && $cartstore[product.uid]}
