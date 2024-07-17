@@ -4,6 +4,12 @@ import { setDocumentWithMerge } from '$lib/firebase/server.js';
 import { stripe } from '$lib/server/stripe';
 import { json } from '@sveltejs/kit';
 import type Stripe from 'stripe';
+import type { RequestHandler } from './$types';
+
+export const GET: RequestHandler = async () => {
+  
+  return json({ message: 'Endpoint' })
+};
 
 export const POST = async ({ request }) => {
   const payload = await request.text();
