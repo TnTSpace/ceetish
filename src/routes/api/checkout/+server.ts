@@ -49,7 +49,7 @@ export const POST: RequestHandler = async ({ request }) => {
       },
       mode: "payment",
       success_url: `${BASE}/success`,
-      cancel_url: `${BASE}/success`,
+      cancel_url: `${BASE}/cancel`,
       phone_number_collection: {
         enabled: true
       },
