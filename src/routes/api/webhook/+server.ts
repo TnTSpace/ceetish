@@ -2,7 +2,7 @@ import { STRIPE_WEBHOOK_SECRET } from '$env/static/private';
 import { Collection } from '$lib';
 import { setDocumentWithMerge } from '$lib/firebase/server.js';
 import { stripe } from '$lib/server/stripe';
-import { json } from '@sveltejs/kit';
+import { json, text } from '@sveltejs/kit';
 import type Stripe from 'stripe';
 import type { RequestHandler } from './$types';
 
@@ -12,15 +12,19 @@ export const GET: RequestHandler = async () => {
 };
 
 export const POST = async ({ request }) => {
-  const payload = await request.json()
+  const webhookSecret = STRIPE_WEBHOOK_SECRET;
   const sig = request.headers.get('stripe-signature') as string
-  const endpointSecret = STRIPE_WEBHOOK_SECRET;
 
-  let event;
+  let event: Stripe.Event
   let session: Stripe.Checkout.Session
 
   try {
-    event = stripe.webhooks.constructEvent(payload, sig, endpointSecret);
+    if (!request.body || !sig || !webhookSecret) {
+      return text('Client Error', { status: 400 })
+    }
+    const buf = Buffer.from(await request.arrayBuffer())
+    event = stripe.webhooks.constructEvent(buf, sig, webhookSecret)
+    
     session = event.data.object as Stripe.Checkout.Session
   } catch (err: any) {
     return json({ error: `Webhook Error: ${err.message}` }, { status: 400 });
