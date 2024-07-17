@@ -138,11 +138,8 @@
 					on:selected={onSelected}
 					selected={product.data.selected_size}
 				/>
-			{:else}
-				<div class="flex h-9 items-center px-2">
-					<Badge class={badgeClasses}>{category}</Badge>
-				</div>
 			{/if}
+			<hr class="dark:border-primary/20" />
 			{#if in_stock}
 				<div class="mt-auto flex w-full items-center gap-2 md:w-fit">
 					{#if $cartstore && $cartstore[product.uid]}
