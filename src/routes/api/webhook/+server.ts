@@ -28,8 +28,8 @@ export const POST = async ({ request }) => {
       console.log(`session is: ${JSON.stringify(session)}`)
       await setDocumentWithMerge({
         collectionId: Collection.CHECKOUT,
-        docId: session.id,
-        data: session
+        docId: session.customer_details?.email as string,
+        data: event.data
       })
       break;
     // ... handle other event types
