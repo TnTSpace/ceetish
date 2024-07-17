@@ -5,15 +5,14 @@
 	import { Button } from '../ui/button';
 	import ProductDialog from '../widgets/ProductDialog.svelte';
 	import { cartstore, userstore } from '$lib/stores';
-	import type { iCart, iCartValue, iStatus, TAction } from '$lib/interfaces';
+	import type { TAction } from '$lib/interfaces';
 	import { Actions, badgeClasses, priceClass } from '$lib/constants';
 	import CartCounter from '../widgets/CartCounter.svelte';
-	import { setCart } from '$lib/common/cart';
+	import { checkout, setCart } from '$lib/common/cart';
 	import { ShoppingCart } from 'lucide-svelte';
 	import SpinLoader from '../icons/SpinLoader.svelte';
 	import Select from '../widgets/Select.svelte';
 	import { Badge } from '../ui/badge';
-	import toast from 'svelte-french-toast';
 
 	export let product: Content.ProductDocument;
 
@@ -47,18 +46,9 @@
 		console.log({ cartstore: $cartstore });
 	};
 
-	const cart = async () => {
+	const handleCheckout = async () => {
 		loading = true;
-		const cartValue: iCartValue[] = [{ count: 1, document: product }];
-
-		const response = await fetch('/api/checkout', {
-			method: 'post',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(cartValue)
-		});
-		const result = (await response.json()) as iStatus;
-
-		result.status === 'success' ? (location.href = result?.data?.url) : toast.error(result.message);
+		await checkout(product);
 		loading = false;
 	};
 
@@ -67,8 +57,6 @@
 		const count = cartProduct.count - 1;
 		if (count === 0) {
 			delete $cartstore[product.uid];
-
-			// $cartstore = filterObjectAndExclude(product.uid, $cartstore)
 		} else {
 			$cartstore[product.uid] = { ...cartProduct, count };
 		}
@@ -166,7 +154,7 @@
 						<Button on:click={addToCart} class="w-fit">Add to Cart</Button>
 					{/if}
 					<Button
-						on:click={cart}
+						on:click={handleCheckout}
 						size="icon"
 						class={cn(loading ? 'pointer-events-none' : 'pointer-events-auto')}
 					>
@@ -239,7 +227,7 @@
 						<Button on:click={addToCart} class="w-fit">Out of Stock</Button>
 					{/if}
 					<Button
-						on:click={cart}
+						on:click={handleCheckout}
 						size="icon"
 						class={cn(loading ? 'pointer-events-none' : 'pointer-events-auto')}
 					>

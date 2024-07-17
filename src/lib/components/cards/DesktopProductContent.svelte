@@ -8,7 +8,7 @@
 	import type { iCartValue, iStatus, TAction } from '$lib/interfaces';
 	import { Actions, badgeClasses, priceClass, sublineClass } from '$lib/constants';
 	import CartCounter from '../widgets/CartCounter.svelte';
-	import { setCart } from '$lib/common/cart';
+	import { checkout, setCart } from '$lib/common/cart';
 	import { ShoppingCart } from 'lucide-svelte';
 	import SpinLoader from '../icons/SpinLoader.svelte';
 	import Select from '../widgets/Select.svelte';
@@ -48,20 +48,11 @@
 		console.log({ cartstore: $cartstore });
 	};
 
-	const cart = async () => {
-		loading = true;
-		const cartValue: iCartValue[] = [{ count: 1, document: product }];
-
-		const response = await fetch('/api/checkout', {
-			method: 'post',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(cartValue)
-		});
-		const result = (await response.json()) as iStatus;
-
-		result.status === 'success' ? (location.href = result?.data?.url) : toast.error(result.message);
-		loading = false;
-	};
+	const handleCheckout = async () => {
+		loading = true
+		await checkout(product)
+		loading = false
+	}
 
 	const removeFromCart = async () => {
 		const cartProduct = $cartstore[product.uid];
@@ -168,7 +159,7 @@
 					<Button on:click={addToCart} class="w-fit">Add to Cart</Button>
 				{/if}
 				<Button
-					on:click={cart}
+					on:click={handleCheckout}
 					size="icon"
 					class={cn(loading ? 'pointer-events-none' : 'pointer-events-auto')}
 				>
@@ -243,7 +234,7 @@
 					<Button disabled on:click={addToCart} class="w-fit">Out of stock</Button>
 				{/if}
 				<Button
-					on:click={cart}
+					on:click={handleCheckout}
 					disabled
 					size="icon"
 					class={cn(loading ? 'pointer-events-none' : 'pointer-events-auto')}
