@@ -2,7 +2,7 @@ import { stripe } from '$lib/server/stripe';
 import { json } from '@sveltejs/kit';
 
 export const POST = async ({ request }) => {
-  const { sessionId } = await request.json();
+  const { sessionId } = await request.json(); 
 
   try {
     const session = await stripe.checkout.sessions.retrieve(sessionId);
