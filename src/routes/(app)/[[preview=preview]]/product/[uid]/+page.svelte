@@ -21,11 +21,15 @@
 	import { Badge } from '$lib/components/ui/badge';
 	import { ShoppingCart } from 'lucide-svelte';
 	import { cn } from '$lib/utils';
+	import { page } from '$app/stores';
 
 	export let data;
 
 	const product = data.page;
 	const { name, category, description, details, in_stock, size_map, selected_size } = product.data;
+
+	// todo: check for settings in $page to extract phone number of ceetish and link on the pdp for call to order
+	console.log({page: $page})
 
 	$: images = data.page.data.images.map((field) => field.image);
 	$: loading = false;
@@ -140,7 +144,7 @@
 				<hr class="dark:border-primary/20" />
 			{/if}
 			{#if in_stock}
-				<div class="mt-auto flex w-full items-center gap-2 md:w-fit">
+				<div class="mt-auto flex w-[calc(100%-32px)] items-center gap-2 md:w-fit fixed md:static bottom-[64px] left-1/2 -translate-x-1/2 md:-translate-x-0 z-[1]">
 					{#if $cartstore && $cartstore[product.uid]}
 						<CartCounter on:action={onAction} {product} />
 					{:else}
@@ -160,7 +164,7 @@
 					</Button>
 				</div>
 			{:else}
-				<div class="mt-auto flex w-full items-center gap-2 md:w-fit">
+				<div class="mt-auto flex w-[calc(100%-32px)] items-center gap-2 md:w-fit fixed md:static bottom-[64px] left-1/2 -translate-x-1/2 md:-translate-0 z-[1]">
 					{#if $cartstore && $cartstore[product.uid]}
 						<CartCounter on:action={onAction} {product} />
 					{:else}

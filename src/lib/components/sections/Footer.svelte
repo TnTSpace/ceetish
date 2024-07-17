@@ -39,5 +39,5 @@
 		{/each}
 	</div>
 	<hr class="dark:border-primary/10" />
-	<div>© {new Date().getFullYear()} Ceetish Luxury Hair. All rights reserved</div>
+	<div class="center text-sm text-center">© {new Date().getFullYear()} Ceetish Luxury Hair. All rights reserved</div>
 </footer>
