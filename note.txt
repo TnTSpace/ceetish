@@ -14,3 +14,6 @@ ToDo
 - build the success page after successful stripe payment
 - build the error page after error stripe payment or cancelled stripe payment
 - implement out of stock state on products
+
+Stripe Webhook
+- https://www.youtube.com/watch?v=1l4NMj-NTUE
