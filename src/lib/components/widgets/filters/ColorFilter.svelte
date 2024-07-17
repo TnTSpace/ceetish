@@ -33,13 +33,18 @@
 
 		colorList.forEach((color) => {
 			const el = document.querySelector(`div[data-color="${color}"]`) as HTMLDivElement;
-			if (el) {
-				el.classList.add('border-[3px]');
-				el.classList.add('dark:border-[3px]')
-				el.classList.add('border-white');
-				el.classList.add('dark:border-secondary')
-				el.setAttribute('style', `background-color:${el.style.backgroundColor};outline: 3px solid ${color}`);
-			}
+			const els = document.querySelectorAll(`div[data-color="${color}"]`) as NodeListOf<HTMLDivElement>;
+
+			els.forEach(el => {
+				if (el) {
+					el.classList.add('border-[3px]');
+					el.classList.add('dark:border-[3px]')
+					el.classList.add('border-white');
+					el.classList.add('dark:border-secondary')
+					el.setAttribute('style', `background-color:${el.style.backgroundColor};outline: 3px solid ${color}`);
+				}
+			})
+			
 		});
 	});
 
