@@ -17,3 +17,27 @@ ToDo
 
 Stripe Webhook
 - https://www.youtube.com/watch?v=1l4NMj-NTUE
+
+
+ToDo
+- Update the credentials on Google Sheets App Script
+- Update the emails to the official ceetish email in the App Script
+- Install Visual Studio code
+- Install NodeJS
+- Install Bun
+- Install prismic cli
+- Install Git 
+- Install Git Desktop
+- Create Ceetish Clerk Account
+- Create Ceetish Production instance Account
+- Obtain Ceetish Clerk environment variables: PUBLIC_CLERK_PUBLISHABLE_KEY & CLERK_SECRET_KEY
+- Create Ceetish Firebase account
+- Obtain Firebase environment variable: SERVICE_ACCOUNT
+- Obtain Stripe test and production environment variables: STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET
+- Create Stripe Production Webhook
+- Create Ceetish Github account
+- Upload the code to ceetish Github
+- Create Ceetish Vercel account
+- Connect Ceetish Github to Ceetish Vercel account
+- Connect the ceetish code from github to Vercel
+- Before building the project update the environment variables to Ceetish stripe and 

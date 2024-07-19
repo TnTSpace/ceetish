@@ -37,7 +37,7 @@ export const POST = async ({ request }) => {
       console.log(`Payment was successful for user: ${session.id}`);
       console.log(`session is: ${JSON.stringify(session)}`)
       const data: Record<string, any> = {}
-      data[session.customer_details?.email as string] = event.data
+      data[session.customer_details?.email as string] = event.data.object
       await setDocumentWithMerge({
         collectionId: Collection.CHECKOUT,
         docId: slugify(new Date().toDateString()),
