@@ -5,11 +5,19 @@ import { BASE } from '$env/static/private';
 import { handleResponse } from '$lib/firebase/server';
 import { json } from '@sveltejs/kit';
 
+interface iProduct {
+  name: string,
+  quantity: number;
+  price: number
+}
+
 export const POST: RequestHandler = async ({ request }) => {
   // const data = await request.json() as iPayload
   const data = await request.json() as iCartValue[]
 
   try {
+
+    const products: iProduct[] = []
 
     const lineItems = data.map(item => {
       const images = item.document.data.images.map(field => (field.image.url as string))
@@ -21,6 +29,7 @@ export const POST: RequestHandler = async ({ request }) => {
         : ''
       }
       `
+      products.push({ name, quantity: item.count, price: item.document.data.price as number })
       return {
         price_data: {
           currency: "GBP",
@@ -55,7 +64,7 @@ export const POST: RequestHandler = async ({ request }) => {
       },
       metadata: {
         date: new Date().toLocaleString(),
-        products: JSON.stringify(data)
+        products: JSON.stringify(products)
       }
     })
 
