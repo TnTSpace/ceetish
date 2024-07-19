@@ -1,5 +1,5 @@
 import { STRIPE_WEBHOOK_SECRET } from '$env/static/private';
-import { Collection } from '$lib';
+import { Collection, slugify } from '$lib';
 import { setDocumentWithMerge } from '$lib/firebase/server.js';
 import { stripe } from '$lib/server/stripe';
 import { json, text } from '@sveltejs/kit';
@@ -36,10 +36,12 @@ export const POST = async ({ request }) => {
       // Fulfill the purchase, e.g., update your database, send email to customer via google sheet appscript api
       console.log(`Payment was successful for user: ${session.id}`);
       console.log(`session is: ${JSON.stringify(session)}`)
+      const data: Record<string, any> = {}
+      data[session.customer_details?.email as string] = event.data
       await setDocumentWithMerge({
         collectionId: Collection.CHECKOUT,
-        docId: session.customer_details?.email as string,
-        data: event.data
+        docId: slugify(new Date().toDateString()),
+        data
       })
       break;
     // ... handle other event types
