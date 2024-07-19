@@ -7,6 +7,7 @@ export const POST: RequestHandler = async ({ request }) => {
   const body = await request.json()
   const docId = body.email
   const data = body.data
+  data.email = body.email
   await deleteDocument({
     docId,
     collectionId: Collection.CART,

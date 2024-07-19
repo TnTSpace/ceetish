@@ -44,8 +44,6 @@
 		if ($userstore) {
 			await setCart($userstore.emailAddresses[0].emailAddress, $cartstore);
 		}
-
-		console.log({ cartstore: $cartstore });
 	};
 
 	const handleCheckout = async () => {
