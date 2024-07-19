@@ -54,7 +54,8 @@ export const POST: RequestHandler = async ({ request }) => {
         enabled: true
       },
       metadata: {
-        date: new Date().toLocaleString()
+        date: new Date().toLocaleString(),
+        products: JSON.stringify(data)
       }
     })
 
